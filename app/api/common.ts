@@ -6,10 +6,8 @@ const PROTOCOL = process.env.PROTOCOL ?? DEFAULT_PROTOCOL;
 const BASE_URL = process.env.BASE_URL ?? OPENAI_URL;
 
 export async function requestOpenai(req: NextRequest) {
-  let apiKey ="";
-  if(req.headers.get("token")=="default" || req.headers.get("token") =="2333") {
-    apiKey = "2333";//req.headers.get("token");
-  }
+  let apiKey =process.env.API_KEY;
+
   const openaiPath = req.headers.get("path");
 
   let baseUrl = BASE_URL;

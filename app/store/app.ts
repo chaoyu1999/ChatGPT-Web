@@ -63,7 +63,7 @@ function createEmptySession(): ChatSession {
   return {
     id: Date.now(),
     topic: DEFAULT_TOPIC,
-    sendMemory: true,
+    sendMemory: false,
     memoryPrompt: "",
     context: [],
     messages: [],

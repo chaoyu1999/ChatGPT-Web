@@ -54,7 +54,6 @@ function getHeaders() {
     headers["access-code"] = accessStore.accessCode;
   }
   // headers["token"] = "2333"
-  headers["token"] = accessStore.token || "default";
 
   return headers;
 }
