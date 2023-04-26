@@ -17,15 +17,15 @@ export enum Theme {
 
 const DEFAULT_CONFIG = {
   historyMessageCount: 25,
-  compressMessageLengthThreshold: 1000,
+  compressMessageLengthThreshold: 25000,
   sendBotMessages: true as boolean,
   submitKey: SubmitKey.CtrlEnter as SubmitKey,
   avatar: "1f603",
-  fontSize: 14,
+  fontSize: 12,
   theme: Theme.Auto as Theme,
-  tightBorder: false,
-  sendPreviewBubble: true,
-  sidebarWidth: 300,
+  tightBorder: true,
+  sendPreviewBubble: false,
+  sidebarWidth: 100,
 
   disablePromptHint: false,
 

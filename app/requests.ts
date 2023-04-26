@@ -53,10 +53,8 @@ function getHeaders() {
   if (accessStore.enabledAccessControl()) {
     headers["access-code"] = accessStore.accessCode;
   }
-  headers["token"] = "2333"
-  // if (accessStore.token && accessStore.token.length > 0) {
-  //   headers["token"] = "2333"//accessStore.token;
-  // }
+  // headers["token"] = "2333"
+  headers["token"] = accessStore.token || "default";
 
   return headers;
 }
