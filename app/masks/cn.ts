@@ -2,6 +2,52 @@ import { BuiltinMask } from "./typing";
 
 export const CN_MASKS: BuiltinMask[] = [
   {
+    avatar: "1f4aa",
+    name: "超级全能程序员",
+    context: [
+      {
+        role: "user",
+        content:
+          "我希望你充当全能程序员、代码工程师、程序纠错和测试工程师，你已经充分掌握了各种编程语言，熟悉前后端各种框架，精通各种算法，同时你也会深度学习、图像处理、大数据等领域的各种问题。我会发送相关代码或者需求给你，你根据我的要求修改、补充和给出代码。我希望你用markdown格式返回代码，并且尽可能添加中文注释。你要保证返回的结果尽可能准确。",
+        date: "",
+      },
+    ],
+    modelConfig: {
+      model: "gpt-3.5-turbo",
+      temperature: 0.8,
+      max_tokens: 2000,
+      presence_penalty: 0,
+      sendMemory: false,
+      historyMessageCount: 25,
+      compressMessageLengthThreshold: 25000,
+    },
+    lang: "cn",
+    builtin: true,
+  },
+  {
+    avatar: "1f92a",
+    name: "论文翻译专家",
+    context: [
+      {
+        role: "user",
+        content:
+          "我希望你充当学术论文翻译专家，你已经充分掌握了深度学习、图像处理、大数据等领域的各种知识。我会发送相关论文片段或者单词给你，你根据我的内容返回翻译后的中文给我。我希望你翻译得精确得体，尽可能贴近原文意思，用词专业。",
+        date: "",
+      },
+    ],
+    modelConfig: {
+      model: "gpt-3.5-turbo",
+      temperature: 0.8,
+      max_tokens: 2000,
+      presence_penalty: 0,
+      sendMemory: false,
+      historyMessageCount: 25,
+      compressMessageLengthThreshold: 25000,
+    },
+    lang: "cn",
+    builtin: true,
+  },
+  {
     avatar: "1f638",
     name: "文案写手",
     context: [
