@@ -36,18 +36,17 @@ export function auth(req: NextRequest) {
 
   console.log("[Auth] allowed hashed codes: ", [...serverConfig.codes]);
   console.log("[Auth] got access code:", accessCode);
-  console.log("[Auth] server access code:", serverConfig.code);
   console.log("[Auth] hashed access code:", hashedCode);
   console.log("[User IP] ", getIP(req));
   console.log("[Time] ", new Date().toLocaleString());
 
-  // if (serverConfig.needCode && !serverConfig.codes.has(hashedCode)){
-  //   return {
-  //     error: true,
-  //     needAccessCode: true,
-  //     msg: "Please go settings page and fill your access code.",
-  //   };
-  // }
+  if (serverConfig.needCode && !serverConfig.codes.has(hashedCode) && !token) {
+    return {
+      error: true,
+      needAccessCode: true,
+      msg: "Please go settings page and fill your access code.",
+    };
+  }
 
   // if user does not provide an api key, inject system api key
   if (!token) {
