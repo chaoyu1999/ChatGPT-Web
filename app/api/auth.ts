@@ -40,7 +40,7 @@ export function auth(req: NextRequest) {
   console.log("[User IP] ", getIP(req));
   console.log("[Time] ", new Date().toLocaleString());
 
-  if (serverConfig.needCode && serverConfig.code != accessCode)//!serverConfig.codes.has(hashedCode) ) {
+  if (serverConfig.needCode && serverConfig.code != accessCode){//!serverConfig.codes.has(hashedCode) ) {
     return {
       error: true,
       needAccessCode: true,
