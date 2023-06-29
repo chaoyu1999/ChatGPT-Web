@@ -51,17 +51,17 @@ function getHeaders() {
   const validString = (x: string) => x && x.length > 0;
   
   // use user's api key first
-  // if (validString(accessStore.token)) {
-  //   headers.Authorization = makeBearer(accessStore.token);
-  // } else if (
-  //   accessStore.enabledAccessControl() &&
-  //   validString(accessStore.accessCode)
-  // ) {
-  //   headers.Authorization = makeBearer(
-  //     ACCESS_CODE_PREFIX + accessStore.accessCode,
-  //   );
-  // }
-  headers.Authorization = makeBearer('2333');
+  if (validString(accessStore.token)) {
+    headers.Authorization = makeBearer(accessStore.token);
+  } else if (
+    accessStore.enabledAccessControl() &&
+    validString(accessStore.accessCode)
+  ) {
+    headers.Authorization = makeBearer(
+      ACCESS_CODE_PREFIX + accessStore.accessCode,
+    );
+  }
+  // headers.Authorization = makeBearer('2333');
   return headers;
 }
 
