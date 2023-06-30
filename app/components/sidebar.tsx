@@ -104,8 +104,8 @@ export function SideBar(props: { className?: string }) {
         <ChatGptIcon />
 
         </div>
-        <img className={styles["sidebar-image"]} src="http://s4.timepill.net/s/w640/photos/2023-06-30/q6ihp4jq685psl8pmw8omi56nvq4sfp1.jpg" alt="Image1" />
-  <img className={styles["sidebar-image"]} src="http://s4.timepill.net/s/w640/photos/2023-06-30/538t5tamlfutcl7i9uq4s58y0pxuo55g.jpg" alt="Image2" />
+        <img className={styles["sidebar-image"]} src="http://s4.timepill.net/s/w640/photos/2023-06-30/kaetn61bivsmh7n2fxh2eftiu7zijlme.jpg" alt="Image1" />
+        <img className={styles["sidebar-image"]} src="http://s4.timepill.net/s/w640/photos/2023-06-30/md491wknvuquvh9ony2j7ambvdekoez4.jpg" alt="Image2" />
       </div>
 
 
