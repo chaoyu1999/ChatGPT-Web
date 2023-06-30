@@ -98,7 +98,10 @@ export function SideBar(props: { className?: string }) {
       <div className={styles["sidebar-header"]}>
         <div className={styles["sidebar-title"]}>Cy&apos;s ChatGPT</div>
         <div className={styles["sidebar-sub-title"]}>
-          服务器维护成本有限，仅限本人朋友使用。如需获取使用密码请打赏后联系邮箱:onlyyoufabian@gmail.com
+          服务器维护成本有限，仅限本人同学朋友使用。
+          如需获取访问密码请打赏后联系邮箱:
+          <br/>
+          onlyyoufabian@gmail.com
         </div>
         <div className={styles["sidebar-logo"] + " no-dark"}>
         <ChatGptIcon />
