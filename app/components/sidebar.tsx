@@ -98,12 +98,17 @@ export function SideBar(props: { className?: string }) {
       <div className={styles["sidebar-header"]}>
         <div className={styles["sidebar-title"]}>Cy&apos;s ChatGPT</div>
         <div className={styles["sidebar-sub-title"]}>
-          Your own AI assistant.
+          服务器维护成本有限，仅限本人朋友使用。如需获得使用密码请联系邮箱:onlyyoufabian@gmail.com
         </div>
         <div className={styles["sidebar-logo"] + " no-dark"}>
-          <ChatGptIcon />
+        <ChatGptIcon />
+
         </div>
+        <img src="https://upload-images.jianshu.io/upload_images/5809200-a99419bb94924e6d.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Image1" />
+          
+        <img src="https://upload-images.jianshu.io/upload_images/5809200-c12521fbde6c705b.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Image2" />
       </div>
+
 
       <div className={styles["sidebar-header-bar"]}>
         <IconButton
