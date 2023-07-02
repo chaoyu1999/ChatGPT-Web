@@ -62,7 +62,7 @@ async function handle(
   }
 
   try {
-    const api = await requestOpenai(req);
+    const api = await requestOpenai(req, keyIndex);
 
     const contentType = api.headers.get("Content-Type") ?? "";
 
