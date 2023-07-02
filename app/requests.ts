@@ -70,7 +70,7 @@ export function requestOpenaiClient(path: string) {
   return (body: any, method = "POST") =>
     fetch(openaiUrl + path, {
       method,
-      body: body && JSON.stringify(body),
+      body: body,
       headers: getHeaders(),
     });
 }
