@@ -4,7 +4,6 @@ import { auth } from "../../auth";
 import { requestOpenai } from "../../common";
 const authValue = process.env.API_KEYS ?? "";
 let keysArray = authValue.split(',');
-let keyIndex = Math.floor(Math.random() * keysArray.length);
 
 
 async function createStream(res: Response) {
@@ -60,6 +59,7 @@ async function handle(
       status: 401,
     });
   }
+  let keyIndex = Math.floor(Math.random() * keysArray.length);
 
   try {
     const api = await requestOpenai(req, keyIndex);

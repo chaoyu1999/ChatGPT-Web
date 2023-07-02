@@ -31,7 +31,7 @@ export async function requestOpenai(req: NextRequest, keyIndex: number) {
   const makeBearer = (token: string) => `Bearer ${token.trim()}`;
   let keysArray = authValue.split(',');
   let randomKey = makeBearer(keysArray[keyIndex]);
-  
+  console.log("[keyIndex ]", keyIndex);
   let ClientInfo = getClientInfo(req);
   console.log("[ClientInfo ]", ClientInfo);
   if(req.method == 'POST'){
