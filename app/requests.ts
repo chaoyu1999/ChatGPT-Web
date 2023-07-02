@@ -111,14 +111,12 @@ export async function requestUsage() {
       .padStart(2, "0")}`;
   const ONE_DAY = 1 * 24 * 60 * 60 * 1000;
   const now = new Date();
-  const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
-  const startDate = "2022-07-01";
-  const endDate = formatDate(new Date(Date.now() + ONE_DAY));
+  const endDate = formatDate(now);
+  const startDate = formatDate(new Date(now.getTime() - (99 * ONE_DAY)));
 
   const [used, subs] = await Promise.all([
     requestOpenaiClientUsage(
-      //`dashboard/billing/usage?start_date=${startDate}&end_date=${endDate}`,
-      `dashboard/billing/usage`,
+      `dashboard/billing/usage?start_date=${startDate}&end_date=${endDate}`,
     )(null, "GET"),
     requestOpenaiClientUsage("dashboard/billing/subscription")(null, "GET"),
   ]);
