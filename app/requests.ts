@@ -109,7 +109,8 @@ export async function requestUsage() {
 
   const [used, subs] = await Promise.all([
     requestOpenaiClient(
-      `dashboard/billing/usage?start_date=${startDate}&end_date=${endDate}`,
+      //`dashboard/billing/usage?start_date=${startDate}&end_date=${endDate}`,
+      `dashboard/billing/usage`,
     )(null, "GET"),
     requestOpenaiClient("dashboard/billing/subscription")(null, "GET"),
   ]);
