@@ -26,7 +26,7 @@ function getClientInfo(req: NextRequest): {
   return clientInfo;
 }
 
-export async function requestOpenai(req: NextRequest,keyIndex:number) {
+export async function requestOpenai(req: NextRequest, keyIndex: number) {
   let req_copy = req.clone();
   const makeBearer = (token: string) => `Bearer ${token.trim()}`;
   let keysArray = authValue.split(',');
