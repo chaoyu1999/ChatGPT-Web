@@ -132,6 +132,7 @@ export async function requestUsage() {
 
   const total = (await subs.json()) as {
     hard_limit_usd?: number;
+    keyIndex?: number;
   };
 
   console.log("[used]", response);
@@ -154,6 +155,7 @@ export async function requestUsage() {
   return {
     used: response.total_usage,
     subscription: total.hard_limit_usd,
+    keyIndex: total.keyIndex,
   };
 }
 

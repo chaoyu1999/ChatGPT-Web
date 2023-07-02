@@ -140,13 +140,14 @@ const cn = {
 
     Usage: {
       Title: "余额查询",
-      SubTitle(used: any, total: any) {
-        return `已使用 ${used}美元，订阅总额 ${total}美元`;
+      SubTitle(used: any, total: any, KeyIndex: any) {
+        return `APIKeyID: ${KeyIndex}已使用: ${used}美元，订阅总额: ${total}美元`;
       },
       IsChecking: "正在检查…",
       Check: "重新检查",
       NoAccess: "输入 API Key 或访问密码查看余额",
     },
+
     AccessCode: {
       Title: "访问密码",
       SubTitle: "管理员已开启加密访问",

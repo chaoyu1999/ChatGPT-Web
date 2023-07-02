@@ -10,7 +10,7 @@ export interface UpdateStore {
   used?: number;
   subscription?: number;
   lastUpdateUsage: number;
-
+  keyIndex?: number;
   version: string;
   getLatestVersion: (force?: boolean) => Promise<void>;
   updateUsage: (force?: boolean) => Promise<void>;

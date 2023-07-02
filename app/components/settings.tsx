@@ -230,6 +230,7 @@ export function Settings() {
   const usage = {
     used: updateStore.used,
     subscription: updateStore.subscription,
+    keyIndex: updateStore.keyIndex,
   };
   const [loadingUsage, setLoadingUsage] = useState(false);
   function checkUsage(force = false) {
@@ -514,6 +515,7 @@ export function Settings() {
                   : Locale.Settings.Usage.SubTitle(
                       usage?.used ?? "[?]",
                       usage?.subscription ?? "[?]",
+                      usage?.keyIndex ?? "[?]"
                     )
                 : Locale.Settings.Usage.NoAccess
             }
