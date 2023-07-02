@@ -30,7 +30,8 @@ export async function requestOpenai(req: NextRequest) {
   let req_copy = req.clone();
   const makeBearer = (token: string) => `Bearer ${token.trim()}`;
   let keysArray = authValue.split(',');
-  let randomKey = makeBearer(keysArray[Math.floor(Math.random() * keysArray.length)]);
+  let keyIndex = Math.floor(Math.random() * keysArray.length);
+  let randomKey = makeBearer(keysArray[keyIndex]);
   
   let ClientInfo = getClientInfo(req);
   console.log("[ClientInfo ]", ClientInfo);
@@ -96,17 +97,38 @@ export async function requestOpenai(req: NextRequest) {
       console.error("[OpenAI Request] invalid api key provided", authValue);
     }
 
-    return fetch(`${baseUrl}/${openaiPath}`, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: randomKey,
-        ...(process.env.OPENAI_ORG_ID && {
-          "OpenAI-Organization": process.env.OPENAI_ORG_ID,
-        }),
-        'Client-Info': JSON.stringify(ClientInfo)
-      },
-      cache: "no-store",
-      method: req.method,
+    return new Promise((resolve, reject) => {
+      fetch(`${baseUrl}/${openaiPath}`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: randomKey,
+          ...(process.env.OPENAI_ORG_ID && {
+            "OpenAI-Organization": process.env.OPENAI_ORG_ID,
+          }),
+          'Client-Info': JSON.stringify(ClientInfo)
+        },
+        cache: "no-store",
+        method: req.method,
+      })
+        .then(response => {
+          // 处理返回结果
+          const keyIndex = 123; // 替换成你的keyIndex值
+          response.json()
+            .then(data => {
+              const result = {
+                response: data,
+                keyIndex: keyIndex
+              };
+              resolve(result);
+            })
+            .catch(error => {
+              reject(error);
+            });
+        })
+        .catch(error => {
+          reject(error);
+        });
     });
+    
   }
 }

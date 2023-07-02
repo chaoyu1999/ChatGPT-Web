@@ -120,7 +120,7 @@ export async function requestUsage() {
     )(null, "GET"),
     requestOpenaiClientUsage("dashboard/billing/subscription")(null, "GET"),
   ]);
-  console.log("[used]", used);
+ 
 
   const response = (await used.json()) as {
     total_usage?: number;
@@ -133,7 +133,10 @@ export async function requestUsage() {
   const total = (await subs.json()) as {
     hard_limit_usd?: number;
   };
-  console.log("[total]", subs);
+
+  console.log("[used]", response);
+  console.log("[total]", total);
+
 
   if (response.error && response.error.type) {
     showToast(response.error.message);
