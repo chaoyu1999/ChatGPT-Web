@@ -74,6 +74,14 @@ export function requestOpenaiClient(path: string) {
       headers: getHeaders(),
     });
 }
+export function requestOpenaiClientUsage(path: string) {
+  const openaiUrl = useAccessStore.getState().openaiUrl;
+  return (body: any, method = "GET") =>
+    fetch(openaiUrl + path, {
+      method,
+      headers: getHeaders(),
+    });
+}
 
 export async function requestChat(
   messages: Message[],
@@ -108,12 +116,13 @@ export async function requestUsage() {
   const endDate = formatDate(new Date(Date.now() + ONE_DAY));
 
   const [used, subs] = await Promise.all([
-    requestOpenaiClient(
+    requestOpenaiClientUsage(
       //`dashboard/billing/usage?start_date=${startDate}&end_date=${endDate}`,
       `dashboard/billing/usage`,
     )(null, "GET"),
-    requestOpenaiClient("dashboard/billing/subscription")(null, "GET"),
+    requestOpenaiClientUsage("dashboard/billing/subscription")(null, "GET"),
   ]);
+  console.log("[used]", used);
 
   const response = (await used.json()) as {
     total_usage?: number;
@@ -126,6 +135,7 @@ export async function requestUsage() {
   const total = (await subs.json()) as {
     hard_limit_usd?: number;
   };
+  console.log("[total]", subs);
 
   if (response.error && response.error.type) {
     showToast(response.error.message);
