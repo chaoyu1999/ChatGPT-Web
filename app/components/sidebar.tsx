@@ -99,6 +99,7 @@ export function SideBar(props: { className?: string }) {
         <div className={styles["sidebar-title"]}>Cy&apos;s ChatGPT</div>
         <div className={styles["sidebar-sub-title"]}>
           服务器维护成本有限，仅限本人同学朋友使用。（密码：我名字小写拼音）
+          <br/>
           其余人士如需获取访问密码请打赏后联系邮箱:
           <br/>
           onlyyoufabian@gmail.com
@@ -107,8 +108,8 @@ export function SideBar(props: { className?: string }) {
         <ChatGptIcon />
 
         </div>
-        <img className={styles["sidebar-image"]} src="http://s4.timepill.net/s/w640/photos/2023-06-30/kaetn61bivsmh7n2fxh2eftiu7zijlme.jpg" alt="Image1" />
-        <img className={styles["sidebar-image"]} src="http://s4.timepill.net/s/w640/photos/2023-06-30/md491wknvuquvh9ony2j7ambvdekoez4.jpg" alt="Image2" />
+        <img className={styles["sidebar-image"]} src="http://image.kypeople.cn/WsTVyD.png" alt="微信" />
+        <img className={styles["sidebar-image"]} src="http://image.kypeople.cn/bBk0iy.png" alt="支付宝" />
       </div>
 
 
