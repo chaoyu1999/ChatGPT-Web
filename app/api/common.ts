@@ -34,42 +34,79 @@ export async function requestOpenai(req: NextRequest) {
   
   let ClientInfo = getClientInfo(req);
   console.log("[ClientInfo ]", ClientInfo);
-  const jsonData = await req_copy.json()
-  console.log("[messages ] ", jsonData['messages']);
+  if(req.method == 'POST'){
+    const jsonData = await req_copy.json()
+    console.log("[messages ] ", jsonData['messages']);
 
-  const openaiPath = `${req.nextUrl.pathname}${req.nextUrl.search}`.replaceAll(
-    "/api/openai/",
-    "",
-  );
+    const openaiPath = `${req.nextUrl.pathname}${req.nextUrl.search}`.replaceAll(
+      "/api/openai/",
+      "",
+    );
 
-  let baseUrl = BASE_URL;
+    let baseUrl = BASE_URL;
 
-  if (!baseUrl.startsWith("http")) {
-    baseUrl = `${PROTOCOL}://${baseUrl}`;
+    if (!baseUrl.startsWith("http")) {
+      baseUrl = `${PROTOCOL}://${baseUrl}`;
+    }
+
+    console.log("[Proxy] ", openaiPath);
+    console.log("[Base Url]", baseUrl);
+
+    if (process.env.OPENAI_ORG_ID) {
+      console.log("[Org ID]", process.env.OPENAI_ORG_ID);
+    }
+
+    if (!randomKey || !randomKey.startsWith("Bearer ")) {
+      console.error("[OpenAI Request] invalid api key provided", authValue);
+    }
+
+    return fetch(`${baseUrl}/${openaiPath}`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: randomKey,
+        ...(process.env.OPENAI_ORG_ID && {
+          "OpenAI-Organization": process.env.OPENAI_ORG_ID,
+        }),
+        'Client-Info': JSON.stringify(ClientInfo)
+      },
+      cache: "no-store",
+      method: req.method,
+      body: JSON.stringify(jsonData),
+    });
+  }else{
+    const openaiPath = `${req.nextUrl.pathname}${req.nextUrl.search}`.replaceAll(
+      "/api/openai/",
+      "",
+    );
+
+    let baseUrl = BASE_URL;
+
+    if (!baseUrl.startsWith("http")) {
+      baseUrl = `${PROTOCOL}://${baseUrl}`;
+    }
+
+    console.log("[Proxy] ", openaiPath);
+    console.log("[Base Url]", baseUrl);
+
+    if (process.env.OPENAI_ORG_ID) {
+      console.log("[Org ID]", process.env.OPENAI_ORG_ID);
+    }
+
+    if (!randomKey || !randomKey.startsWith("Bearer ")) {
+      console.error("[OpenAI Request] invalid api key provided", authValue);
+    }
+
+    return fetch(`${baseUrl}/${openaiPath}`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: randomKey,
+        ...(process.env.OPENAI_ORG_ID && {
+          "OpenAI-Organization": process.env.OPENAI_ORG_ID,
+        }),
+        'Client-Info': JSON.stringify(ClientInfo)
+      },
+      cache: "no-store",
+      method: req.method,
+    });
   }
-
-  console.log("[Proxy] ", openaiPath);
-  console.log("[Base Url]", baseUrl);
-
-  if (process.env.OPENAI_ORG_ID) {
-    console.log("[Org ID]", process.env.OPENAI_ORG_ID);
-  }
-
-  if (!randomKey || !randomKey.startsWith("Bearer ")) {
-    console.error("[OpenAI Request] invalid api key provided", authValue);
-  }
-
-  return fetch(`${baseUrl}/${openaiPath}`, {
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: randomKey,
-      ...(process.env.OPENAI_ORG_ID && {
-        "OpenAI-Organization": process.env.OPENAI_ORG_ID,
-      }),
-      'Client-Info': JSON.stringify(ClientInfo)
-    },
-    cache: "no-store",
-    method: req.method,
-    body: JSON.stringify(jsonData),
-  });
 }
