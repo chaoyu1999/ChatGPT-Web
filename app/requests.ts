@@ -11,7 +11,7 @@ import { showToast } from "./components/ui-lib";
 import { ACCESS_CODE_PREFIX } from "./constant";
 
 const TIME_OUT_MS = 60000;
-const useageCheckJson  = `{"messages":[{"role":"user","content":"useageCheckJson"}],"stream":true,"model":"gpt-3.5-turbo-16k","temperature":0.8,"presence_penalty":0}`
+// const useageCheckJson  = `{"messages":[{"role":"user","content":"useageCheckJson"}],"stream":true,"model":"gpt-3.5-turbo-16k","temperature":0.8,"presence_penalty":0}`
 const makeRequestParam = (
   messages: Message[],
   options?: {
@@ -110,8 +110,8 @@ export async function requestUsage() {
   const [used, subs] = await Promise.all([
     requestOpenaiClient(
       `dashboard/billing/usage?start_date=${startDate}&end_date=${endDate}`,
-    )(useageCheckJson, "GET"),
-    requestOpenaiClient("dashboard/billing/subscription")(useageCheckJson, "GET"),
+    )(null, "GET"),
+    requestOpenaiClient("dashboard/billing/subscription")(null, "GET"),
   ]);
 
   const response = (await used.json()) as {
