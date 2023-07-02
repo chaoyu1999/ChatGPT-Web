@@ -111,19 +111,9 @@ export async function requestOpenai(req: NextRequest) {
         method: req.method,
       })
         .then(response => {
-          // 处理返回结果
-          const keyIndex = 123; // 替换成你的keyIndex值
-          response.json()
-            .then(data => {
-              const result = {
-                response: data,
-                keyIndex: keyIndex
-              };
-              resolve(result);
-            })
-            .catch(error => {
-              reject(error);
-            });
+          // 将新的键值对添加到返回的json中
+          const newJson = { ...response.json(), 'keyIndex': keyIndex };
+          resolve(newJson);
         })
         .catch(error => {
           reject(error);
