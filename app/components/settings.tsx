@@ -515,7 +515,7 @@ export function Settings() {
                   : Locale.Settings.Usage.SubTitle(
                       usage?.used ?? "[?]",
                       usage?.subscription ?? "[?]",
-                      usage?.keyIndex ?? "[?]"
+                      usage?.keyIndex ?? "[?]",
                     )
                 : Locale.Settings.Usage.NoAccess
             }
