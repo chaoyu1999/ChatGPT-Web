@@ -97,27 +97,18 @@ export async function requestOpenai(req: NextRequest) {
       console.error("[OpenAI Request] invalid api key provided", authValue);
     }
 
-    return new Promise((resolve, reject) => {
-      fetch(`${baseUrl}/${openaiPath}`, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: randomKey,
-          ...(process.env.OPENAI_ORG_ID && {
-            "OpenAI-Organization": process.env.OPENAI_ORG_ID,
-          }),
-          'Client-Info': JSON.stringify(ClientInfo)
-        },
-        cache: "no-store",
-        method: req.method,
-      })
-        .then(response => {
-          // 将新的键值对添加到返回的json中
-          const newJson = { ...response.json(), 'keyIndex': keyIndex };
-          resolve(newJson);
-        })
-        .catch(error => {
-          reject(error);
-        });
+    
+    return fetch(`${baseUrl}/${openaiPath}`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: randomKey,
+        ...(process.env.OPENAI_ORG_ID && {
+          "OpenAI-Organization": process.env.OPENAI_ORG_ID,
+        }),
+        'Client-Info': JSON.stringify(ClientInfo)
+      },
+      cache: "no-store",
+      method: req.method,
     });
     
   }

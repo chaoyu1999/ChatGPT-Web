@@ -2,6 +2,10 @@ import { createParser } from "eventsource-parser";
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "../../auth";
 import { requestOpenai } from "../../common";
+const authValue = process.env.API_KEYS ?? "";
+let keysArray = authValue.split(',');
+let keyIndex = Math.floor(Math.random() * keysArray.length);
+
 
 async function createStream(res: Response) {
   const encoder = new TextEncoder();
@@ -73,11 +77,16 @@ async function handle(
     // try to parse error msg
     try {
       const mayBeErrorBody = await api.json();
+
       if (mayBeErrorBody.error) {
         console.error("[OpenAI Response] ", mayBeErrorBody);
         return formatResponse(mayBeErrorBody);
       } else {
-        const res = new Response(JSON.stringify(mayBeErrorBody));
+        let jsonData = {
+          ...mayBeErrorBody,
+          'keyIndex': keyIndex
+        };
+        const res = new Response(JSON.stringify(jsonData));
         res.headers.set("Content-Type", "application/json");
         res.headers.set("Cache-Control", "no-cache");
         return res;

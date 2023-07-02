@@ -109,8 +109,7 @@ export function SideBar(props: { className?: string }) {
         <ChatGptIcon />
 
         </div>
-        <img className={styles["sidebar-image"]} src={wechat_img} alt="微信" />
-        <img className={styles["sidebar-image"]} src={zhifubao_img} alt="支付宝" />
+
       </div>
 
 
