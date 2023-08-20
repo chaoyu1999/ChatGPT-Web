@@ -26,11 +26,18 @@ function parseApiKey(bearToken: string) {
   };
 }
 
-export function auth(req: NextRequest) {
+export async function auth(req: NextRequest) {
   const authToken = req.headers.get("Authorization") ?? "";
+  // let req_copy = req.clone();
+  // // check if it is openai api key or user token
+  // const { accessCode, apiKey: token } = parseApiKey(authToken);
 
-  // check if it is openai api key or user token
-  const { accessCode, apiKey: token } = parseApiKey(authToken);
+  // if(req.method == 'POST'){
+  //   const jsonData = await req_copy.json()
+  //   console.log("[messages ] ", jsonData['messages']);
+  //   console.log("[model ] ", jsonData['model']);
+    
+  // }
 
   const hashedCode = md5.hash(accessCode ?? "").trim();
 

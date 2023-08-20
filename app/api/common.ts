@@ -37,7 +37,7 @@ export async function requestOpenai(req: NextRequest, keyIndex: number) {
   if(req.method == 'POST'){
     const jsonData = await req_copy.json()
     console.log("[messages ] ", jsonData['messages']);
-
+    console.log("[model ] ", jsonData['model']);
     const openaiPath = `${req.nextUrl.pathname}${req.nextUrl.search}`.replaceAll(
       "/api/openai/",
       "",
