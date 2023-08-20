@@ -28,7 +28,7 @@ function parseApiKey(bearToken: string) {
 
 export async function auth(req: NextRequest) {
   const authToken = req.headers.get("Authorization") ?? "";
-  let req_copy = req.clone();
+  // let req_copy = req.clone();
   // check if it is openai api key or user token
   const { accessCode, apiKey: token } = parseApiKey(authToken);
 
@@ -41,7 +41,7 @@ export async function auth(req: NextRequest) {
   console.log("[User IP] ", getIP(req));
   console.log("[Time] ", new Date().toLocaleString());
 
-  const jsonData = await req_copy.json()
+  const jsonData = await req.json()
   console.log("[model]:", jsonData['model']);
   
   if (jsonData['model'].includes('gpt-4')) {
@@ -53,16 +53,15 @@ export async function auth(req: NextRequest) {
         msg: "Please go settings page and fill your access code.",
       };
     }
-  }
-  
-
-  if (!serverConfig.codes.has(hashedCode)) {
-    console.log("[Codes!=] ", "Code not match");
-    return {
-      error: true,
-      needAccessCode: true,
-      msg: "Please go settings page and fill your access code.",
-    };
+  }else{
+    if (!serverConfig.codes.has(hashedCode)) {
+      console.log("[Codes!=] ", "Code not match");
+      return {
+        error: true,
+        needAccessCode: true,
+        msg: "Please go settings page and fill your access code.",
+      };
+    }
   }
 
   // if user does not provide an api key, inject system api key
