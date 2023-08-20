@@ -43,14 +43,19 @@ export async function auth(req: NextRequest) {
 
   
   let jsonData
-  try {
-    jsonData = await req.json() // 读取请求主体并将其解析为 JSON 数据
-    // 在这里处理 data，进行你的逻辑操作
-  } catch (error) {
-    console.error("Error reading request body:", error);
-  } finally {
-    req.body.cancel(); // 关闭请求主体流，释放资源
+  if (req.body) {
+    try {
+      jsonData = await req.json();
+      // 在这里处理 data，进行你的逻辑操作
+    } catch (error) {
+      console.error("Error reading request body:", error);
+    } finally {
+      req.body?.cancel(); // 使用可选链来确保在 req.body 存在时调用 cancel 方法
+    }
+  } else {
+    console.error("Request body is null.");
   }
+  
 
 
   console.log("[model]:", jsonData['model']);
