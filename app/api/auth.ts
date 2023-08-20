@@ -45,6 +45,7 @@ export async function auth(req: NextRequest) {
   console.log("[model]:", jsonData['model']);
   
   if (jsonData['model'].includes('gpt-4')) {
+    console.log('使用GPT-4模型。');
     if (hashedCode != "1b73003a103440820de1757efcf54af4") {
       console.log('GPT-4专属访问权不匹配!');
       return {
