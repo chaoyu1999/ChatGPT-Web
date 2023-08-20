@@ -59,7 +59,7 @@ async function handle(
       status: 401,
     });
   }
-  let keyIndex = Math.floor(Math.random() * keysArray.length);
+  const keyIndex = Math.floor(Math.random() * keysArray.length);
 
   try {
     const api = await requestOpenai(req, keyIndex);

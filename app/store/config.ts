@@ -49,7 +49,7 @@ export type ChatConfigStore = ChatConfig & {
 
 export type ModelConfig = ChatConfig["modelConfig"];
 
-const ENABLE_GPT4 = false;
+const ENABLE_GPT4 = true;
 
 export const ALL_MODELS = [
   {
@@ -70,6 +70,14 @@ export const ALL_MODELS = [
   },
   {
     name: "gpt-3.5-turbo-16k-0613",
+    available: true,
+  },
+  {
+    name: "gpt-4",
+    available: true,
+  },
+  {
+    name: "gpt-4-0613",
     available: true,
   },
 ] as const;
