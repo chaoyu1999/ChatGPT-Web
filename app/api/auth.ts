@@ -41,7 +41,18 @@ export async function auth(req: NextRequest) {
   console.log("[User IP] ", getIP(req));
   console.log("[Time] ", new Date().toLocaleString());
 
-  const jsonData = await req.json()
+  
+  let jsonData
+  try {
+    jsonData = await req.json() // 读取请求主体并将其解析为 JSON 数据
+    // 在这里处理 data，进行你的逻辑操作
+  } catch (error) {
+    console.error("Error reading request body:", error);
+  } finally {
+    req.body.cancel(); // 关闭请求主体流，释放资源
+  }
+
+
   console.log("[model]:", jsonData['model']);
   
   if (jsonData['model'].includes('gpt-4')) {
