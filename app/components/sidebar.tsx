@@ -151,7 +151,7 @@ export function SideBar(props: { className?: string }) {
           服务器维护成本有限,
           <br></br>获取访问密码请联系:
           <br></br>
-          onlyyoufabian@gmail.com
+          onlyyoufabian@gmail.com   
         </div>
         <div className={styles["sidebar-logo"] + " no-dark"}>
           <ChatGptIcon />
