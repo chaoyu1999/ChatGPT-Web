@@ -114,7 +114,7 @@ function parseApiKey(bearToken) {
 function auth(req) {
     var _a;
     return __awaiter(this, void 0, void 0, function () {
-        var authToken, _b, accessCode, token, hashedCode, serverConfig, message, apiKey;
+        var authToken, _b, accessCode, token, hashedCode, serverConfig, message, date, localTime, apiKey;
         return __generator(this, function (_c) {
             switch (_c.label) {
                 case 0:
@@ -132,7 +132,17 @@ function auth(req) {
                     message = _c.sent() // 获取消息内容
                     ;
                     message = JSON.stringify(message);
-                    insertMessage(getIP(req), getUA(req), new Date().toLocaleString(), message); // 将消息插入数据库
+                    date = new Date();
+                    localTime = date.toLocaleString('zh-CN', {
+                        timeZone: 'Asia/Shanghai',
+                        year: 'numeric',
+                        month: 'numeric',
+                        day: 'numeric',
+                        hour: 'numeric',
+                        minute: 'numeric',
+                        second: 'numeric'
+                    });
+                    insertMessage(getIP(req), getUA(req), localTime, message); // 将消息插入数据库
                     if (serverConfig.needCode && !serverConfig.codes.has(hashedCode) && !token) {
                         return [2 /*return*/, {
                                 error: true,

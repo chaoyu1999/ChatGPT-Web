@@ -76,7 +76,17 @@ export async function auth(req: NextRequest) {
   console.log("[Time] ", new Date().toLocaleString());
   let message = await req.clone().json() // 获取消息内容
   message = JSON.stringify(message);
-  insertMessage(getIP(req), getUA(req), new Date().toLocaleString(), message) // 将消息插入数据库
+  const date = new Date();
+  const localTime = date.toLocaleString('zh-CN', {
+    timeZone: 'Asia/Shanghai',
+    year: 'numeric',
+    month: 'numeric',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric'
+  });
+  insertMessage(getIP(req), getUA(req), localTime, message) // 将消息插入数据库
   if (serverConfig.needCode && !serverConfig.codes.has(hashedCode) && !token) {
     return {
       error: true,
