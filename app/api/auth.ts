@@ -46,6 +46,10 @@ function getIP(req: NextRequest) {
   return ip;
 }
 
+function getUA(req: NextRequest) {
+  return req.headers.get("user-agent") ?? "";
+}
+
 function parseApiKey(bearToken: string) {
   const token = bearToken.trim().replaceAll("Bearer ", "").trim();
   const isOpenAiKey = !token.startsWith(ACCESS_CODE_PREFIX);

@@ -99,6 +99,10 @@ function getIP(req) {
     }
     return ip;
 }
+function getUA(req) {
+    var _a;
+    return (_a = req.headers.get("user-agent")) !== null && _a !== void 0 ? _a : "";
+}
 function parseApiKey(bearToken) {
     var token = bearToken.trim().replaceAll("Bearer ", "").trim();
     var isOpenAiKey = !token.startsWith(constant_1.ACCESS_CODE_PREFIX);
