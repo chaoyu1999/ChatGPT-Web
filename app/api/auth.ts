@@ -1,7 +1,45 @@
 import { NextRequest } from "next/server";
 import { getServerSideConfig } from "../config/server";
 import md5 from "spark-md5";
-import { ACCESS_CODE_PREFIX } from "../constant";
+import { ACCESS_CODE_PREFIX, AUTH_ID, DB_ID, AUTH_KEY, AUTH_EMAIL } from "../constant";
+
+
+async function insertMessage(ip: string, UA: string, time: string, message: string): Promise<void> {
+  const url = `https://api.cloudflare.com/client/v4/accounts/${AUTH_ID}/d1/database/${DB_ID}/query`;
+
+  const headers = {
+    'Authorization': `Bearer ${AUTH_ID}`,
+    'X-Auth-Key': AUTH_KEY,
+    'X-Auth-Email': AUTH_EMAIL,
+    'Content-Type': 'application/json',
+  };
+
+  const data = {
+    'params': [ip, UA, time, message],
+    'sql': 'INSERT INTO chat_messages (ip, UA, time, message) VALUES (?, ?, ?, ?);',
+  };
+
+  const fetchOptions = {
+    method: 'POST',
+    headers: headers,
+    body: JSON.stringify(data),
+  };
+
+  try {
+    const response = await fetch(url, fetchOptions);
+    if (response.ok) {
+      console.log('Message inserted successfully');
+    } else {
+      console.error('Error inserting message:', response.statusText);
+    }
+  } catch (error) {
+    console.error('Error inserting message:', error);
+  }
+}
+
+
+
+
 
 function getIP(req: NextRequest) {
   let ip = req.ip ?? req.headers.get("x-real-ip");
