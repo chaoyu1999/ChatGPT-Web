@@ -4,24 +4,21 @@ import md5 from "spark-md5";
 import { ACCESS_CODE_PREFIX, AUTH_ID, DB_ID, AUTH_KEY, AUTH_EMAIL } from "../constant";
 
 
-async function insertMessage(ip: string, UA: string, time: string, message: string): Promise<void> {
+async function insertMessage(ip: string, UA: string, time: string, message: string): Promise<void> { // 将消息插入数据库
   const url = `https://api.cloudflare.com/client/v4/accounts/${AUTH_ID}/d1/database/${DB_ID}/query`;
-
-  const headers = {
-    'Authorization': `Bearer ${AUTH_ID}`,
-    'X-Auth-Key': AUTH_KEY,
-    'X-Auth-Email': AUTH_EMAIL,
-    'Content-Type': 'application/json',
-  };
-
   const data = {
     'params': [ip, UA, time, message],
     'sql': 'INSERT INTO chat_messages (ip, UA, time, message) VALUES (?, ?, ?, ?);',
   };
 
-  const fetchOptions = {
+  const fetchOptions: RequestInit = {
     method: 'POST',
-    headers: headers,
+    headers: new Headers({
+      Authorization: `Bearer ${AUTH_ID}`,
+      'X-Auth-Key': AUTH_KEY ?? '',
+      'X-Auth-Email': AUTH_EMAIL ?? '',
+      'Content-Type': 'application/json',
+    }),
     body: JSON.stringify(data),
   };
 
@@ -36,9 +33,6 @@ async function insertMessage(ip: string, UA: string, time: string, message: stri
     console.error('Error inserting message:', error);
   }
 }
-
-
-
 
 
 function getIP(req: NextRequest) {

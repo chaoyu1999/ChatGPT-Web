@@ -49,24 +49,23 @@ var spark_md5_1 = require("spark-md5");
 var constant_1 = require("../constant");
 function insertMessage(ip, UA, time, message) {
     return __awaiter(this, void 0, Promise, function () {
-        var url, headers, data, fetchOptions, response, error_1;
+        var url, data, fetchOptions, response, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     url = "https://api.cloudflare.com/client/v4/accounts/" + constant_1.AUTH_ID + "/d1/database/" + constant_1.DB_ID + "/query";
-                    headers = {
-                        'Authorization': "Bearer " + constant_1.AUTH_ID,
-                        'X-Auth-Key': constant_1.AUTH_KEY,
-                        'X-Auth-Email': constant_1.AUTH_EMAIL,
-                        'Content-Type': 'application/json'
-                    };
                     data = {
                         'params': [ip, UA, time, message],
                         'sql': 'INSERT INTO chat_messages (ip, UA, time, message) VALUES (?, ?, ?, ?);'
                     };
                     fetchOptions = {
                         method: 'POST',
-                        headers: headers,
+                        headers: new Headers({
+                            Authorization: "Bearer " + constant_1.AUTH_ID,
+                            'X-Auth-Key': constant_1.AUTH_KEY !== null && constant_1.AUTH_KEY !== void 0 ? constant_1.AUTH_KEY : '',
+                            'X-Auth-Email': constant_1.AUTH_EMAIL !== null && constant_1.AUTH_EMAIL !== void 0 ? constant_1.AUTH_EMAIL : '',
+                            'Content-Type': 'application/json'
+                        }),
                         body: JSON.stringify(data)
                     };
                     _a.label = 1;

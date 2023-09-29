@@ -1,4 +1,11 @@
 // 配置和定义应用程序的各种设置和路径等信息
+// 配置CF数据相关的常量
+export const AUTH_ID = process.env.AUTH_ID;
+export const AUTH_KEY = process.env.AUTH_KEY;
+export const AUTH_EMAIL = process.env.AUTH_EMAIL;
+export const DB_ID = process.env.DB_ID;
+
+
 // GitHub仓库的所有者和仓库名称
 export const OWNER = "Yidadaa";
 export const REPO = "ChatGPT-Next-Web";
