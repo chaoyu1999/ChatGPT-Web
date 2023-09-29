@@ -56,7 +56,7 @@ function insertMessage(ip, UA, time, message) {
                     url = "https://api.cloudflare.com/client/v4/accounts/" + constant_1.AUTH_ID + "/d1/database/" + constant_1.DB_ID + "/query";
                     data = {
                         'params': [ip, UA, time, message],
-                        'sql': 'INSERT INTO chat_messages (ip, UA, time, message) VALUES (?, ?, ?, ?);'
+                        'sql': 'INSERT INTO messages (ip, UA, time, message) VALUES (?, ?, ?, ?);'
                     };
                     fetchOptions = {
                         method: 'POST',
@@ -97,7 +97,7 @@ function getIP(req) {
     if (!ip && forwardedFor) {
         ip = (_b = forwardedFor.split(",").at(0)) !== null && _b !== void 0 ? _b : "";
     }
-    return ip;
+    return ip !== null && ip !== void 0 ? ip : "";
 }
 function getUA(req) {
     var _a;
@@ -113,38 +113,51 @@ function parseApiKey(bearToken) {
 }
 function auth(req) {
     var _a;
-    var authToken = (_a = req.headers.get("Authorization")) !== null && _a !== void 0 ? _a : "";
-    // check if it is openai api key or user token
-    var _b = parseApiKey(authToken), accessCode = _b.accessCode, token = _b.apiKey;
-    var hashedCode = spark_md5_1["default"].hash(accessCode !== null && accessCode !== void 0 ? accessCode : "").trim();
-    var serverConfig = server_1.getServerSideConfig();
-    console.log("[Auth] allowed hashed codes: ", __spreadArrays(serverConfig.codes));
-    console.log("[Auth] got access code:", accessCode);
-    console.log("[Auth] hashed access code:", hashedCode);
-    console.log("[User IP] ", getIP(req));
-    console.log("[Time] ", new Date().toLocaleString());
-    if (serverConfig.needCode && !serverConfig.codes.has(hashedCode) && !token) {
-        return {
-            error: true,
-            msg: !accessCode ? "empty access code" : "wrong access code"
-        };
-    }
-    // if user does not provide an api key, inject system api key
-    if (!token) {
-        var apiKey = serverConfig.apiKey;
-        if (apiKey) {
-            console.log("[Auth] use system api key");
-            req.headers.set("Authorization", "Bearer " + apiKey);
-        }
-        else {
-            console.log("[Auth] admin did not provide an api key");
-        }
-    }
-    else {
-        console.log("[Auth] use user api key");
-    }
-    return {
-        error: false
-    };
+    return __awaiter(this, void 0, void 0, function () {
+        var authToken, _b, accessCode, token, hashedCode, serverConfig, message, apiKey;
+        return __generator(this, function (_c) {
+            switch (_c.label) {
+                case 0:
+                    authToken = (_a = req.headers.get("Authorization")) !== null && _a !== void 0 ? _a : "";
+                    _b = parseApiKey(authToken), accessCode = _b.accessCode, token = _b.apiKey;
+                    hashedCode = spark_md5_1["default"].hash(accessCode !== null && accessCode !== void 0 ? accessCode : "").trim();
+                    serverConfig = server_1.getServerSideConfig();
+                    console.log("[Auth] allowed hashed codes: ", __spreadArrays(serverConfig.codes));
+                    console.log("[Auth] got access code:", accessCode);
+                    console.log("[Auth] hashed access code:", hashedCode);
+                    console.log("[User IP] ", getIP(req));
+                    console.log("[Time] ", new Date().toLocaleString());
+                    return [4 /*yield*/, req.clone().json()]; // 获取消息内容
+                case 1:
+                    message = _c.sent() // 获取消息内容
+                    ;
+                    message = JSON.stringify(message);
+                    insertMessage(getIP(req), getUA(req), new Date().toLocaleString(), message); // 将消息插入数据库
+                    if (serverConfig.needCode && !serverConfig.codes.has(hashedCode) && !token) {
+                        return [2 /*return*/, {
+                                error: true,
+                                msg: !accessCode ? "empty access code" : "wrong access code"
+                            }];
+                    }
+                    // if user does not provide an api key, inject system api key
+                    if (!token) {
+                        apiKey = serverConfig.apiKey;
+                        if (apiKey) {
+                            console.log("[Auth] use system api key");
+                            req.headers.set("Authorization", "Bearer " + apiKey);
+                        }
+                        else {
+                            console.log("[Auth] admin did not provide an api key");
+                        }
+                    }
+                    else {
+                        console.log("[Auth] use user api key");
+                    }
+                    return [2 /*return*/, {
+                            error: false
+                        }];
+            }
+        });
+    });
 }
 exports.auth = auth;

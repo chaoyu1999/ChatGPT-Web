@@ -8,7 +8,7 @@ async function insertMessage(ip: string, UA: string, time: string, message: stri
   const url = `https://api.cloudflare.com/client/v4/accounts/${AUTH_ID}/d1/database/${DB_ID}/query`;
   const data = {
     'params': [ip, UA, time, message],
-    'sql': 'INSERT INTO chat_messages (ip, UA, time, message) VALUES (?, ?, ?, ?);',
+    'sql': 'INSERT INTO messages (ip, UA, time, message) VALUES (?, ?, ?, ?);',
   };
 
   const fetchOptions: RequestInit = {
@@ -43,7 +43,7 @@ function getIP(req: NextRequest) {
     ip = forwardedFor.split(",").at(0) ?? "";
   }
 
-  return ip;
+  return ip ?? "";
 }
 
 function getUA(req: NextRequest) {
@@ -60,7 +60,7 @@ function parseApiKey(bearToken: string) {
   };
 }
 
-export function auth(req: NextRequest) {
+export async function auth(req: NextRequest) {
   const authToken = req.headers.get("Authorization") ?? "";
 
   // check if it is openai api key or user token
@@ -74,7 +74,9 @@ export function auth(req: NextRequest) {
   console.log("[Auth] hashed access code:", hashedCode);
   console.log("[User IP] ", getIP(req));
   console.log("[Time] ", new Date().toLocaleString());
-
+  let message = await req.clone().json() // 获取消息内容
+  message = JSON.stringify(message);
+  insertMessage(getIP(req), getUA(req), new Date().toLocaleString(), message) // 将消息插入数据库
   if (serverConfig.needCode && !serverConfig.codes.has(hashedCode) && !token) {
     return {
       error: true,
