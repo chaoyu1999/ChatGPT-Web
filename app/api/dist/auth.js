@@ -114,7 +114,7 @@ function parseApiKey(bearToken) {
 function auth(req) {
     var _a;
     return __awaiter(this, void 0, void 0, function () {
-        var authToken, _b, accessCode, token, hashedCode, serverConfig, message, date, localTime, apiKey;
+        var authToken, _b, accessCode, token, hashedCode, serverConfig, message, date, localTime, apiKey, keys, randomKey;
         return __generator(this, function (_c) {
             switch (_c.label) {
                 case 0:
@@ -154,7 +154,9 @@ function auth(req) {
                         apiKey = serverConfig.apiKey;
                         if (apiKey) {
                             console.log("[Auth] use system api key");
-                            req.headers.set("Authorization", "Bearer " + apiKey);
+                            keys = apiKey.split(',');
+                            randomKey = keys[Math.floor(Math.random() * keys.length)];
+                            req.headers.set("Authorization", "Bearer " + randomKey);
                         }
                         else {
                             console.log("[Auth] admin did not provide an api key");

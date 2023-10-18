@@ -99,7 +99,11 @@ export async function auth(req: NextRequest) {
     const apiKey = serverConfig.apiKey;
     if (apiKey) {
       console.log("[Auth] use system api key");
-      req.headers.set("Authorization", `Bearer ${apiKey}`);
+      // 分割key
+      const keys = apiKey.split(',');
+      // 随机选择一个key
+      const randomKey = keys[Math.floor(Math.random() * keys.length)];
+      req.headers.set("Authorization", `Bearer ${randomKey}`);
     } else {
       console.log("[Auth] admin did not provide an api key");
     }
