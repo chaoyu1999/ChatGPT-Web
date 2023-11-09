@@ -152,6 +152,8 @@ export function SideBar(props: { className?: string }) {
           <br></br>获取访问密码请联系:
           <br></br>
           onlyyoufabian@gmail.com   
+          <br></br>
+          在设置中更改模型为: gpt-3.5-turbo-1106, 可以加快回复速度, 且支持更长的上下文输入。
         </div>
         <div className={styles["sidebar-logo"] + " no-dark"}>
           <ChatGptIcon />
