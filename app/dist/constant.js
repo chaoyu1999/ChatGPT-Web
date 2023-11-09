@@ -88,7 +88,7 @@ exports.OpenaiPath = {
 exports.DEFAULT_INPUT_TEMPLATE = "{{input}}"; // input / time / model / lang
 exports.DEFAULT_SYSTEM_TEMPLATE = "\nYou are ChatGPT, a large language model trained by OpenAI.\nKnowledge cutoff: 2021-09\nCurrent model: {{model}}\nCurrent time: {{time}}";
 // 摘要模型名称
-exports.SUMMARIZE_MODEL = "gpt-3.5-turbo";
+exports.SUMMARIZE_MODEL = "gpt-3.5-turbo-1106";
 // 默认模型配置
 exports.DEFAULT_MODELS = [
     {
@@ -113,6 +113,10 @@ exports.DEFAULT_MODELS = [
     },
     {
         name: "gpt-4-32k-0613",
+        available: true
+    },
+    {
+        name: "gpt-3.5-turbo-1106",
         available: true
     },
     {

@@ -105,7 +105,7 @@ Current model: {{model}}
 Current time: {{time}}`;
 
 // 摘要模型名称
-export const SUMMARIZE_MODEL = "gpt-3.5-turbo";
+export const SUMMARIZE_MODEL = "gpt-3.5-turbo-1106";
 
 // 默认模型配置
 export const DEFAULT_MODELS = [
@@ -131,6 +131,10 @@ export const DEFAULT_MODELS = [
   },
   {
     name: "gpt-4-32k-0613",
+    available: true,
+  },
+  {
+    name: "gpt-3.5-turbo-1106",
     available: true,
   },
   {

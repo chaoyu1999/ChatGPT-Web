@@ -46,7 +46,7 @@ exports.DEFAULT_CONFIG = {
     customModels: "",
     models: constant_1.DEFAULT_MODELS,
     modelConfig: {
-        model: "gpt-3.5-turbo",
+        model: "gpt-3.5-turbo-1106",
         temperature: 0.5,
         top_p: 1,
         max_tokens: 4096,
