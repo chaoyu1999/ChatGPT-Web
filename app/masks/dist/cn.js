@@ -276,4 +276,66 @@ exports.CN_MASKS = [
         builtin: true,
         createdAt: 1700462382501
     },
+    {
+        avatar: "1f468-200d-1f393",
+        name: "全能通用提词",
+        context: [
+            {
+                id: "all-0",
+                role: "user",
+                content: "我想让你成为[xx]领域的专家，你拥有与[xx]有关的所有信息，我会就[xx]内不同的主题向你提问，你将提供清晰、简洁、准确的信息。请将您的回复限制在所要求的具体信息上，避免提供不必要的细节。你在收到[xx]里面的内容后，你的回复应该是：“收到，请您详细说明您的问题。”",
+                date: ""
+            },
+            {
+                id: "all-1",
+                role: "assistant",
+                content: "好的，请您告诉我[xx]的主题内容。",
+                date: ""
+            },
+        ],
+        modelConfig: {
+            model: "gpt-3.5-turbo-1106",
+            temperature: 0.8,
+            max_tokens: 4096,
+            presence_penalty: 0,
+            frequency_penalty: 0,
+            sendMemory: true,
+            historyMessageCount: 8,
+            compressMessageLengthThreshold: 25000
+        },
+        lang: "cn",
+        builtin: true,
+        createdAt: 1700462382501
+    },
+    {
+        avatar: "1f9d1-200d-1f3eb",
+        name: "学术论文翻译",
+        context: [
+            {
+                id: "trans-0",
+                role: "user",
+                content: "我需要你充当学术论文翻译专家，实现论文的中英文互相翻译。请翻译时不要带翻译腔，而是要翻译得自然、流畅和地道，确保论文的学术性和专业性，确保意思不变。你要能够推断出论文的专业领域，尽可能用该领域的专业术语来翻译。",
+                date: ""
+            },
+            {
+                id: "trans-1",
+                role: "assistant",
+                content: "好的，我明白您的需求，请给我您要翻译的论文内容。",
+                date: ""
+            },
+        ],
+        modelConfig: {
+            model: "gpt-3.5-turbo-1106",
+            temperature: 0.6,
+            max_tokens: 4096,
+            presence_penalty: 0,
+            frequency_penalty: 0,
+            sendMemory: true,
+            historyMessageCount: 8,
+            compressMessageLengthThreshold: 25000
+        },
+        lang: "cn",
+        builtin: true,
+        createdAt: 1688899480524
+    },
 ];
