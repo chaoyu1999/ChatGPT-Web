@@ -110,10 +110,6 @@ export const SUMMARIZE_MODEL = "gpt-3.5-turbo-1106";
 // 默认模型配置
 export const DEFAULT_MODELS = [
   {
-    name: "gpt-4",
-    available: true,
-  },
-  {
     name: "gpt-4-1106-preview",
     available: true,
   },
