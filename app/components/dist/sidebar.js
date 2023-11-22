@@ -169,7 +169,7 @@ function SideBar(props) {
                 React.createElement("br", null),
                 "\u5728\u8BBE\u7F6E\u4E2D\u66F4\u6539\u6A21\u578B\u4E3A: gpt-3.5-turbo-1106, \u53EF\u4EE5\u52A0\u5FEB\u56DE\u590D\u901F\u5EA6, \u4E14\u652F\u6301\u66F4\u957F\u7684\u4E0A\u4E0B\u6587\u8F93\u5165\u3002",
                 React.createElement("br", null),
-                React.createElement("span", { style: boldTextStyle }, "\u6700\u65B0\u5F15\u5165GPT-4\u6A21\u578B\uFF0C\u53EF\u4EE5\u5728\u8BBE\u7F6E\u66F4\u6362\uFF0C\u4E0D\u4FDD\u8BC1\u7A33\u5B9A\u6027\u3002\u51FA\u9519\u540E\u8BF7\u91CD\u8BD5\uFF0C\u5982\u65E0\u6548\uFF0C\u8BF7\u66F4\u6362\u56DEgpt-3.5-turbo-1106\u3002")),
+                React.createElement("span", { style: boldTextStyle }, "\u5F15\u5165\u6700\u65B0\u7684GPT-4\u6A21\u578B\uFF1Agpt-4-1106-preview\u3002\u53EF\u4EE5\u5728\u8BBE\u7F6E\u81EA\u884C\u66F4\u6362\uFF0C\u4E0D\u4FDD\u8BC1\u7A33\u5B9A\u6027\u3002\u51FA\u9519\u540E\u8BF7\u91CD\u65B0\u63D0\u95EE\uFF0C\u5982\u65E0\u6548\uFF0C\u8BF7\u66F4\u6362\u56DEgpt-3.5-turbo-1106\u3002")),
             React.createElement("div", { className: home_module_scss_1["default"]["sidebar-logo"] + " no-dark" },
                 React.createElement(chatgpt_svg_1["default"], null))),
         React.createElement("div", { className: home_module_scss_1["default"]["sidebar-header-bar"] },

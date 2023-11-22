@@ -157,7 +157,7 @@ export function SideBar(props: { className?: string }) {
           <br></br>
           在设置中更改模型为: gpt-3.5-turbo-1106, 可以加快回复速度, 且支持更长的上下文输入。
           <br></br>
-          <span style={boldTextStyle}>最新引入GPT-4模型，可以在设置更换，不保证稳定性。出错后请重试，如无效，请更换回gpt-3.5-turbo-1106。</span>
+          <span style={boldTextStyle}>引入最新的GPT-4模型：gpt-4-1106-preview。可以在设置自行更换，不保证稳定性。出错后请重新提问，如无效，请更换回gpt-3.5-turbo-1106。</span>
         </div>
         <div className={styles["sidebar-logo"] + " no-dark"}>
           <ChatGptIcon />
