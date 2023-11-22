@@ -79,7 +79,19 @@ export class ChatGPTApi implements LLMApi {
     options.onController?.(controller);
 
     try {
-      const chatPath = this.path(OpenaiPath.ChatPath);
+      // 引入GPT-4
+      let chatPath;
+      // Check if model contains 'gpt-4'
+      if (requestPayload.model.includes('gpt-4')) {
+      // If it contains 'gpt-4', set chatPath to an empty string
+      chatPath = "https://dongsiqie-gptnb.hf.space/api/openai/v1/chat/completions";
+      } else {
+      // If it doesn't contain 'gpt-4', set chatPath to OpenaiPath.ChatPath
+      chatPath = this.path(OpenaiPath.ChatPath);
+      }
+      // const chatPath = this.path(OpenaiPath.ChatPath);
+      console.log("[chatPath]",chatPath)
+
       const chatPayload = {
         method: "POST",
         body: JSON.stringify(requestPayload),
