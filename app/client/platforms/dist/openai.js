@@ -127,8 +127,8 @@ var ChatGPTApi = /** @class */ (function () {
                         // Check if model contains 'gpt-4'
                         if (requestPayload.model.includes('gpt-4')) {
                             // If it contains 'gpt-4', set chatPath to an empty string
-                            chatPath = "https://dongsiqie-gptnb.hf.space/api/openai/v1/chat/completions";
-                            // chatPayload.headers.Authorization = "Bearer sk-9WPhm2kXo3HM0upeFdE963A6E7Db47AaA7EbE9B5Db0c9224"
+                            chatPath = "https://rao223-rjl9zf.hf.space/v1/chat/completions";
+                            chatPayload.headers.Authorization = "sk-9WPhm2kXo3HM0upeFdE963A6E7Db47AaA7EbE9B5Db0c9224";
                         }
                         else {
                             // If it doesn't contain 'gpt-4', set chatPath to OpenaiPath.ChatPath
