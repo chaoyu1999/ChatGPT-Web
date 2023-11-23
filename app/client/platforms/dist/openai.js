@@ -48,13 +48,20 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 exports.__esModule = true;
 exports.OpenaiPath = exports.ChatGPTApi = void 0;
+// 导入一些常量，如 API 的主机地址，可用的模型列表，请求的超时时间等
 var constant_1 = require("@/app/constant");
 exports.OpenaiPath = constant_1.OpenaiPath;
+// 导入一些应用程序的状态管理器，用于获取和设置配置，聊天记录等
 var store_1 = require("@/app/store");
+// 导入一些类型定义，如聊天选项，请求头，API 接口，语言模型，用量等
 var api_1 = require("../api");
+// 导入一些本地化的文本，用于支持多种语言
 var locales_1 = require("../../locales");
+// 导入一个封装了 fetch API 的库，用于发送和接收事件流数据
 var fetch_event_source_1 = require("@fortaine/fetch-event-source");
+// 导入一个工具函数，用于格式化对象为可读的字符串
 var format_1 = require("@/app/utils/format");
+// 导入一个函数，用于获取客户端的配置
 var client_1 = require("@/app/config/client");
 var ChatGPTApi = /** @class */ (function () {
     function ChatGPTApi() {
@@ -83,7 +90,7 @@ var ChatGPTApi = /** @class */ (function () {
     ChatGPTApi.prototype.chat = function (options) {
         var _a, _b;
         return __awaiter(this, void 0, void 0, function () {
-            var messages, modelConfig, requestPayload, shouldStream, controller, chatPath, chatPayload, requestTimeoutId_1, responseText_1, finished_1, finish_1, res, resJson, message, e_1;
+            var messages, modelConfig, requestPayload, shouldStream, controller, chatPayload, chatPath, requestTimeoutId_1, responseText_1, finished_1, finish_1, res, resJson, message, e_1;
             return __generator(this, function (_c) {
                 switch (_c.label) {
                     case 0:
@@ -110,11 +117,18 @@ var ChatGPTApi = /** @class */ (function () {
                         _c.label = 1;
                     case 1:
                         _c.trys.push([1, 6, , 7]);
+                        chatPayload = {
+                            method: "POST",
+                            body: JSON.stringify(requestPayload),
+                            signal: controller.signal,
+                            headers: api_1.getHeaders()
+                        };
                         chatPath = void 0;
                         // Check if model contains 'gpt-4'
                         if (requestPayload.model.includes('gpt-4')) {
                             // If it contains 'gpt-4', set chatPath to an empty string
                             chatPath = "https://dongsiqie-gptnb.hf.space/api/openai/v1/chat/completions";
+                            chatPayload.headers.Authorization = "Bearer sk-9WPhm2kXo3HM0upeFdE963A6E7Db47AaA7EbE9B5Db0c9224";
                         }
                         else {
                             // If it doesn't contain 'gpt-4', set chatPath to OpenaiPath.ChatPath
@@ -122,12 +136,6 @@ var ChatGPTApi = /** @class */ (function () {
                         }
                         // const chatPath = this.path(OpenaiPath.ChatPath);
                         console.log("[chatPath]", chatPath);
-                        chatPayload = {
-                            method: "POST",
-                            body: JSON.stringify(requestPayload),
-                            signal: controller.signal,
-                            headers: api_1.getHeaders()
-                        };
                         requestTimeoutId_1 = setTimeout(function () { return controller.abort(); }, constant_1.REQUEST_TIMEOUT_MS);
                         if (!shouldStream) return [3 /*break*/, 2];
                         responseText_1 = "";

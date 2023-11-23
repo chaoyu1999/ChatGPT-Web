@@ -1,26 +1,34 @@
+// 导入一些常量，如 API 的主机地址，可用的模型列表，请求的超时时间等
 import {
   DEFAULT_API_HOST,
   DEFAULT_MODELS,
   OpenaiPath,
   REQUEST_TIMEOUT_MS,
 } from "@/app/constant";
+// 导入一些应用程序的状态管理器，用于获取和设置配置，聊天记录等
 import { useAccessStore, useAppConfig, useChatStore } from "@/app/store";
 
+// 导入一些类型定义，如聊天选项，请求头，API 接口，语言模型，用量等
 import { ChatOptions, getHeaders, LLMApi, LLMModel, LLMUsage } from "../api";
+// 导入一些本地化的文本，用于支持多种语言
 import Locale from "../../locales";
+// 导入一个封装了 fetch API 的库，用于发送和接收事件流数据
 import {
   EventStreamContentType,
   fetchEventSource,
 } from "@fortaine/fetch-event-source";
+// 导入一个工具函数，用于格式化对象为可读的字符串
 import { prettyObject } from "@/app/utils/format";
+// 导入一个函数，用于获取客户端的配置
 import { getClientConfig } from "@/app/config/client";
 
+// 定义一个接口，用于描述 OpenAI 的语言模型的响应数据
 export interface OpenAIListModelResponse {
-  object: string;
-  data: Array<{
-    id: string;
-    object: string;
-    root: string;
+  object: string; // 对象类型，一般为 "list"
+  data: Array<{ // 一个数组，包含了可用的模型的信息
+    id: string; // 模型的 ID，如 "davinci"
+    object: string; // 对象类型，一般为 "engine"
+    root: string; // 模型的根路径，如 "https://api.openai.com/v1/engines/davinci"
   }>;
 }
 
@@ -79,26 +87,26 @@ export class ChatGPTApi implements LLMApi {
     options.onController?.(controller);
 
     try {
-      // 引入GPT-4
-      let chatPath;
-      // Check if model contains 'gpt-4'
-      if (requestPayload.model.includes('gpt-4')) {
-      // If it contains 'gpt-4', set chatPath to an empty string
-      chatPath = "https://dongsiqie-gptnb.hf.space/api/openai/v1/chat/completions";
-      } else {
-      // If it doesn't contain 'gpt-4', set chatPath to OpenaiPath.ChatPath
-      chatPath = this.path(OpenaiPath.ChatPath);
-      }
-      // const chatPath = this.path(OpenaiPath.ChatPath);
-      console.log("[chatPath]",chatPath)
-
-      const chatPayload = {
+      let chatPayload = {
         method: "POST",
         body: JSON.stringify(requestPayload),
         signal: controller.signal,
         headers: getHeaders(),
       };
-
+      // 引入GPT-4
+      let chatPath;
+      // Check if model contains 'gpt-4'
+      if (requestPayload.model.includes('gpt-4')) {
+        // If it contains 'gpt-4', set chatPath to an empty string
+        chatPath = "https://dongsiqie-gptnb.hf.space/api/openai/v1/chat/completions";
+        chatPayload.headers.Authorization = "Bearer sk-9WPhm2kXo3HM0upeFdE963A6E7Db47AaA7EbE9B5Db0c9224"
+      } else {
+        // If it doesn't contain 'gpt-4', set chatPath to OpenaiPath.ChatPath
+        chatPath = this.path(OpenaiPath.ChatPath);
+      }
+      // const chatPath = this.path(OpenaiPath.ChatPath);
+      console.log("[chatPath]", chatPath)
+      
       // make a fetch request
       const requestTimeoutId = setTimeout(
         () => controller.abort(),
@@ -145,7 +153,7 @@ export class ChatGPTApi implements LLMApi {
               try {
                 const resJson = await res.clone().json();
                 extraInfo = prettyObject(resJson);
-              } catch {}
+              } catch { }
 
               if (res.status === 401) {
                 responseTexts.push(Locale.Error.Unauthorized);
