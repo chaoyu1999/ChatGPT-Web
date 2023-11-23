@@ -99,7 +99,7 @@ export class ChatGPTApi implements LLMApi {
       if (requestPayload.model.includes('gpt-4')) {
         // If it contains 'gpt-4', set chatPath to an empty string
         chatPath = "https://dongsiqie-gptnb.hf.space/api/openai/v1/chat/completions";
-        chatPayload.headers.Authorization = "Bearer sk-9WPhm2kXo3HM0upeFdE963A6E7Db47AaA7EbE9B5Db0c9224"
+        // chatPayload.headers.Authorization = "Bearer sk-9WPhm2kXo3HM0upeFdE963A6E7Db47AaA7EbE9B5Db0c9224"
       } else {
         // If it doesn't contain 'gpt-4', set chatPath to OpenaiPath.ChatPath
         chatPath = this.path(OpenaiPath.ChatPath);
