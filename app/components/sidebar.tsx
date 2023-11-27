@@ -135,29 +135,19 @@ export function SideBar(props: { className?: string }) {
   const navigate = useNavigate();
   const config = useAppConfig();
 
-  useHotKey();
-  const boldTextStyle = {
-    fontWeight: 'bold',
-  };
   return (
     <div
-      className={`${styles.sidebar} ${props.className} ${
-        shouldNarrow && styles["narrow-sidebar"]
-      }`}
+      className={`${styles.sidebar} ${props.className} ${shouldNarrow && styles["narrow-sidebar"]
+        }`}
     >
       <div className={styles["sidebar-header"]} data-tauri-drag-region>
         <div className={styles["sidebar-title"]} data-tauri-drag-region>
-          Cy&apos; GPT
+          CyGPT
         </div>
         <div className={styles["sidebar-sub-title"]}>
-          服务器维护成本有限,
-          <br></br>获取访问密码请联系:
-          <br></br>
-          onlyyoufabian@gmail.com   
-          <br></br>
-          在设置中更改模型为: gpt-3.5-turbo-1106, 可以加快回复速度, 且支持更长的上下文输入。
-          <br></br>
-          <span style={boldTextStyle}>引入最新的GPT-4模型：gpt-4-1106-preview。可以在设置自行更换，不保证稳定性。出错后请重新提问，如无效，请更换回gpt-3.5-turbo-1106。</span>
+          {"\n"}
+          <span style={{fontSize: "20px", fontWeight: "bold"}} >推荐使用gpt-3.5-turbo-1106模型：支持更长的上下文输入，回复速度更快。</span>
+          {"\n"}
         </div>
         <div className={styles["sidebar-logo"] + " no-dark"}>
           <ChatGptIcon />
