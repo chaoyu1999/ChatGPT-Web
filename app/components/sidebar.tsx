@@ -142,12 +142,12 @@ export function SideBar(props: { className?: string }) {
     >
       <div className={styles["sidebar-header"]} data-tauri-drag-region>
         <div className={styles["sidebar-title"]} data-tauri-drag-region>
-          CyGPT
+          Cy&apos; GPT
         </div>
         <div className={styles["sidebar-sub-title"]}>
           {"\n"}
-          <span style={{fontSize: "20px", fontWeight: "bold"}} >推荐使用gpt-3.5-turbo-1106模型：支持更长的上下文输入，回复速度更快。</span>
           {"\n"}
+          <span style={{fontSize: "15px", fontWeight: "bold"}} >推荐使用gpt-3.5-turbo-1106模型：支持更长的上下文输入，回复速度更快。</span>
         </div>
         <div className={styles["sidebar-logo"] + " no-dark"}>
           <ChatGptIcon />
