@@ -4,7 +4,7 @@ exports.CN_MASKS = void 0;
 exports.CN_MASKS = [
     {
         avatar: "1f9d1",
-        name: "资深编程专家",
+        name: "编程专家",
         context: [
             {
                 id: "coder-0",
@@ -60,7 +60,7 @@ exports.CN_MASKS = [
     },
     {
         avatar: "1f978",
-        name: "深度学习专家",
+        name: "深度学习",
         context: [
             {
                 id: "ml-0",
@@ -233,7 +233,7 @@ exports.CN_MASKS = [
             {
                 id: "writer-0",
                 role: "user",
-                content: "我希望你充当代码解释者，格式化代码为markdown格式，并阐明代码的作用并给出代码文档和注释，请尽量给代码都加上明确注释。",
+                content: "我希望你充当代码解释者，格式化代码为markdown格式，并阐明代码的作用并给出代码中文文档和注释，请尽量给代码都加上明确的中文注释。",
                 date: ""
             },
         ],
@@ -253,7 +253,7 @@ exports.CN_MASKS = [
     },
     {
         avatar: "1f468-200d-1f4bb",
-        name: "IT专家",
+        name: "IT问题专家",
         context: [
             {
                 id: "writer-0",
