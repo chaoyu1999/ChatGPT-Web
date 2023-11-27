@@ -70,7 +70,7 @@ export enum StoreKey {
 export const DEFAULT_SIDEBAR_WIDTH = 300;
 export const MAX_SIDEBAR_WIDTH = 500;
 export const MIN_SIDEBAR_WIDTH = 230;
-export const NARROW_SIDEBAR_WIDTH = 100;
+export const NARROW_SIDEBAR_WIDTH = 200;
 
 // 访问控制码前缀
 export const ACCESS_CODE_PREFIX = "nk-";
