@@ -111,7 +111,7 @@ function useDragSideBar() {
             var nextWidth = limit(startDragWidth.current + d);
             config.update(function (config) {
                 if (nextWidth < constant_1.MIN_SIDEBAR_WIDTH) {
-                    config.sidebarWidth = constant_1.NARROW_SIDEBAR_WIDTH;
+                    config.sidebarWidth = constant_1.MIN_SIDEBAR_WIDTH; // 设置为最小宽度
                 }
                 else {
                     config.sidebarWidth = nextWidth;

@@ -86,7 +86,7 @@ function useDragSideBar() {
       const nextWidth = limit(startDragWidth.current + d);
       config.update((config) => {
         if (nextWidth < MIN_SIDEBAR_WIDTH) {
-          config.sidebarWidth = NARROW_SIDEBAR_WIDTH;
+          config.sidebarWidth = MIN_SIDEBAR_WIDTH; // 设置为最小宽度
         } else {
           config.sidebarWidth = nextWidth;
         }
