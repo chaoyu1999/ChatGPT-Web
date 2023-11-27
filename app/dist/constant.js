@@ -65,7 +65,7 @@ var StoreKey;
 exports.DEFAULT_SIDEBAR_WIDTH = 300;
 exports.MAX_SIDEBAR_WIDTH = 500;
 exports.MIN_SIDEBAR_WIDTH = 230;
-exports.NARROW_SIDEBAR_WIDTH = 200;
+exports.NARROW_SIDEBAR_WIDTH = 100;
 // 访问控制码前缀
 exports.ACCESS_CODE_PREFIX = "nk-";
 // 存储键常量
