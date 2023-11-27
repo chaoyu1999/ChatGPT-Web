@@ -69,7 +69,7 @@ export enum StoreKey {
 // 侧边栏宽度常量
 export const DEFAULT_SIDEBAR_WIDTH = 300;
 export const MAX_SIDEBAR_WIDTH = 500;
-export const MIN_SIDEBAR_WIDTH = 230;
+export const MIN_SIDEBAR_WIDTH = 200;
 export const NARROW_SIDEBAR_WIDTH = 100;
 
 // 访问控制码前缀
