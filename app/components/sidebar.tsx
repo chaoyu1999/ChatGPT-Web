@@ -149,7 +149,7 @@ export function SideBar(props: { className?: string }) {
           &nbsp;
           {"\n"}
           &nbsp;
-          <span style={{fontSize: "13px", fontWeight: "bold", fontStyle: "italic"}} >推荐使用&quot;gpt-3.5-turbo-1106&quot;模型：支持更长的上下文输入，回复速度更快。</span>
+          <span style={{fontSize: "13px"}} >推荐使用&quot;gpt-3.5-turbo-1106&quot;模型：支持更长的上下文输入，回复速度更快。</span>
         </div>
         <div className={styles["sidebar-logo"] + " no-dark"}>
           <ChatGptIcon />

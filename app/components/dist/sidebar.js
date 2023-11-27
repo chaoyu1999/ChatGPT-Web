@@ -161,7 +161,7 @@ function SideBar(props) {
                 "\u00A0",
                 "\n",
                 "\u00A0",
-                React.createElement("span", { style: { fontSize: "13px", fontWeight: "bold", fontStyle: "italic" } }, "\u63A8\u8350\u4F7F\u7528\"gpt-3.5-turbo-1106\"\u6A21\u578B\uFF1A\u652F\u6301\u66F4\u957F\u7684\u4E0A\u4E0B\u6587\u8F93\u5165\uFF0C\u56DE\u590D\u901F\u5EA6\u66F4\u5FEB\u3002")),
+                React.createElement("span", { style: { fontSize: "13px" } }, "\u63A8\u8350\u4F7F\u7528\"gpt-3.5-turbo-1106\"\u6A21\u578B\uFF1A\u652F\u6301\u66F4\u957F\u7684\u4E0A\u4E0B\u6587\u8F93\u5165\uFF0C\u56DE\u590D\u901F\u5EA6\u66F4\u5FEB\u3002")),
             React.createElement("div", { className: home_module_scss_1["default"]["sidebar-logo"] + " no-dark" },
                 React.createElement(chatgpt_svg_1["default"], null))),
         React.createElement("div", { className: home_module_scss_1["default"]["sidebar-header-bar"] },
