@@ -70,7 +70,17 @@ export class ChatGPTApi implements LLMApi {
       },
     };
 
-    const requestPayload = {
+    let requestPayload = {
+      messages,
+      stream: options.config.stream,
+      model: modelConfig.model,
+      temperature: modelConfig.temperature,
+      presence_penalty: modelConfig.presence_penalty,
+      frequency_penalty: modelConfig.frequency_penalty,
+      top_p: modelConfig.top_p,
+    };
+
+    let requestPayload_clone = {
       messages,
       stream: options.config.stream,
       model: modelConfig.model,
@@ -85,24 +95,31 @@ export class ChatGPTApi implements LLMApi {
     const shouldStream = !!options.config.stream;
     const controller = new AbortController();
     options.onController?.(controller);
-
+    let chatPayload = {
+      method: "POST",
+      body: JSON.stringify(requestPayload),
+      signal: controller.signal,
+      headers: getHeaders(),
+    };
+    let chatPayload_clone = {
+      method: "POST",
+      body: JSON.stringify(requestPayload),
+      signal: controller.signal,
+      headers: getHeaders(),
+    };
+    // 引入GPT-4
+    let chatPath;
     try {
-      let chatPayload = {
-        method: "POST",
-        body: JSON.stringify(requestPayload),
-        signal: controller.signal,
-        headers: getHeaders(),
-      };
-      // 引入GPT-4
-      let chatPath;
       // Check if model contains 'gpt-4'
-      if (requestPayload.model.includes('gpt-4')) {
+      if (requestPayload_clone.model.includes('gpt-4')) {
         // If it contains 'gpt-4', set chatPath to an empty string
         chatPath = "https://rao223-rjl9zf.hf.space/v1/chat/completions";
         chatPayload.headers.Authorization = "sk-9WPhm2kXo3HM0upeFdE963A6E7Db47AaA7EbE9B5Db0c9224"
       } else {
         // If it doesn't contain 'gpt-4', set chatPath to OpenaiPath.ChatPath
         chatPath = this.path(OpenaiPath.ChatPath);
+        requestPayload.model = "gpt-3.5-turbo-1106";
+        chatPayload.body = JSON.stringify(requestPayload);
       }
       // const chatPath = this.path(OpenaiPath.ChatPath);
       console.log("[chatPath]", chatPath)
