@@ -4,7 +4,7 @@ export const AUTH_ID = process.env.AUTH_ID;
 export const AUTH_KEY = process.env.AUTH_KEY;
 export const AUTH_EMAIL = process.env.AUTH_EMAIL;
 export const DB_ID = process.env.DB_ID;
-
+export const GPT_4_KEY = process.env.GPT_4_KEY;
 
 // GitHub仓库的所有者和仓库名称
 export const OWNER = "Yidadaa";

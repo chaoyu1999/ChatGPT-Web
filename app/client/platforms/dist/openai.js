@@ -133,14 +133,6 @@ var ChatGPTApi = /** @class */ (function () {
                         _c.label = 1;
                     case 1:
                         _c.trys.push([1, 6, , 7]);
-                        // if (requestPayload_clone.model.includes('gpt-4')) {
-                        //   chatPath = "https://lirao-rjlff.hf.space/v1/chat/completions";
-                        //   chatPayload.headers.Authorization = "sk-0RDgJtsQC3GYvPL1657146958b9e4703B0Ea1c5d8f47981d"
-                        // } else {
-                        //   chatPath = this.path(OpenaiPath.ChatPath);
-                        //   requestPayload.model = "gpt-3.5-turbo-1106";
-                        //   chatPayload.body = JSON.stringify(requestPayload);
-                        // }
                         console.log("[chatPath]", chatPath);
                         requestTimeoutId_1 = setTimeout(function () { return controller.abort(); }, constant_1.REQUEST_TIMEOUT_MS);
                         if (!shouldStream) return [3 /*break*/, 2];
