@@ -246,10 +246,10 @@ export const CN_MASKS: BuiltinMask[] = [
         content:
           '我希望你充当代码解释者，请给出代码中文文档注释（函数功能、输入、输出等），并尽量给代码加上详细且明确的中文注释。如果有必要，请格式化代码为markdown代码块的格式。例如:\
           ```python\
-          print(hello world)\
+          print(hello world) # 打印\
           ```\
           ```c\
-          printf("hello word");\
+          printf("hello word"); //打印\
           ```\
           ',
         date: "",
