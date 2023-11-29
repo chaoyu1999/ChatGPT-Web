@@ -1,13 +1,12 @@
 "use strict";
 exports.__esModule = true;
-exports.MAX_RENDER_MSG_COUNT = exports.CHAT_PAGE_SIZE = exports.DEFAULT_MODELS = exports.SUMMARIZE_MODEL = exports.DEFAULT_SYSTEM_TEMPLATE = exports.DEFAULT_INPUT_TEMPLATE = exports.OpenaiPath = exports.EXPORT_MESSAGE_CLASS_NAME = exports.REQUEST_TIMEOUT_MS = exports.STORAGE_KEY = exports.UNFINISHED_INPUT = exports.LAST_INPUT_KEY = exports.ACCESS_CODE_PREFIX = exports.NARROW_SIDEBAR_WIDTH = exports.MIN_SIDEBAR_WIDTH = exports.MAX_SIDEBAR_WIDTH = exports.DEFAULT_SIDEBAR_WIDTH = exports.StoreKey = exports.FileName = exports.SlotID = exports.ApiPath = exports.Path = exports.DEFAULT_API_HOST = exports.DEFAULT_CORS_HOST = exports.RUNTIME_CONFIG_DOM = exports.FETCH_TAG_URL = exports.FETCH_COMMIT_URL = exports.RELEASE_URL = exports.UPDATE_URL = exports.ISSUE_URL = exports.REPO_URL = exports.REPO = exports.OWNER = exports.GPT_4_KEY = exports.DB_ID = exports.AUTH_EMAIL = exports.AUTH_KEY = exports.AUTH_ID = void 0;
+exports.MAX_RENDER_MSG_COUNT = exports.CHAT_PAGE_SIZE = exports.DEFAULT_MODELS = exports.SUMMARIZE_MODEL = exports.DEFAULT_SYSTEM_TEMPLATE = exports.DEFAULT_INPUT_TEMPLATE = exports.OpenaiPath = exports.EXPORT_MESSAGE_CLASS_NAME = exports.REQUEST_TIMEOUT_MS = exports.STORAGE_KEY = exports.UNFINISHED_INPUT = exports.LAST_INPUT_KEY = exports.ACCESS_CODE_PREFIX = exports.NARROW_SIDEBAR_WIDTH = exports.MIN_SIDEBAR_WIDTH = exports.MAX_SIDEBAR_WIDTH = exports.DEFAULT_SIDEBAR_WIDTH = exports.StoreKey = exports.FileName = exports.SlotID = exports.ApiPath = exports.Path = exports.DEFAULT_API_HOST = exports.DEFAULT_CORS_HOST = exports.RUNTIME_CONFIG_DOM = exports.FETCH_TAG_URL = exports.FETCH_COMMIT_URL = exports.RELEASE_URL = exports.UPDATE_URL = exports.ISSUE_URL = exports.REPO_URL = exports.REPO = exports.OWNER = exports.DB_ID = exports.AUTH_EMAIL = exports.AUTH_KEY = exports.AUTH_ID = void 0;
 // 配置和定义应用程序的各种设置和路径等信息
 // 配置CF数据相关的常量
 exports.AUTH_ID = process.env.AUTH_ID;
 exports.AUTH_KEY = process.env.AUTH_KEY;
 exports.AUTH_EMAIL = process.env.AUTH_EMAIL;
 exports.DB_ID = process.env.DB_ID;
-exports.GPT_4_KEY = process.env.GPT_4_KEY;
 // GitHub仓库的所有者和仓库名称
 exports.OWNER = "Yidadaa";
 exports.REPO = "ChatGPT-Next-Web";
