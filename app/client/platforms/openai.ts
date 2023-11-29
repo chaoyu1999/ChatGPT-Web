@@ -101,12 +101,6 @@ export class ChatGPTApi implements LLMApi {
       signal: controller.signal,
       headers: getHeaders(),
     };
-    let chatPayload_clone = {
-      method: "POST",
-      body: JSON.stringify(requestPayload),
-      signal: controller.signal,
-      headers: getHeaders(),
-    };
     // 引入GPT-4
     let chatPath;
     try {
@@ -114,7 +108,7 @@ export class ChatGPTApi implements LLMApi {
       if (requestPayload_clone.model.includes('gpt-4')) {
         // If it contains 'gpt-4', set chatPath to an empty string
         chatPath = "https://rao223-rjl9zf.hf.space/v1/chat/completions";
-        chatPayload.headers.Authorization = "sk-9WPhm2kXo3HM0upeFdE963A6E7Db47AaA7EbE9B5Db0c9224"
+        chatPayload.headers.Authorization = "sk-myczcVMpohjDDWXS2548DcA7F1E3492b8aCdF39c9dE6Cb52"
       } else {
         // If it doesn't contain 'gpt-4', set chatPath to OpenaiPath.ChatPath
         chatPath = this.path(OpenaiPath.ChatPath);
