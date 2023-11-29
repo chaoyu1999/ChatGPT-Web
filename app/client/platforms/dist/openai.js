@@ -129,22 +129,18 @@ var ChatGPTApi = /** @class */ (function () {
                             signal: controller.signal,
                             headers: api_1.getHeaders()
                         };
+                        chatPath = this.path(constant_1.OpenaiPath.ChatPath);
                         _c.label = 1;
                     case 1:
                         _c.trys.push([1, 6, , 7]);
-                        // Check if model contains 'gpt-4'
-                        if (requestPayload_clone.model.includes('gpt-4')) {
-                            // If it contains 'gpt-4', set chatPath to an empty string
-                            chatPath = "https://lirao-rjlff.hf.space/v1/chat/completions";
-                            chatPayload.headers.Authorization = "sk-0RDgJtsQC3GYvPL1657146958b9e4703B0Ea1c5d8f47981d";
-                        }
-                        else {
-                            // If it doesn't contain 'gpt-4', set chatPath to OpenaiPath.ChatPath
-                            chatPath = this.path(constant_1.OpenaiPath.ChatPath);
-                            requestPayload.model = "gpt-3.5-turbo-1106";
-                            chatPayload.body = JSON.stringify(requestPayload);
-                        }
-                        // const chatPath = this.path(OpenaiPath.ChatPath);
+                        // if (requestPayload_clone.model.includes('gpt-4')) {
+                        //   chatPath = "https://lirao-rjlff.hf.space/v1/chat/completions";
+                        //   chatPayload.headers.Authorization = "sk-0RDgJtsQC3GYvPL1657146958b9e4703B0Ea1c5d8f47981d"
+                        // } else {
+                        //   chatPath = this.path(OpenaiPath.ChatPath);
+                        //   requestPayload.model = "gpt-3.5-turbo-1106";
+                        //   chatPayload.body = JSON.stringify(requestPayload);
+                        // }
                         console.log("[chatPath]", chatPath);
                         requestTimeoutId_1 = setTimeout(function () { return controller.abort(); }, constant_1.REQUEST_TIMEOUT_MS);
                         if (!shouldStream) return [3 /*break*/, 2];

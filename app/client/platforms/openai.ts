@@ -102,20 +102,16 @@ export class ChatGPTApi implements LLMApi {
       headers: getHeaders(),
     };
     // 引入GPT-4
-    let chatPath;
+    let chatPath = this.path(OpenaiPath.ChatPath);
     try {
-      // Check if model contains 'gpt-4'
-      if (requestPayload_clone.model.includes('gpt-4')) {
-        // If it contains 'gpt-4', set chatPath to an empty string
-        chatPath = "https://lirao-rjlff.hf.space/v1/chat/completions";
-        chatPayload.headers.Authorization = "sk-0RDgJtsQC3GYvPL1657146958b9e4703B0Ea1c5d8f47981d"
-      } else {
-        // If it doesn't contain 'gpt-4', set chatPath to OpenaiPath.ChatPath
-        chatPath = this.path(OpenaiPath.ChatPath);
-        requestPayload.model = "gpt-3.5-turbo-1106";
-        chatPayload.body = JSON.stringify(requestPayload);
-      }
-      // const chatPath = this.path(OpenaiPath.ChatPath);
+      // if (requestPayload_clone.model.includes('gpt-4')) {
+      //   chatPath = "https://lirao-rjlff.hf.space/v1/chat/completions";
+      //   chatPayload.headers.Authorization = "sk-0RDgJtsQC3GYvPL1657146958b9e4703B0Ea1c5d8f47981d"
+      // } else {
+      //   chatPath = this.path(OpenaiPath.ChatPath);
+      //   requestPayload.model = "gpt-3.5-turbo-1106";
+      //   chatPayload.body = JSON.stringify(requestPayload);
+      // }
       console.log("[chatPath]", chatPath)
       
       // make a fetch request
