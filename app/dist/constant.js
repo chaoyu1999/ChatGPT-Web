@@ -74,7 +74,7 @@ exports.UNFINISHED_INPUT = function (id) { return "unfinished-input-" + id; };
 // 本地存储键常量
 exports.STORAGE_KEY = "chatgpt-next-web";
 // 请求超时时间
-exports.REQUEST_TIMEOUT_MS = 30000;
+exports.REQUEST_TIMEOUT_MS = 100000;
 // 导出消息的类名
 exports.EXPORT_MESSAGE_CLASS_NAME = "export-markdown";
 // OpenAI路径常量

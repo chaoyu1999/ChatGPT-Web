@@ -83,7 +83,7 @@ export const UNFINISHED_INPUT = (id: string) => "unfinished-input-" + id;
 export const STORAGE_KEY = "chatgpt-next-web";
 
 // 请求超时时间
-export const REQUEST_TIMEOUT_MS = 30000;
+export const REQUEST_TIMEOUT_MS = 100000;
 
 // 导出消息的类名
 export const EXPORT_MESSAGE_CLASS_NAME = "export-markdown";
