@@ -101,7 +101,7 @@ export async function requestOpenai(req: NextRequest) {
     }
   }
 
-  // 在发送请求之前检查是否使用了 GPT-4 模型, 如果使用了 GPT-4 模型，更改请求头和 URL
+  // 在发送请求之前检查是否使用了 GPT-4 模型, 如果使用了 GPT-4 模型，更改请求头和 URL；如果使用了 GPT-3.5 模型，更改请求体中的模型名称为 GPT-3.5-turbo-1106
   if (req.body) {
     try {
       const clonedBody = await req.text();
@@ -116,32 +116,19 @@ export async function requestOpenai(req: NextRequest) {
         fetchOptions.headers.set("Authorization", "Bearer " + process.env.GPT4_API_KEY);
         fetchUrl = "https://rao223-rjl9zf.hf.space/v1/chat/completions"
       }
+
+      // 检查请求体中是否包含对 GPT-3.5 模型的请求
+      if ((jsonBody?.model ?? "").includes("gpt-3.5")) {
+        // 如果使用了 GPT-3.5 模型，更改模型名称为 GPT-3.5-turbo-1106
+        jsonBody.model = "gpt-3.5-turbo-1106";
+        // 更新 fetchOptions.body 为修改后的 jsonBody
+        fetchOptions.body = JSON.stringify(jsonBody);
+      }
+
     } catch (e) {
       console.error("[OpenAI] gpt4 check", e);
     }
   }
-
-// 在发送请求之前检查是否使用了 GPT-3.5 模型, 如果使用了 GPT-3.5 模型，更改请求体中的模型名称为 GPT-3.5-turbo-1106
-if (req.body) {
-  try {
-    // 读取请求体并存储在变量中，以便后续使用
-    const clonedBody = await req.text();
-    let jsonBody = JSON.parse(clonedBody);
-
-    // 检查请求体中是否包含对 GPT-3.5 模型的请求
-    if ((jsonBody?.model ?? "").includes("gpt-3.5")) {
-      // 如果使用了 GPT-3.5 模型，更改模型名称为 GPT-3.5-turbo-1106
-      jsonBody.model = "gpt-3.5-turbo-1106";
-      // 更新 fetchOptions.body 为修改后的 jsonBody
-      fetchOptions.body = JSON.stringify(jsonBody);
-    } else {
-      // 如果没有使用 GPT-3.5 模型，保持原始请求体不变
-      fetchOptions.body = clonedBody;
-    }
-  } catch (e) {
-    console.error("[OpenAI] gpt-3.5 check", e);
-  }
-}
 
 
   try {

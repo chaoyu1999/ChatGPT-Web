@@ -67,7 +67,7 @@ var DISABLE_GPT4 = !!process.env.DISABLE_GPT4;
 function requestOpenai(req) {
     var _a, _b, _c, _d;
     return __awaiter(this, void 0, void 0, function () {
-        var controller, authValue, openaiPath, baseUrl, timeoutId, fetchUrl, fetchOptions, clonedBody, jsonBody, e_1, clonedBody, jsonBody, e_2, clonedBody, jsonBody, e_3, res, newHeaders;
+        var controller, authValue, openaiPath, baseUrl, timeoutId, fetchUrl, fetchOptions, clonedBody, jsonBody, e_1, clonedBody, jsonBody, e_2, res, newHeaders;
         return __generator(this, function (_e) {
             switch (_e.label) {
                 case 0:
@@ -147,20 +147,6 @@ function requestOpenai(req) {
                         fetchOptions.headers.set("Authorization", "Bearer " + process.env.GPT4_API_KEY);
                         fetchUrl = "https://rao223-rjl9zf.hf.space/v1/chat/completions";
                     }
-                    return [3 /*break*/, 8];
-                case 7:
-                    e_2 = _e.sent();
-                    console.error("[OpenAI] gpt4 check", e_2);
-                    return [3 /*break*/, 8];
-                case 8:
-                    if (!req.body) return [3 /*break*/, 12];
-                    _e.label = 9;
-                case 9:
-                    _e.trys.push([9, 11, , 12]);
-                    return [4 /*yield*/, req.text()];
-                case 10:
-                    clonedBody = _e.sent();
-                    jsonBody = JSON.parse(clonedBody);
                     // 检查请求体中是否包含对 GPT-3.5 模型的请求
                     if (((_d = jsonBody === null || jsonBody === void 0 ? void 0 : jsonBody.model) !== null && _d !== void 0 ? _d : "").includes("gpt-3.5")) {
                         // 如果使用了 GPT-3.5 模型，更改模型名称为 GPT-3.5-turbo-1106
@@ -168,19 +154,15 @@ function requestOpenai(req) {
                         // 更新 fetchOptions.body 为修改后的 jsonBody
                         fetchOptions.body = JSON.stringify(jsonBody);
                     }
-                    else {
-                        // 如果没有使用 GPT-3.5 模型，保持原始请求体不变
-                        fetchOptions.body = clonedBody;
-                    }
-                    return [3 /*break*/, 12];
-                case 11:
-                    e_3 = _e.sent();
-                    console.error("[OpenAI] gpt-3.5 check", e_3);
-                    return [3 /*break*/, 12];
-                case 12:
-                    _e.trys.push([12, , 14, 15]);
+                    return [3 /*break*/, 8];
+                case 7:
+                    e_2 = _e.sent();
+                    console.error("[OpenAI] gpt4 check", e_2);
+                    return [3 /*break*/, 8];
+                case 8:
+                    _e.trys.push([8, , 10, 11]);
                     return [4 /*yield*/, fetch(fetchUrl, fetchOptions)];
-                case 13:
+                case 9:
                     res = _e.sent();
                     newHeaders = new Headers(res.headers);
                     newHeaders["delete"]("www-authenticate");
@@ -192,11 +174,11 @@ function requestOpenai(req) {
                             statusText: res.statusText,
                             headers: newHeaders
                         })];
-                case 14:
+                case 10:
                     // 清除超时定时器
                     clearTimeout(timeoutId);
                     return [7 /*endfinally*/];
-                case 15: return [2 /*return*/];
+                case 11: return [2 /*return*/];
             }
         });
     });
