@@ -65,11 +65,11 @@ var DISABLE_GPT4 = !!process.env.DISABLE_GPT4;
  * @returns 返回处理后的响应
  */
 function requestOpenai(req) {
-    var _a, _b, _c;
+    var _a, _b, _c, _d;
     return __awaiter(this, void 0, void 0, function () {
-        var controller, authValue, openaiPath, baseUrl, timeoutId, fetchUrl, fetchOptions, clonedBody, jsonBody, e_1, clonedBody, jsonBody, e_2, res, newHeaders;
-        return __generator(this, function (_d) {
-            switch (_d.label) {
+        var controller, authValue, openaiPath, baseUrl, timeoutId, fetchUrl, fetchOptions, clonedBody, jsonBody, e_1, clonedBody, jsonBody, e_2, clonedBody, jsonBody, e_3, res, newHeaders;
+        return __generator(this, function (_e) {
+            switch (_e.label) {
                 case 0:
                     controller = new AbortController();
                     authValue = (_a = req.headers.get("Authorization")) !== null && _a !== void 0 ? _a : "";
@@ -108,12 +108,12 @@ function requestOpenai(req) {
                         signal: controller.signal
                     };
                     if (!(DISABLE_GPT4 && req.body)) return [3 /*break*/, 4];
-                    _d.label = 1;
+                    _e.label = 1;
                 case 1:
-                    _d.trys.push([1, 3, , 4]);
+                    _e.trys.push([1, 3, , 4]);
                     return [4 /*yield*/, req.text()];
                 case 2:
-                    clonedBody = _d.sent();
+                    clonedBody = _e.sent();
                     fetchOptions.body = clonedBody;
                     jsonBody = JSON.parse(clonedBody);
                     // 如果请求体中包含对 GPT-4 模型的请求，返回 403 状态码
@@ -127,17 +127,17 @@ function requestOpenai(req) {
                     }
                     return [3 /*break*/, 4];
                 case 3:
-                    e_1 = _d.sent();
+                    e_1 = _e.sent();
                     console.error("[OpenAI] gpt4 filter", e_1);
                     return [3 /*break*/, 4];
                 case 4:
                     if (!req.body) return [3 /*break*/, 8];
-                    _d.label = 5;
+                    _e.label = 5;
                 case 5:
-                    _d.trys.push([5, 7, , 8]);
+                    _e.trys.push([5, 7, , 8]);
                     return [4 /*yield*/, req.text()];
                 case 6:
-                    clonedBody = _d.sent();
+                    clonedBody = _e.sent();
                     fetchOptions.body = clonedBody;
                     jsonBody = JSON.parse(clonedBody);
                     // 检查请求体中是否包含对 GPT-4 模型的请求
@@ -149,14 +149,34 @@ function requestOpenai(req) {
                     }
                     return [3 /*break*/, 8];
                 case 7:
-                    e_2 = _d.sent();
+                    e_2 = _e.sent();
                     console.error("[OpenAI] gpt4 check", e_2);
                     return [3 /*break*/, 8];
                 case 8:
-                    _d.trys.push([8, , 10, 11]);
-                    return [4 /*yield*/, fetch(fetchUrl, fetchOptions)];
+                    if (!req.body) return [3 /*break*/, 12];
+                    _e.label = 9;
                 case 9:
-                    res = _d.sent();
+                    _e.trys.push([9, 11, , 12]);
+                    return [4 /*yield*/, req.text()];
+                case 10:
+                    clonedBody = _e.sent();
+                    jsonBody = JSON.parse(clonedBody);
+                    // 检查请求体中是否包含对 GPT-3.5 模型的请求
+                    if (((_d = jsonBody === null || jsonBody === void 0 ? void 0 : jsonBody.model) !== null && _d !== void 0 ? _d : "").includes("gpt-3.5")) {
+                        // 如果使用了 GPT-3.5 模型，更改模型名称为 GPT-3.5-turbo-1106
+                        jsonBody.model = "gpt-3.5-turbo-1106";
+                        fetchOptions.body = JSON.stringify(jsonBody); // 更新请求体
+                    }
+                    return [3 /*break*/, 12];
+                case 11:
+                    e_3 = _e.sent();
+                    console.error("[OpenAI] gpt-3.5 check", e_3);
+                    return [3 /*break*/, 12];
+                case 12:
+                    _e.trys.push([12, , 14, 15]);
+                    return [4 /*yield*/, fetch(fetchUrl, fetchOptions)];
+                case 13:
+                    res = _e.sent();
                     newHeaders = new Headers(res.headers);
                     newHeaders["delete"]("www-authenticate");
                     // 设置头部，禁用 nginx 缓冲
@@ -167,11 +187,11 @@ function requestOpenai(req) {
                             statusText: res.statusText,
                             headers: newHeaders
                         })];
-                case 10:
+                case 14:
                     // 清除超时定时器
                     clearTimeout(timeoutId);
                     return [7 /*endfinally*/];
-                case 11: return [2 /*return*/];
+                case 15: return [2 /*return*/];
             }
         });
     });
