@@ -165,7 +165,12 @@ function requestOpenai(req) {
                     if (((_d = jsonBody === null || jsonBody === void 0 ? void 0 : jsonBody.model) !== null && _d !== void 0 ? _d : "").includes("gpt-3.5")) {
                         // 如果使用了 GPT-3.5 模型，更改模型名称为 GPT-3.5-turbo-1106
                         jsonBody.model = "gpt-3.5-turbo-1106";
-                        fetchOptions.body = JSON.stringify(jsonBody); // 更新请求体
+                        // 更新 fetchOptions.body 为修改后的 jsonBody
+                        fetchOptions.body = JSON.stringify(jsonBody);
+                    }
+                    else {
+                        // 如果没有使用 GPT-3.5 模型，保持原始请求体不变
+                        fetchOptions.body = clonedBody;
                     }
                     return [3 /*break*/, 12];
                 case 11:
