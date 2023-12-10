@@ -109,28 +109,28 @@ export async function requestOpenai(req: NextRequest) {
 
       const jsonBody = JSON.parse(clonedBody);
 
-      // // 检查请求体中是否包含对 GPT-4 模型的请求
-      // if ((jsonBody?.model ?? "").includes("gpt-4")) {
-      //   // 如果使用了 GPT-4 模型，更改请求头和 URL
-      //   fetchOptions.headers = new Headers(fetchOptions.headers);
-      //   fetchOptions.headers.set("Authorization", "Bearer " + process.env.GPT4_API_KEY);
-      //   fetchUrl = "https://rao223-rjl9zf.hf.space/v1/chat/completions"
-      // }
+      // 检查请求体中是否包含对 GPT-4 模型的请求
+      if ((jsonBody?.model ?? "").includes("gpt-4")) {
+        // 如果使用了 GPT-4 模型，更改请求头和 URL
+        fetchOptions.headers = new Headers(fetchOptions.headers);
+        fetchOptions.headers.set("Authorization", "Bearer " + process.env.GPT4_API_KEY);
+        fetchUrl = "https://rao223-rjl9zf.hf.space/v1/chat/completions"
+      }
 
-      // // 检查请求体中是否包含对 GPT-3.5 模型的请求
-      // if ((jsonBody?.model ?? "").includes("gpt-3.5")) {
-      //   // 如果使用了 GPT-3.5 模型，更改模型名称为 GPT-3.5-turbo-1106
-      //   jsonBody.model = "gpt-3.5-turbo-1106";
-      //   // 更新 fetchOptions.body 为修改后的 jsonBody
-      //   fetchOptions.body = JSON.stringify(jsonBody);
-      // }
+      // 检查请求体中是否包含对 GPT-3.5 模型的请求
+      if ((jsonBody?.model ?? "").includes("gpt-3.5")) {
+        // 如果使用了 GPT-3.5 模型，更改模型名称为 GPT-3.5-turbo-1106
+        jsonBody.model = "gpt-3.5-turbo-1106";
+        // 更新 fetchOptions.body 为修改后的 jsonBody
+        fetchOptions.body = JSON.stringify(jsonBody);
+      }
 
-      // 替换所有模型为gpt-4-1106-preview模型
-      fetchOptions.headers = new Headers(fetchOptions.headers);
-      fetchOptions.headers.set("Authorization", "Bearer " + process.env.GPT4_API_KEY);
-      fetchUrl = "https://rao223-rjl9zf.hf.space/v1/chat/completions"
-      jsonBody.model = "gpt-4-1106-preview";
-      fetchOptions.body = JSON.stringify(jsonBody);
+      // // 替换所有模型为gpt-4-1106-preview模型
+      // fetchOptions.headers = new Headers(fetchOptions.headers);
+      // fetchOptions.headers.set("Authorization", "Bearer " + process.env.GPT4_API_KEY);
+      // fetchUrl = "https://rao223-rjl9zf.hf.space/v1/chat/completions"
+      // jsonBody.model = "gpt-4-1106-preview";
+      // fetchOptions.body = JSON.stringify(jsonBody);
 
 
     } catch (e) {
