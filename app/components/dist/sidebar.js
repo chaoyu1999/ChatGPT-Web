@@ -1,4 +1,15 @@
 "use strict";
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -55,6 +66,18 @@ var react_router_dom_1 = require("react-router-dom");
 var utils_1 = require("../utils");
 var dynamic_1 = require("next/dynamic");
 var ui_lib_1 = require("./ui-lib");
+var rainbowTextStyle = {
+    background: 'linear-gradient(to right, red, orange, blue, indigo, violet)',
+    WebkitBackgroundClip: 'text',
+    color: 'transparent',
+    display: 'flex',
+    justifyContent: 'center'
+};
+var horizontalLineStyle = {
+    borderTop: '1px solid black',
+    width: '100%',
+    display: 'block'
+};
 var ChatList = dynamic_1["default"](function () { return __awaiter(void 0, void 0, void 0, function () { return __generator(this, function (_a) {
     switch (_a.label) {
         case 0: return [4 /*yield*/, Promise.resolve().then(function () { return require("./chat-list"); })];
@@ -155,9 +178,11 @@ function SideBar(props) {
     var config = store_1.useAppConfig();
     return (React.createElement("div", { className: home_module_scss_1["default"].sidebar + " " + props.className + " " + (shouldNarrow && home_module_scss_1["default"]["narrow-sidebar"]) },
         React.createElement("div", { className: home_module_scss_1["default"]["sidebar-header"], "data-tauri-drag-region": true },
-            React.createElement("div", { className: home_module_scss_1["default"]["sidebar-title"], "data-tauri-drag-region": true }, "Cy' GPT"),
+            React.createElement("div", { className: home_module_scss_1["default"]["sidebar-title"], "data-tauri-drag-region": true },
+                React.createElement("span", { style: __assign({}, rainbowTextStyle) }, "Cy' GPT")),
+            React.createElement("div", { style: horizontalLineStyle }),
             React.createElement("div", { className: home_module_scss_1["default"]["sidebar-sub-title"] },
-                React.createElement("span", { style: { fontSize: "13px" } }, "\u63A8\u8350\u4F7F\u7528\"gpt-3.5-turbo-1106\"\u6A21\u578B\uFF1A\u652F\u6301\u66F4\u957F\u7684\u4E0A\u4E0B\u6587\u8F93\u5165\uFF0C\u56DE\u590D\u901F\u5EA6\u66F4\u5FEB\u3002")),
+                React.createElement("span", { style: __assign({ fontSize: "14px" }, rainbowTextStyle) }, "\u63A8\u8350\u4F7F\u7528\"gpt-3.5-turbo-1106\"\u6A21\u578B\uFF1A\u652F\u6301\u66F4\u957F\u7684\u4E0A\u4E0B\u6587\u8F93\u5165\uFF0C\u56DE\u590D\u901F\u5EA6\u66F4\u5FEB\u3002")),
             React.createElement("div", { className: home_module_scss_1["default"]["sidebar-logo"] + " no-dark" },
                 React.createElement(chatgpt_svg_1["default"], null))),
         React.createElement("div", { className: home_module_scss_1["default"]["sidebar-header-bar"] },

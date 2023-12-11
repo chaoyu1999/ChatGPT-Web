@@ -30,6 +30,20 @@ import { useMobileScreen } from "../utils";
 import dynamic from "next/dynamic";
 import { showConfirm, showToast } from "./ui-lib";
 
+const rainbowTextStyle = {
+  background: 'linear-gradient(to right, red, orange, blue, indigo, violet)',
+  WebkitBackgroundClip: 'text',
+  color: 'transparent',
+  display: 'flex',
+  justifyContent: 'center',
+};
+
+const horizontalLineStyle = {
+  borderTop: '1px solid black',
+  width: '100%',
+  display: 'block'
+};
+
 const ChatList = dynamic(async () => (await import("./chat-list")).ChatList, {
   loading: () => null,
 });
@@ -142,10 +156,12 @@ export function SideBar(props: { className?: string }) {
     >
       <div className={styles["sidebar-header"]} data-tauri-drag-region>
         <div className={styles["sidebar-title"]} data-tauri-drag-region>
-          Cy&apos; GPT
+          <span style={{ ...rainbowTextStyle }}>Cy&apos; GPT</span>
         </div>
+        <div style={horizontalLineStyle}></div>
+
         <div className={styles["sidebar-sub-title"]}>
-          <span style={{fontSize: "13px"}}>推荐使用&quot;gpt-3.5-turbo-1106&quot;模型：支持更长的上下文输入，回复速度更快。</span>
+          <span style={{ fontSize: "14px", ...rainbowTextStyle }}>推荐使用&quot;gpt-3.5-turbo-1106&quot;模型：支持更长的上下文输入，回复速度更快。</span>
         </div>
         <div className={styles["sidebar-logo"] + " no-dark"}>
           <ChatGptIcon />
