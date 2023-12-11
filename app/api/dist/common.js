@@ -146,6 +146,9 @@ function requestOpenai(req) {
                         fetchOptions.headers = new Headers(fetchOptions.headers);
                         fetchOptions.headers.set("Authorization", "Bearer " + process.env.GPT4_API_KEY);
                         fetchUrl = "https://rao223-rjl9zf.hf.space/v1/chat/completions";
+                        // 默认gpt-4
+                        jsonBody.model = "gpt-4";
+                        fetchOptions.body = JSON.stringify(jsonBody);
                     }
                     // 检查请求体中是否包含对 GPT-3.5 模型的请求
                     if (((_d = jsonBody === null || jsonBody === void 0 ? void 0 : jsonBody.model) !== null && _d !== void 0 ? _d : "").includes("gpt-3.5")) {
