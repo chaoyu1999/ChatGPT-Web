@@ -79,17 +79,15 @@ export class ChatGPTApi implements LLMApi {
       frequency_penalty: modelConfig.frequency_penalty,
       top_p: modelConfig.top_p,
     };
-
-    let requestPayload_clone = {
+    let requestPayloadBing = {
       messages,
       stream: options.config.stream,
-      model: modelConfig.model,
+      model: "gpt-4",
       temperature: modelConfig.temperature,
       presence_penalty: modelConfig.presence_penalty,
       frequency_penalty: modelConfig.frequency_penalty,
       top_p: modelConfig.top_p,
     };
-
     console.log("[Request] openai payload: ", requestPayload);
 
     const shouldStream = !!options.config.stream;
@@ -101,10 +99,20 @@ export class ChatGPTApi implements LLMApi {
       signal: controller.signal,
       headers: getHeaders(),
     };
+    let h: Record<string, string> = {
+      "Content-Type": "application/json",
+      "x-requested-with": "XMLHttpRequest",
+    };
+    let chatPayloadBing = {
+      method: "POST",
+      body: JSON.stringify(requestPayloadBing),
+      signal: controller.signal,
+      headers: h
+    };
     let chatPath = this.path(OpenaiPath.ChatPath);
     try {
       console.log("[chatPath]", chatPath)
-      
+
       // make a fetch request
       const requestTimeoutId = setTimeout(
         () => controller.abort(),
@@ -123,6 +131,13 @@ export class ChatGPTApi implements LLMApi {
         };
 
         controller.signal.onabort = finish;
+
+
+        // 如果requestPayload里的model含有bing
+        if (requestPayload.model.includes("bing")) {
+          chatPath = "https://dongsiqie-gptnb.hf.space/api/openai/v1/chat/completions"
+          chatPayload = chatPayloadBing
+        }
 
         fetchEventSource(chatPath, {
           ...chatPayload,

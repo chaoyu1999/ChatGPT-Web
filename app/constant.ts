@@ -98,10 +98,16 @@ export const OpenaiPath = {
 // 默认输入和系统消息模板
 export const DEFAULT_INPUT_TEMPLATE = `{{input}}`; // input / time / model / lang
 export const DEFAULT_SYSTEM_TEMPLATE = `
-You are ChatGPT, a large language model trained by OpenAI.
-Knowledge cutoff: 2021-09
+You are ChatGPT, a large language model trained by OpenAI.Please answer me with Chinese.
 Current model: {{model}}
-Current time: {{time}}`;
+Current time: {{time}}
+Latex inline: $x^2$ Latex block: $$e=mc^2$$
+Code inline: \`print("Hello, world!")\` 
+Code block: 
+\`\`\`python 
+print("Hello, world!")
+\`\`\`
+`;
 
 // 摘要模型名称
 export const SUMMARIZE_MODEL = "gpt-3.5-turbo-1106";
@@ -122,6 +128,10 @@ export const DEFAULT_MODELS = [
   },
   {
     name: "gpt-3.5-turbo-16k",
+    available: true,
+  },
+  {
+    name: "bing-联网版",
     available: true,
   },
 ] as const;

@@ -35,11 +35,10 @@ const rainbowTextStyle = {
   WebkitBackgroundClip: 'text',
   color: 'transparent',
   display: 'flex',
-  justifyContent: 'center',
 };
 
 const horizontalLineStyle = {
-  borderTop: '1px solid black',
+  borderTop: '2px solid black',
   width: '100%',
   display: 'block'
 };
@@ -161,7 +160,7 @@ export function SideBar(props: { className?: string }) {
         <div style={horizontalLineStyle}></div>
 
         <div className={styles["sidebar-sub-title"]}>
-          <span style={{ fontSize: "14px", ...rainbowTextStyle }}>推荐使用&quot;gpt-3.5-turbo-1106&quot;模型：支持更长的上下文输入，回复速度更快。</span>
+          <span style={{ fontSize: "14px", ...rainbowTextStyle }}>引入bing模型, 支持联网搜索, 可在设置里更改模型为"bing-联网版"。</span>
         </div>
         <div className={styles["sidebar-logo"] + " no-dark"}>
           <ChatGptIcon />

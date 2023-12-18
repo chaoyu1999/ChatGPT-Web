@@ -86,7 +86,7 @@ exports.OpenaiPath = {
 };
 // 默认输入和系统消息模板
 exports.DEFAULT_INPUT_TEMPLATE = "{{input}}"; // input / time / model / lang
-exports.DEFAULT_SYSTEM_TEMPLATE = "\nYou are ChatGPT, a large language model trained by OpenAI.\nKnowledge cutoff: 2021-09\nCurrent model: {{model}}\nCurrent time: {{time}}";
+exports.DEFAULT_SYSTEM_TEMPLATE = "\nYou are ChatGPT, a large language model trained by OpenAI.Please answer me with Chinese.\nCurrent model: {{model}}\nCurrent time: {{time}}\nLatex inline: $x^2$ Latex block: $$e=mc^2$$\nCode inline: `print(\"Hello, world!\")` \nCode block: \n```python \nprint(\"Hello, world!\")\n```\n";
 // 摘要模型名称
 exports.SUMMARIZE_MODEL = "gpt-3.5-turbo-1106";
 // 默认模型配置
@@ -105,6 +105,10 @@ exports.DEFAULT_MODELS = [
     },
     {
         name: "gpt-3.5-turbo-16k",
+        available: true
+    },
+    {
+        name: "bing-联网版",
         available: true
     },
 ];

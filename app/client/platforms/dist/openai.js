@@ -90,7 +90,7 @@ var ChatGPTApi = /** @class */ (function () {
     ChatGPTApi.prototype.chat = function (options) {
         var _a, _b;
         return __awaiter(this, void 0, void 0, function () {
-            var messages, modelConfig, requestPayload, requestPayload_clone, shouldStream, controller, chatPayload, chatPath, requestTimeoutId_1, responseText_1, finished_1, finish_1, res, resJson, message, e_1;
+            var messages, modelConfig, requestPayload, requestPayloadBing, shouldStream, controller, chatPayload, h, chatPayloadBing, chatPath, requestTimeoutId_1, responseText_1, finished_1, finish_1, res, resJson, message, e_1;
             return __generator(this, function (_c) {
                 switch (_c.label) {
                     case 0:
@@ -110,10 +110,10 @@ var ChatGPTApi = /** @class */ (function () {
                             frequency_penalty: modelConfig.frequency_penalty,
                             top_p: modelConfig.top_p
                         };
-                        requestPayload_clone = {
+                        requestPayloadBing = {
                             messages: messages,
                             stream: options.config.stream,
-                            model: modelConfig.model,
+                            model: "gpt-4",
                             temperature: modelConfig.temperature,
                             presence_penalty: modelConfig.presence_penalty,
                             frequency_penalty: modelConfig.frequency_penalty,
@@ -128,6 +128,16 @@ var ChatGPTApi = /** @class */ (function () {
                             body: JSON.stringify(requestPayload),
                             signal: controller.signal,
                             headers: api_1.getHeaders()
+                        };
+                        h = {
+                            "Content-Type": "application/json",
+                            "x-requested-with": "XMLHttpRequest"
+                        };
+                        chatPayloadBing = {
+                            method: "POST",
+                            body: JSON.stringify(requestPayloadBing),
+                            signal: controller.signal,
+                            headers: h
                         };
                         chatPath = this.path(constant_1.OpenaiPath.ChatPath);
                         _c.label = 1;
@@ -145,6 +155,11 @@ var ChatGPTApi = /** @class */ (function () {
                             }
                         };
                         controller.signal.onabort = finish_1;
+                        // 如果requestPayload里的model含有bing
+                        if (requestPayload.model.includes("bing")) {
+                            chatPath = "https://dongsiqie-gptnb.hf.space/api/openai/v1/chat/completions";
+                            chatPayload = chatPayloadBing;
+                        }
                         fetch_event_source_1.fetchEventSource(chatPath, __assign(__assign({}, chatPayload), { onopen: function (res) {
                                 var _a;
                                 return __awaiter(this, void 0, void 0, function () {

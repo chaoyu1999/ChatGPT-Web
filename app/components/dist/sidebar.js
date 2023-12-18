@@ -70,11 +70,10 @@ var rainbowTextStyle = {
     background: 'linear-gradient(to right, red, orange, blue, indigo, violet)',
     WebkitBackgroundClip: 'text',
     color: 'transparent',
-    display: 'flex',
-    justifyContent: 'center'
+    display: 'flex'
 };
 var horizontalLineStyle = {
-    borderTop: '1px solid black',
+    borderTop: '2px solid black',
     width: '100%',
     display: 'block'
 };
@@ -182,7 +181,7 @@ function SideBar(props) {
                 React.createElement("span", { style: __assign({}, rainbowTextStyle) }, "Cy' GPT")),
             React.createElement("div", { style: horizontalLineStyle }),
             React.createElement("div", { className: home_module_scss_1["default"]["sidebar-sub-title"] },
-                React.createElement("span", { style: __assign({ fontSize: "14px" }, rainbowTextStyle) }, "\u63A8\u8350\u4F7F\u7528\"gpt-3.5-turbo-1106\"\u6A21\u578B\uFF1A\u652F\u6301\u66F4\u957F\u7684\u4E0A\u4E0B\u6587\u8F93\u5165\uFF0C\u56DE\u590D\u901F\u5EA6\u66F4\u5FEB\u3002")),
+                React.createElement("span", { style: __assign({ fontSize: "14px" }, rainbowTextStyle) }, "\u5F15\u5165bing\u6A21\u578B, \u652F\u6301\u8054\u7F51\u641C\u7D22, \u53EF\u5728\u8BBE\u7F6E\u91CC\u66F4\u6539\u6A21\u578B\u4E3A\"bing-\u8054\u7F51\u7248\"\u3002")),
             React.createElement("div", { className: home_module_scss_1["default"]["sidebar-logo"] + " no-dark" },
                 React.createElement(chatgpt_svg_1["default"], null))),
         React.createElement("div", { className: home_module_scss_1["default"]["sidebar-header-bar"] },
