@@ -181,7 +181,7 @@ function SideBar(props) {
                 React.createElement("span", { style: __assign({}, rainbowTextStyle) }, "Cy' GPT")),
             React.createElement("div", { style: horizontalLineStyle }),
             React.createElement("div", { className: home_module_scss_1["default"]["sidebar-sub-title"] },
-                React.createElement("span", { style: __assign({ fontSize: "14px" }, rainbowTextStyle) }, "\u5F15\u5165bing\u6A21\u578B, \u652F\u6301\u8054\u7F51\u641C\u7D22, \u53EF\u5728\u8BBE\u7F6E\u91CC\u66F4\u6539\u6A21\u578B\u4E3A\"bing-\u8054\u7F51\u7248\"\u3002")),
+                React.createElement("span", { style: __assign({ fontSize: "15px" }, rainbowTextStyle) }, "\u5F15\u5165bing\u6A21\u578B, \u652F\u6301\u8054\u7F51\u641C\u7D22, \u53EF\u5728\u8BBE\u7F6E\u91CC\u66F4\u6539\u6A21\u578B\u4E3A\"bing-\u8054\u7F51\u7248\"\u3002")),
             React.createElement("div", { className: home_module_scss_1["default"]["sidebar-logo"] + " no-dark" },
                 React.createElement(chatgpt_svg_1["default"], null))),
         React.createElement("div", { className: home_module_scss_1["default"]["sidebar-header-bar"] },

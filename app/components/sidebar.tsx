@@ -160,7 +160,7 @@ export function SideBar(props: { className?: string }) {
         <div style={horizontalLineStyle}></div>
 
         <div className={styles["sidebar-sub-title"]}>
-          <span style={{ fontSize: "14px", ...rainbowTextStyle }}>引入bing模型, 支持联网搜索, 可在设置里更改模型为"bing-联网版"。</span>
+          <span style={{ fontSize: "15px", ...rainbowTextStyle }}>引入bing模型, 支持联网搜索, 可在设置里更改模型为&quot;bing-联网版&quot;。</span>
         </div>
         <div className={styles["sidebar-logo"] + " no-dark"}>
           <ChatGptIcon />
