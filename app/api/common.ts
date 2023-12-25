@@ -10,7 +10,7 @@ const PROTOCOL = process.env.PROTOCOL || DEFAULT_PROTOCOL;
 const BASE_URL = process.env.BASE_URL || OPENAI_URL;
 // 从环境变量中获取 DISABLE_GPT4 变量，若存在则将其转换为布尔值
 const DISABLE_GPT4 = !!process.env.DISABLE_GPT4;
-
+const GPT4_URL = process.env.GPT4_URL
 /**
  * 发送请求到 OpenAI API
  * @param req - Next.js 请求对象
@@ -114,7 +114,7 @@ export async function requestOpenai(req: NextRequest) {
         // 如果使用了 GPT-4 模型，更改请求头和 URL
         fetchOptions.headers = new Headers(fetchOptions.headers);
         fetchOptions.headers.set("Authorization", "Bearer " + process.env.GPT4_API_KEY);
-        fetchUrl = "https://api.chatanywhere.com.cn/v1/chat/completions"
+        fetchUrl = GPT4_URL + "/v1/chat/completions"
 
         // 默认gpt-4-1106-preview
         jsonBody.model = "gpt-4-1106-preview";
