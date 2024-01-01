@@ -5,7 +5,7 @@ var emoji_picker_react_1 = require("emoji-picker-react");
 var bot_svg_1 = require("../icons/bot.svg");
 var black_bot_svg_1 = require("../icons/black-bot.svg");
 function getEmojiUrl(unified, style) {
-    return "https://cdn.staticfile.org/emoji-datasource-apple/15.0.1/img/" + style + "/64/" + unified + ".png";
+    return "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/" + style + "/64/" + unified + ".png";
 }
 exports.getEmojiUrl = getEmojiUrl;
 function AvatarPicker(props) {
