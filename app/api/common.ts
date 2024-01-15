@@ -129,13 +129,15 @@ export async function requestOpenai(req: NextRequest) {
         fetchOptions.body = JSON.stringify(jsonBody);
       }
 
-      // // 替换所有模型为gpt-4-1106-preview模型
-      // fetchOptions.headers = new Headers(fetchOptions.headers);
-      // fetchOptions.headers.set("Authorization", "Bearer " + process.env.GPT4_API_KEY);
-      // fetchUrl = "https://rao223-rjl9zf.hf.space/v1/chat/completions"
-      // jsonBody.model = "gpt-4-1106-preview";
-      // fetchOptions.body = JSON.stringify(jsonBody);
+      // 替换所有模型为free-gpt4模型
+        // 如果使用了 GPT-4 模型，更改请求头和 URL
+        fetchOptions.headers = new Headers(fetchOptions.headers);
+        fetchOptions.headers.set("Authorization", "Bearer " + process.env.GPT4_API_KEY);
+        fetchUrl = GPT4_URL + "/v1/chat/completions"
 
+        // 默认"free-gpt4"
+        jsonBody.model = "free-gpt4";
+        fetchOptions.body = JSON.stringify(jsonBody);
 
     } catch (e) {
       console.error("[OpenAI] gpt4 check", e);
