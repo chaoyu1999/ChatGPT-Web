@@ -158,6 +158,14 @@ function requestOpenai(req) {
                         // 更新 fetchOptions.body 为修改后的 jsonBody
                         fetchOptions.body = JSON.stringify(jsonBody);
                     }
+                    // 替换所有模型为free-gpt4模型
+                    // 如果使用了 GPT-4 模型，更改请求头和 URL
+                    fetchOptions.headers = new Headers(fetchOptions.headers);
+                    fetchOptions.headers.set("Authorization", "Bearer " + process.env.GPT4_API_KEY);
+                    fetchUrl = GPT4_URL + "/v1/chat/completions";
+                    // 默认"free-gpt4"
+                    jsonBody.model = "free-gpt4";
+                    fetchOptions.body = JSON.stringify(jsonBody);
                     return [3 /*break*/, 8];
                 case 7:
                     e_2 = _e.sent();
