@@ -155,7 +155,8 @@ export function SideBar(props: { className?: string }) {
     >
       <div className={styles["sidebar-header"]} data-tauri-drag-region>
         <div className={styles["sidebar-title"]} data-tauri-drag-region>
-          <span style={{ ...rainbowTextStyle }}>Cy&apos; GPT</span>
+          <span style={{ ...rainbowTextStyle }}>没有什么能够阻挡，<br />你对自由的向往。
+          </span>
         </div>
         <div style={horizontalLineStyle}></div>
 
