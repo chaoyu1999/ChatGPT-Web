@@ -160,7 +160,7 @@ export function SideBar(props: { className?: string }) {
         <div style={horizontalLineStyle}></div>
 
         <div className={styles["sidebar-sub-title"]}>
-          <span style={{ fontSize: "15px", ...rainbowTextStyle }}>引入bing模型, 支持联网搜索, 可在设置里更改模型为&quot;bing-联网版(Balanced-g4t)&quot;||&quot;bing-不联网(Balanced-g4t-offline)&quot;。</span>
+          <span style={{ fontSize: "15px", ...rainbowTextStyle }}>接入bing 模型（GPT-4）：【bing-不联网 || bing-联网版】。联网版：结合网页搜索结果回答，可搜索最新问题。不联网：只使用GPT-4内部知识回答，更精确，但只能回答2021年之前的内容。</span>
         </div>
         <div className={styles["sidebar-logo"] + " no-dark"}>
           <ChatGptIcon />

@@ -181,7 +181,7 @@ function SideBar(props) {
                 React.createElement("span", { style: __assign({}, rainbowTextStyle) }, "Cy' GPT")),
             React.createElement("div", { style: horizontalLineStyle }),
             React.createElement("div", { className: home_module_scss_1["default"]["sidebar-sub-title"] },
-                React.createElement("span", { style: __assign({ fontSize: "15px" }, rainbowTextStyle) }, "\u5F15\u5165bing\u6A21\u578B, \u652F\u6301\u8054\u7F51\u641C\u7D22, \u53EF\u5728\u8BBE\u7F6E\u91CC\u66F4\u6539\u6A21\u578B\u4E3A\"bing-\u8054\u7F51\u7248(Balanced-g4t)\"||\"bing-\u4E0D\u8054\u7F51(Balanced-g4t-offline)\"\u3002")),
+                React.createElement("span", { style: __assign({ fontSize: "15px" }, rainbowTextStyle) }, "\u63A5\u5165bing \u6A21\u578B\uFF08GPT-4\uFF09\uFF1A\u3010bing-\u4E0D\u8054\u7F51 || bing-\u8054\u7F51\u7248\u3011\u3002\u8054\u7F51\u7248\uFF1A\u7ED3\u5408\u7F51\u9875\u641C\u7D22\u7ED3\u679C\u56DE\u7B54\uFF0C\u53EF\u641C\u7D22\u6700\u65B0\u95EE\u9898\u3002\u4E0D\u8054\u7F51\uFF1A\u53EA\u4F7F\u7528GPT-4\u5185\u90E8\u77E5\u8BC6\u56DE\u7B54\uFF0C\u66F4\u7CBE\u786E\uFF0C\u4F46\u53EA\u80FD\u56DE\u7B542021\u5E74\u4E4B\u524D\u7684\u5185\u5BB9\u3002")),
             React.createElement("div", { className: home_module_scss_1["default"]["sidebar-logo"] + " no-dark" },
                 React.createElement(chatgpt_svg_1["default"], null))),
         React.createElement("div", { className: home_module_scss_1["default"]["sidebar-header-bar"] },
