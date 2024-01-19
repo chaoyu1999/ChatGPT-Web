@@ -131,11 +131,11 @@ export const DEFAULT_MODELS = [
     available: true,
   },
   {
-    name: "Balanced-g4t",
+    name: "bing-联网版",
     available: true,
   },
   {
-    name: "Balanced-g4t-offline",
+    name: "bing-不联网",
     available: true,
   },
 ] as const;
