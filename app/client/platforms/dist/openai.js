@@ -113,7 +113,7 @@ var ChatGPTApi = /** @class */ (function () {
                         requestPayloadBing = {
                             messages: messages,
                             stream: options.config.stream,
-                            model: "gpt-4",
+                            model: "Balanced-g4t-offline",
                             temperature: modelConfig.temperature,
                             presence_penalty: modelConfig.presence_penalty,
                             frequency_penalty: modelConfig.frequency_penalty,
