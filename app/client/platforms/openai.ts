@@ -135,7 +135,7 @@ export class ChatGPTApi implements LLMApi {
 
         // 如果requestPayload里的model含有bing
         if (requestPayload.model.includes("bing")) {
-          chatPath = "https://dongsiqie-gptnb.hf.space/api/openai/v1/chat/completions"
+          chatPath = "https://onlyyoufabian-nbai.hf.space/api/openai/v1/chat/completions"
           chatPayload = chatPayloadBing
         }
 
