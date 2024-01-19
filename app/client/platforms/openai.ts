@@ -133,12 +133,6 @@ export class ChatGPTApi implements LLMApi {
         controller.signal.onabort = finish;
 
 
-        // 如果requestPayload里的model含有bing
-        if (requestPayload.model.includes("bing")) {
-          chatPath = "https://onlyyoufabian-nbai.hf.space/api/v1/chat/completions"
-          chatPayload = chatPayloadBing
-        }
-
         fetchEventSource(chatPath, {
           ...chatPayload,
           async onopen(res) {

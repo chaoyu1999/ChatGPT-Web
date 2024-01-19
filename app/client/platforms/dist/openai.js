@@ -155,11 +155,6 @@ var ChatGPTApi = /** @class */ (function () {
                             }
                         };
                         controller.signal.onabort = finish_1;
-                        // 如果requestPayload里的model含有bing
-                        if (requestPayload.model.includes("bing")) {
-                            chatPath = "https://onlyyoufabian-nbai.hf.space/api/v1/chat/completions";
-                            chatPayload = chatPayloadBing;
-                        }
                         fetch_event_source_1.fetchEventSource(chatPath, __assign(__assign({}, chatPayload), { onopen: function (res) {
                                 var _a;
                                 return __awaiter(this, void 0, void 0, function () {
