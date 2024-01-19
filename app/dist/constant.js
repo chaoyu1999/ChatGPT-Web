@@ -108,7 +108,11 @@ exports.DEFAULT_MODELS = [
         available: true
     },
     {
-        name: "bing-联网版",
+        name: "Balanced-g4t",
+        available: true
+    },
+    {
+        name: "Balanced-g4t-offline",
         available: true
     },
 ];

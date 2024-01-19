@@ -11,6 +11,7 @@ const BASE_URL = process.env.BASE_URL || OPENAI_URL;
 // 从环境变量中获取 DISABLE_GPT4 变量，若存在则将其转换为布尔值
 const DISABLE_GPT4 = !!process.env.DISABLE_GPT4;
 const GPT4_URL = process.env.GPT4_URL
+const BING_URL = process.env.BING_URL
 /**
  * 发送请求到 OpenAI API
  * @param req - Next.js 请求对象
@@ -138,6 +139,14 @@ export async function requestOpenai(req: NextRequest) {
       // 默认"free-gpt4"
       jsonBody.model = "free-gpt4";
       fetchOptions.body = JSON.stringify(jsonBody);
+
+      // 检查请求体中是否包含对 bing 模型的请求
+      if ((jsonBody?.model ?? "").includes("g4t")) {
+        // 如果使用了 bing 模型，更改请求头和 URL
+        fetchOptions.headers = new Headers(fetchOptions.headers);
+        fetchUrl = BING_URL + "/api/v1/chat/completions"
+        fetchOptions.body = JSON.stringify(jsonBody);
+      }
 
     } catch (e) {
       console.error("[OpenAI] gpt4 check", e);

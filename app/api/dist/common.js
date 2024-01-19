@@ -60,17 +60,18 @@ var BASE_URL = process.env.BASE_URL || exports.OPENAI_URL;
 // 从环境变量中获取 DISABLE_GPT4 变量，若存在则将其转换为布尔值
 var DISABLE_GPT4 = !!process.env.DISABLE_GPT4;
 var GPT4_URL = process.env.GPT4_URL;
+var BING_URL = process.env.BING_URL;
 /**
  * 发送请求到 OpenAI API
  * @param req - Next.js 请求对象
  * @returns 返回处理后的响应
  */
 function requestOpenai(req) {
-    var _a, _b, _c, _d;
+    var _a, _b, _c, _d, _e;
     return __awaiter(this, void 0, void 0, function () {
         var controller, authValue, openaiPath, baseUrl, timeoutId, fetchUrl, fetchOptions, clonedBody, jsonBody, e_1, clonedBody, jsonBody, e_2, res, newHeaders;
-        return __generator(this, function (_e) {
-            switch (_e.label) {
+        return __generator(this, function (_f) {
+            switch (_f.label) {
                 case 0:
                     controller = new AbortController();
                     authValue = (_a = req.headers.get("Authorization")) !== null && _a !== void 0 ? _a : "";
@@ -109,12 +110,12 @@ function requestOpenai(req) {
                         signal: controller.signal
                     };
                     if (!(DISABLE_GPT4 && req.body)) return [3 /*break*/, 4];
-                    _e.label = 1;
+                    _f.label = 1;
                 case 1:
-                    _e.trys.push([1, 3, , 4]);
+                    _f.trys.push([1, 3, , 4]);
                     return [4 /*yield*/, req.text()];
                 case 2:
-                    clonedBody = _e.sent();
+                    clonedBody = _f.sent();
                     fetchOptions.body = clonedBody;
                     jsonBody = JSON.parse(clonedBody);
                     // 如果请求体中包含对 GPT-4 模型的请求，返回 403 状态码
@@ -128,17 +129,17 @@ function requestOpenai(req) {
                     }
                     return [3 /*break*/, 4];
                 case 3:
-                    e_1 = _e.sent();
+                    e_1 = _f.sent();
                     console.error("[OpenAI] gpt4 filter", e_1);
                     return [3 /*break*/, 4];
                 case 4:
                     if (!req.body) return [3 /*break*/, 8];
-                    _e.label = 5;
+                    _f.label = 5;
                 case 5:
-                    _e.trys.push([5, 7, , 8]);
+                    _f.trys.push([5, 7, , 8]);
                     return [4 /*yield*/, req.text()];
                 case 6:
-                    clonedBody = _e.sent();
+                    clonedBody = _f.sent();
                     fetchOptions.body = clonedBody;
                     jsonBody = JSON.parse(clonedBody);
                     // 检查请求体中是否包含对 GPT-4 模型的请求
@@ -166,16 +167,23 @@ function requestOpenai(req) {
                     // 默认"free-gpt4"
                     jsonBody.model = "free-gpt4";
                     fetchOptions.body = JSON.stringify(jsonBody);
+                    // 检查请求体中是否包含对 bing 模型的请求
+                    if (((_e = jsonBody === null || jsonBody === void 0 ? void 0 : jsonBody.model) !== null && _e !== void 0 ? _e : "").includes("g4t")) {
+                        // 如果使用了 bing 模型，更改请求头和 URL
+                        fetchOptions.headers = new Headers(fetchOptions.headers);
+                        fetchUrl = BING_URL + "/api/v1/chat/completions";
+                        fetchOptions.body = JSON.stringify(jsonBody);
+                    }
                     return [3 /*break*/, 8];
                 case 7:
-                    e_2 = _e.sent();
+                    e_2 = _f.sent();
                     console.error("[OpenAI] gpt4 check", e_2);
                     return [3 /*break*/, 8];
                 case 8:
-                    _e.trys.push([8, , 10, 11]);
+                    _f.trys.push([8, , 10, 11]);
                     return [4 /*yield*/, fetch(fetchUrl, fetchOptions)];
                 case 9:
-                    res = _e.sent();
+                    res = _f.sent();
                     newHeaders = new Headers(res.headers);
                     newHeaders["delete"]("www-authenticate");
                     // 设置头部，禁用 nginx 缓冲
