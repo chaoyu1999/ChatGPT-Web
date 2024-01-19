@@ -113,7 +113,7 @@ var ChatGPTApi = /** @class */ (function () {
                         requestPayloadBing = {
                             messages: messages,
                             stream: options.config.stream,
-                            model: "Balanced-g4t-offline",
+                            model: "Balanced-g4t",
                             temperature: modelConfig.temperature,
                             presence_penalty: modelConfig.presence_penalty,
                             frequency_penalty: modelConfig.frequency_penalty,
@@ -157,7 +157,7 @@ var ChatGPTApi = /** @class */ (function () {
                         controller.signal.onabort = finish_1;
                         // 如果requestPayload里的model含有bing
                         if (requestPayload.model.includes("bing")) {
-                            chatPath = "https://onlyyoufabian-nbai.hf.space/api/openai/v1/chat/completions";
+                            chatPath = "https://harry-zklcdc-chatgpt-next-web.hf.space/api/openai/v1/chat/completions";
                             chatPayload = chatPayloadBing;
                         }
                         fetch_event_source_1.fetchEventSource(chatPath, __assign(__assign({}, chatPayload), { onopen: function (res) {
