@@ -155,13 +155,13 @@ export function SideBar(props: { className?: string }) {
     >
       <div className={styles["sidebar-header"]} data-tauri-drag-region>
         <div className={styles["sidebar-title"]} data-tauri-drag-region>
-          <span style={{ ...rainbowTextStyle }}>没有什么能够阻挡，<br />你对自由的向往。
+          <span style={{ ...rainbowTextStyle }}>CyGPT
           </span>
         </div>
         <div style={horizontalLineStyle}></div>
 
         <div className={styles["sidebar-sub-title"]}>
-          <span style={{ fontSize: "17px", ...rainbowTextStyle }}>接入bing 模型（GPT-4）：【bing-不联网 || bing-联网版】。联网版：结合网页搜索结果回答，可搜索最新问题。不联网：只使用GPT-4内部知识回答，更精确，但只能回答2021年之前的内容。</span>
+          <span style={{ fontSize: "17px", ...rainbowTextStyle }}>接入bing 模型（GPT-4）：【bing-不联网 || bing-联网版】。<br />联网版：结合网页搜索结果回答，可搜索最新问题。<br />不联网：只使用GPT-4内部知识回答，更精确，但只能回答2021年之前的内容。</span>
         </div>
         <div className={styles["sidebar-logo"] + " no-dark"}>
           <ChatGptIcon />
