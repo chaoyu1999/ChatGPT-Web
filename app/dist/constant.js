@@ -88,7 +88,7 @@ exports.OpenaiPath = {
 exports.DEFAULT_INPUT_TEMPLATE = "{{input}}"; // input / time / model / lang
 exports.DEFAULT_SYSTEM_TEMPLATE = "\nYou are a large language model.Please answer me with Chinese.\nCurrent time: {{time}}\nLatex inline: $x^2$ Latex block: $$e=mc^2$$\nCode inline: `print(\"Hello, world!\")` \nCode block: \n```python \nprint(\"Hello, world!\")\n```\n";
 // 摘要模型名称
-exports.SUMMARIZE_MODEL = "gpt-3.5-turbo";
+exports.SUMMARIZE_MODEL = "gpt-3.5";
 // 默认模型配置
 exports.DEFAULT_MODELS = [
     {
