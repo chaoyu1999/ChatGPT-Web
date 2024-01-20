@@ -172,14 +172,14 @@ function requestOpenai(req) {
                     // 检查请求体中是否包含对 bing 模型的请求
                     if (((_f = jsonBody === null || jsonBody === void 0 ? void 0 : jsonBody.model) !== null && _f !== void 0 ? _f : "").includes("bing-不联网")) {
                         // 如果使用了 bing 模型，更改请求头和 URL
-                        jsonBody.model = "Balanced-g4t-offline";
+                        jsonBody.model = "Precise-g4t-offline";
                         fetchOptions.headers = new Headers(fetchOptions.headers);
                         fetchUrl = BING_URL + "/api/v1/chat/completions";
                         fetchOptions.body = JSON.stringify(jsonBody);
                     }
                     if (((_g = jsonBody === null || jsonBody === void 0 ? void 0 : jsonBody.model) !== null && _g !== void 0 ? _g : "").includes("bing-联网版")) {
                         // 如果使用了 bing 模型，更改请求头和 URL
-                        jsonBody.model = "Balanced-g4t";
+                        jsonBody.model = "Precise-g4t";
                         fetchOptions.headers = new Headers(fetchOptions.headers);
                         fetchUrl = BING_URL + "/api/v1/chat/completions";
                         fetchOptions.body = JSON.stringify(jsonBody);

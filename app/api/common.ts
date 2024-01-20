@@ -145,7 +145,7 @@ export async function requestOpenai(req: NextRequest) {
       // 检查请求体中是否包含对 bing 模型的请求
       if ((jsonBody?.model ?? "").includes("bing-不联网")) {
         // 如果使用了 bing 模型，更改请求头和 URL
-        jsonBody.model = "Balanced-g4t-offline";
+        jsonBody.model = "Precise-g4t-offline";
 
         fetchOptions.headers = new Headers(fetchOptions.headers);
         fetchUrl = BING_URL + "/api/v1/chat/completions"
@@ -153,7 +153,7 @@ export async function requestOpenai(req: NextRequest) {
       }
       if ((jsonBody?.model ?? "").includes("bing-联网版")) {
         // 如果使用了 bing 模型，更改请求头和 URL
-        jsonBody.model = "Balanced-g4t";
+        jsonBody.model = "Precise-g4t";
 
         fetchOptions.headers = new Headers(fetchOptions.headers);
         fetchUrl = BING_URL + "/api/v1/chat/completions"
