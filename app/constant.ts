@@ -121,7 +121,7 @@ export const DEFAULT_MODELS = [
     name: "bing-不联网",
     available: true,
   }, {
-    name: "gpt-3.5-turbo",
+    name: "gpt-3.5",
     available: true,
   },
   {
