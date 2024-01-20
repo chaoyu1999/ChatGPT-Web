@@ -20,7 +20,7 @@ exports.CN_MASKS = [
             },
         ],
         modelConfig: {
-            model: "gpt-3.5-turbo-1106",
+            model: "gpt-3.5",
             temperature: 0.8,
             max_tokens: 4096,
             presence_penalty: 0,
@@ -45,7 +45,7 @@ exports.CN_MASKS = [
             },
         ],
         modelConfig: {
-            model: "gpt-3.5-turbo-1106",
+            model: "gpt-3.5",
             temperature: 0.6,
             max_tokens: 4096,
             presence_penalty: 0,
@@ -70,7 +70,7 @@ exports.CN_MASKS = [
             },
         ],
         modelConfig: {
-            model: "gpt-3.5-turbo-1106",
+            model: "gpt-3.5",
             temperature: 0.6,
             max_tokens: 4096,
             presence_penalty: 0,
@@ -95,7 +95,7 @@ exports.CN_MASKS = [
             },
         ],
         modelConfig: {
-            model: "gpt-3.5-turbo-1106",
+            model: "gpt-3.5",
             temperature: 0.6,
             max_tokens: 4096,
             presence_penalty: 0,
@@ -126,7 +126,7 @@ exports.CN_MASKS = [
             },
         ],
         modelConfig: {
-            model: "gpt-3.5-turbo-1106",
+            model: "gpt-3.5",
             temperature: 0.6,
             max_tokens: 4096,
             presence_penalty: 0,
@@ -157,7 +157,7 @@ exports.CN_MASKS = [
             },
         ],
         modelConfig: {
-            model: "gpt-3.5-turbo-1106",
+            model: "gpt-3.5",
             temperature: 0.6,
             max_tokens: 4096,
             presence_penalty: 0,
@@ -182,7 +182,7 @@ exports.CN_MASKS = [
             },
         ],
         modelConfig: {
-            model: "gpt-3.5-turbo-1106",
+            model: "gpt-3.5",
             temperature: 0.6,
             max_tokens: 4096,
             presence_penalty: 0,
@@ -213,7 +213,7 @@ exports.CN_MASKS = [
             },
         ],
         modelConfig: {
-            model: "gpt-3.5-turbo-1106",
+            model: "gpt-3.5",
             temperature: 0.8,
             max_tokens: 4096,
             presence_penalty: 0,
@@ -245,7 +245,7 @@ exports.CN_MASKS = [
             },
         ],
         modelConfig: {
-            model: "gpt-3.5-turbo-1106",
+            model: "gpt-3.5",
             temperature: 0.8,
             max_tokens: 4096,
             presence_penalty: 0,
@@ -270,7 +270,7 @@ exports.CN_MASKS = [
             },
         ],
         modelConfig: {
-            model: "gpt-3.5-turbo-1106",
+            model: "gpt-3.5",
             temperature: 0.8,
             max_tokens: 4096,
             presence_penalty: 0,
@@ -301,7 +301,7 @@ exports.CN_MASKS = [
             },
         ],
         modelConfig: {
-            model: "gpt-3.5-turbo-1106",
+            model: "gpt-3.5",
             temperature: 0.8,
             max_tokens: 4096,
             presence_penalty: 0,
@@ -332,7 +332,7 @@ exports.CN_MASKS = [
             },
         ],
         modelConfig: {
-            model: "gpt-3.5-turbo-1106",
+            model: "gpt-3.5",
             temperature: 0.6,
             max_tokens: 4096,
             presence_penalty: 0,
