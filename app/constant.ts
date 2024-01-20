@@ -98,8 +98,7 @@ export const OpenaiPath = {
 // 默认输入和系统消息模板
 export const DEFAULT_INPUT_TEMPLATE = `{{input}}`; // input / time / model / lang
 export const DEFAULT_SYSTEM_TEMPLATE = `
-You are ChatGPT, a large language model trained by OpenAI.Please answer me with Chinese.
-Current model: {{model}}
+You are a large language model.Please answer me with Chinese.
 Current time: {{time}}
 Latex inline: $x^2$ Latex block: $$e=mc^2$$
 Code inline: \`print("Hello, world!")\` 
@@ -110,26 +109,10 @@ print("Hello, world!")
 `;
 
 // 摘要模型名称
-export const SUMMARIZE_MODEL = "gpt-3.5-turbo-1106";
+export const SUMMARIZE_MODEL = "gpt-3.5-turbo";
 
 // 默认模型配置
 export const DEFAULT_MODELS = [
-  {
-    name: "gpt-4-1106-preview",
-    available: true,
-  },
-  {
-    name: "gpt-3.5-turbo",
-    available: true,
-  },  
-  {
-    name: "gpt-3.5-turbo-1106",
-    available: true,
-  },
-  {
-    name: "gpt-3.5-turbo-16k",
-    available: true,
-  },
   {
     name: "bing-联网版",
     available: true,
@@ -137,7 +120,15 @@ export const DEFAULT_MODELS = [
   {
     name: "bing-不联网",
     available: true,
+  }, {
+    name: "gpt-3.5-turbo",
+    available: true,
   },
+  {
+    name: "gpt-4",
+    available: true,
+  },
+
 ] as const;
 
 // 聊天页面的分页大小
