@@ -178,10 +178,8 @@ export function SideBar(props: { className?: string }) {
             100% {background-position: 100%;}
           }
         `}</style>
-          <span style={{ ...rainbowTextStyleContent }}>【接入了bing 的 gpt-4 模型。可在聊天窗口上方点击&quot;机器人&quot;按钮更换模型。】<img src="https://raw.gitmirror.com/onlyfabin/PB_1/main/markdown/model-icon.png" alt="Bing GPT-4 Icon" style={{transform: 'scale(0.8)' }}  /></span>
+          <span style={{ ...rainbowTextStyleContent }}>【接入了bing 的 gpt-4 模型。可在聊天输入框上方点击&quot;机器人&quot;按钮更换模型。】<img src="https://raw.gitmirror.com/onlyfabin/PB_1/main/markdown/model-icon.png" alt="Bing GPT-4 Icon" style={{transform: 'scale(0.8)' }}  /></span>
           <span style={{ ...rainbowTextStyleContent }}>bing-联网版：结合网页搜索结果回答，可搜索最新问题。<br />bing-不联网：回答更精确，但只能回答2021年之前的内容。</span>
-
-
         </div>
 
         <div className={styles["sidebar-logo"] + " no-dark"}>
