@@ -46,7 +46,7 @@ exports.DEFAULT_CONFIG = {
     customModels: "",
     models: constant_1.DEFAULT_MODELS,
     modelConfig: {
-        model: "bing-不联网",
+        model: "gpt-3.5",
         temperature: 0.5,
         top_p: 0,
         max_tokens: 4096,
