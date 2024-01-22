@@ -10,10 +10,8 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
-var _a;
 exports.__esModule = true;
 exports.useAppConfig = exports.ModalConfigValidator = exports.limitNumber = exports.DEFAULT_CONFIG = exports.Theme = exports.SubmitKey = void 0;
-var client_1 = require("../config/client");
 var constant_1 = require("../constant");
 var store_1 = require("../utils/store");
 var SubmitKey;
@@ -36,7 +34,7 @@ exports.DEFAULT_CONFIG = {
     avatar: "1f603",
     fontSize: 14,
     theme: Theme.Auto,
-    tightBorder: !!((_a = client_1.getClientConfig()) === null || _a === void 0 ? void 0 : _a.isApp),
+    tightBorder: false,
     sendPreviewBubble: true,
     enableAutoGenerateTitle: true,
     sidebarWidth: constant_1.DEFAULT_SIDEBAR_WIDTH,
