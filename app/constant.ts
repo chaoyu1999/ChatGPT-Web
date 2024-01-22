@@ -109,7 +109,7 @@ print("Hello, world!")
 `;
 
 // 摘要模型名称
-export const SUMMARIZE_MODEL = "gpt-3.5";
+export const SUMMARIZE_MODEL = "bing-不联网";
 
 // 默认模型配置
 export const DEFAULT_MODELS = [
