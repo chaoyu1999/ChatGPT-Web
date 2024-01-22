@@ -19,8 +19,8 @@ import { type Metadata } from "next";
 
 // 定义元数据对象
 export const metadata: Metadata = {
-  title: "Cy' GPT", // 页面标题
-  description: "Cy' GPT", // 页面描述
+  title: "CyGPT", // 页面标题
+  description: "CyGPT", // 页面描述
   viewport: {
     width: "device-width", // 视口宽度
     initialScale: 1, // 初始缩放比例
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     { media: "(prefers-color-scheme: dark)", color: "#151515" }, // 深色主题颜色
   ],
   appleWebApp: {
-    title: "Cy' GPT", // Apple Web App的标题
+    title: "CyGPT", // Apple Web App的标题
     statusBarStyle: "default", // 状态栏样式
   },
 };

@@ -57,6 +57,7 @@ const MaskPage = dynamic(async () => (await import("./mask")).MaskPage, {
 
 export function useSwitchTheme() {
   const config = useAppConfig();
+  config.reset();
 
   useEffect(() => {
     document.body.classList.remove("light");
