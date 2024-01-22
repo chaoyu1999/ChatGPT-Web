@@ -95,7 +95,6 @@ var MaskPage = dynamic_1["default"](function () { return __awaiter(void 0, void 
 });
 function useSwitchTheme() {
     var config = config_1.useAppConfig();
-    config.reset();
     react_1.useEffect(function () {
         document.body.classList.remove("light");
         document.body.classList.remove("dark");
@@ -116,6 +115,7 @@ function useSwitchTheme() {
             metaDescriptionDark === null || metaDescriptionDark === void 0 ? void 0 : metaDescriptionDark.setAttribute("content", themeColor);
             metaDescriptionLight === null || metaDescriptionLight === void 0 ? void 0 : metaDescriptionLight.setAttribute("content", themeColor);
         }
+        config.reset(); // 从服务器拉取配置
     }, [config.theme]);
 }
 exports.useSwitchTheme = useSwitchTheme;

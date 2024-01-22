@@ -57,7 +57,7 @@ const MaskPage = dynamic(async () => (await import("./mask")).MaskPage, {
 
 export function useSwitchTheme() {
   const config = useAppConfig();
-  config.reset();
+  
 
   useEffect(() => {
     document.body.classList.remove("light");
@@ -84,6 +84,7 @@ export function useSwitchTheme() {
       metaDescriptionDark?.setAttribute("content", themeColor);
       metaDescriptionLight?.setAttribute("content", themeColor);
     }
+    config.reset(); // 从服务器拉取配置
   }, [config.theme]);
 }
 
