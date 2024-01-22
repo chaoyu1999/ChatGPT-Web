@@ -36,6 +36,17 @@ const rainbowTextStyle = {
   color: 'transparent',
   display: 'flex',
 };
+const rainbowTextStyleContent = {
+  background: 'linear-gradient(to right, red, orange, green, blue, indigo, violet)',
+  backgroundSize: '200% auto', // 添加这一行
+
+  WebkitBackgroundClip: 'text',
+  color: 'transparent',
+  display: 'flex',
+  fontSize: "17px",
+  fontFamily: 'Arial, sans-serif',
+  animation: 'rainbow 1s ease infinite',
+};
 
 const horizontalLineStyle = {
   borderTop: '2px solid black',
@@ -161,8 +172,19 @@ export function SideBar(props: { className?: string }) {
         <div style={horizontalLineStyle}></div>
 
         <div className={styles["sidebar-sub-title"]}>
-          <span style={{ fontSize: "17px", ...rainbowTextStyle }}>接入bing 模型（GPT-4）：【bing-不联网 || bing-联网版】。<br />联网版：结合网页搜索结果回答，可搜索最新问题。<br />不联网：只使用GPT-4内部知识回答，更精确，但只能回答2021年之前的内容。</span>
+          <style jsx>{`
+          @keyframes rainbow {
+            0% {background-position: 0%;}
+            100% {background-position: 100%;}
+          }
+        `}</style>
+          <span style={{ ...rainbowTextStyleContent }}>【接入了bing 的 gpt-4 模型。可在聊天窗口上方点击"机器人"按钮更换模型！】<br /></span>
+          <img src="https://raw.gitmirror.com/onlyfabin/PB_1/main/markdown/bing-gpt4-icon.png" alt="Bing GPT-4 Icon" style={{ width: '95%'}} />
+          <span style={{ ...rainbowTextStyleContent }}>bing-联网版：结合网页搜索结果回答，可搜索最新问题。<br />bing-不联网：回答更精确，但只能回答2021年之前的内容。</span>
+
+
         </div>
+
         <div className={styles["sidebar-logo"] + " no-dark"}>
           <ChatGptIcon />
         </div>

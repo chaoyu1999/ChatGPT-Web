@@ -72,6 +72,16 @@ var rainbowTextStyle = {
     color: 'transparent',
     display: 'flex'
 };
+var rainbowTextStyleContent = {
+    background: 'linear-gradient(to right, red, orange, green, blue, indigo, violet)',
+    backgroundSize: '200% auto',
+    WebkitBackgroundClip: 'text',
+    color: 'transparent',
+    display: 'flex',
+    fontSize: "17px",
+    fontFamily: 'Arial, sans-serif',
+    animation: 'rainbow 1s ease infinite'
+};
 var horizontalLineStyle = {
     borderTop: '2px solid black',
     width: '100%',
@@ -181,12 +191,15 @@ function SideBar(props) {
                 React.createElement("span", { style: __assign({}, rainbowTextStyle) }, "CyGPT")),
             React.createElement("div", { style: horizontalLineStyle }),
             React.createElement("div", { className: home_module_scss_1["default"]["sidebar-sub-title"] },
-                React.createElement("span", { style: __assign({ fontSize: "17px" }, rainbowTextStyle) },
-                    "\u63A5\u5165bing \u6A21\u578B\uFF08GPT-4\uFF09\uFF1A\u3010bing-\u4E0D\u8054\u7F51 || bing-\u8054\u7F51\u7248\u3011\u3002",
+                React.createElement("style", { jsx: true }, "\n          @keyframes rainbow {\n            0% {background-position: 0%;}\n            100% {background-position: 100%;}\n          }\n        "),
+                React.createElement("span", { style: __assign({}, rainbowTextStyleContent) },
+                    "\u3010\u63A5\u5165\u4E86bing \u7684 gpt-4 \u6A21\u578B\u3002\u53EF\u5728\u804A\u5929\u7A97\u53E3\u4E0A\u65B9\u70B9\u51FB\"\u673A\u5668\u4EBA\"\u6309\u94AE\u66F4\u6362\u6A21\u578B\uFF01\u3011",
+                    React.createElement("br", null)),
+                React.createElement("img", { src: "https://raw.gitmirror.com/onlyfabin/PB_1/main/markdown/bing-gpt4-icon.png", alt: "Bing GPT-4 Icon", style: { width: '95%' } }),
+                React.createElement("span", { style: __assign({}, rainbowTextStyleContent) },
+                    "bing-\u8054\u7F51\u7248\uFF1A\u7ED3\u5408\u7F51\u9875\u641C\u7D22\u7ED3\u679C\u56DE\u7B54\uFF0C\u53EF\u641C\u7D22\u6700\u65B0\u95EE\u9898\u3002",
                     React.createElement("br", null),
-                    "\u8054\u7F51\u7248\uFF1A\u7ED3\u5408\u7F51\u9875\u641C\u7D22\u7ED3\u679C\u56DE\u7B54\uFF0C\u53EF\u641C\u7D22\u6700\u65B0\u95EE\u9898\u3002",
-                    React.createElement("br", null),
-                    "\u4E0D\u8054\u7F51\uFF1A\u53EA\u4F7F\u7528GPT-4\u5185\u90E8\u77E5\u8BC6\u56DE\u7B54\uFF0C\u66F4\u7CBE\u786E\uFF0C\u4F46\u53EA\u80FD\u56DE\u7B542021\u5E74\u4E4B\u524D\u7684\u5185\u5BB9\u3002")),
+                    "bing-\u4E0D\u8054\u7F51\uFF1A\u56DE\u7B54\u66F4\u7CBE\u786E\uFF0C\u4F46\u53EA\u80FD\u56DE\u7B542021\u5E74\u4E4B\u524D\u7684\u5185\u5BB9\u3002")),
             React.createElement("div", { className: home_module_scss_1["default"]["sidebar-logo"] + " no-dark" },
                 React.createElement(chatgpt_svg_1["default"], null))),
         React.createElement("div", { className: home_module_scss_1["default"]["sidebar-header-bar"] },
