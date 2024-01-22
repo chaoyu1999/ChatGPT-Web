@@ -34,7 +34,7 @@ exports.DEFAULT_CONFIG = {
     avatar: "1f603",
     fontSize: 14,
     theme: Theme.Auto,
-    tightBorder: false,
+    tightBorder: true,
     sendPreviewBubble: true,
     enableAutoGenerateTitle: true,
     sidebarWidth: constant_1.DEFAULT_SIDEBAR_WIDTH,
