@@ -45,7 +45,7 @@ export const DEFAULT_CONFIG = {
   models: DEFAULT_MODELS as any as LLMModel[],
 
   modelConfig: {
-    model: "bing-不联网" as ModelType,
+    model: "gpt-3.5" as ModelType,
     temperature: 0.5,
     top_p: 0,
     max_tokens: 4096,
