@@ -111,16 +111,16 @@ export async function requestOpenai(req: NextRequest) {
       const jsonBody = JSON.parse(clonedBody);
 
       // 检查请求体中是否包含对 GPT-4 模型的请求
-      if ((jsonBody?.model ?? "").includes("gpt-4")) {
-        // 如果使用了 GPT-4 模型，更改请求头和 URL
-        fetchOptions.headers = new Headers(fetchOptions.headers);
-        fetchOptions.headers.set("Authorization", "Bearer " + process.env.GPT4_API_KEY);
-        fetchUrl = GPT4_URL + "/v1/chat/completions"
+      // if ((jsonBody?.model ?? "").includes("gpt-4")) {
+      //   // 如果使用了 GPT-4 模型，更改请求头和 URL
+      //   fetchOptions.headers = new Headers(fetchOptions.headers);
+      //   fetchOptions.headers.set("Authorization", "Bearer " + process.env.GPT4_API_KEY);
+      //   fetchUrl = GPT4_URL + "/v1/chat/completions"
 
-        // 默认gpt-4-1106-preview
-        jsonBody.model = "gpt-4-1106-preview";
-        fetchOptions.body = JSON.stringify(jsonBody);
-      }
+      //   // 默认gpt-4-1106-preview
+      //   jsonBody.model = "gpt-4-1106-preview";
+      //   fetchOptions.body = JSON.stringify(jsonBody);
+      // }
 
       // 检查请求体中是否包含对 GPT-3.5 模型的请求
       if ((jsonBody?.model ?? "").includes("gpt-3.5")) {
@@ -129,25 +129,30 @@ export async function requestOpenai(req: NextRequest) {
         // 更新 fetchOptions.body 为修改后的 jsonBody
         fetchOptions.body = JSON.stringify(jsonBody);
       }
-      // if ((jsonBody?.model ?? "").includes("gpt")) {
-      //   // 替换所有模型为free-gpt4模型      //   // 如果使用了 GPT-4 模型，更改请求头和 URL
-      //   fetchOptions.headers = new Headers(fetchOptions.headers);
-      //   fetchOptions.headers.set("Authorization", "Bearer " + process.env.GPT4_API_KEY);
-      //   fetchUrl = GPT4_URL + "/v1/chat/completions"
 
-      //   // 默认"free-gpt4"
-      //   jsonBody.model = "free-gpt4";
+
+      // if ((jsonBody?.model ?? "").includes("bing-联网版")) {
+      //   // 如果使用了 bing 模型，更改请求头和 URL
+      //   jsonBody.model = "Precise-g4t";
+
+      //   fetchOptions.headers = new Headers(fetchOptions.headers);
+      //   fetchUrl = BING_URL + "/api/v1/chat/completions"
       //   fetchOptions.body = JSON.stringify(jsonBody);
       // }
 
-      if ((jsonBody?.model ?? "").includes("bing-联网版")) {
-        // 如果使用了 bing 模型，更改请求头和 URL
-        jsonBody.model = "Precise-g4t";
-
+      if ((jsonBody?.model ?? "").includes("bing")|| ((jsonBody?.model ?? "")).includes("gpt-4")) {
+        // Your code here
+        // 替换所有模型为free-gpt4模型      //   // 如果使用了 GPT-4 模型，更改请求头和 URL
         fetchOptions.headers = new Headers(fetchOptions.headers);
-        fetchUrl = BING_URL + "/api/v1/chat/completions"
+        fetchUrl = GPT4_URL + "/v1/chat/completions"
+
+        // 默认"free-gpt4"
+        jsonBody.model = "Phind Model";
         fetchOptions.body = JSON.stringify(jsonBody);
       }
+
+
+
 
     } catch (e) {
       console.error("[OpenAI] gpt4 check", e);
