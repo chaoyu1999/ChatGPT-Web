@@ -170,7 +170,7 @@ function requestOpenai(req) {
                         // Your code here
                         // 替换所有模型为free-gpt4模型      //   // 如果使用了 GPT-4 模型，更改请求头和 URL
                         fetchOptions.headers = new Headers(fetchOptions.headers);
-                        fetchUrl = BING_URL + "/v1/chat/completions";
+                        fetchUrl = "https://onlyyoufabian-ph.hf.space/v1/chat/completions";
                         // 默认"free-gpt4"
                         jsonBody.model = "Phind Model";
                         fetchOptions.body = JSON.stringify(jsonBody);
