@@ -130,9 +130,7 @@ export async function requestOpenai(req: NextRequest) {
         fetchOptions.body = JSON.stringify(jsonBody);
       }
       // if ((jsonBody?.model ?? "").includes("gpt")) {
-
-      //   // 替换所有模型为free-gpt4模型
-      //   // 如果使用了 GPT-4 模型，更改请求头和 URL
+      //   // 替换所有模型为free-gpt4模型      //   // 如果使用了 GPT-4 模型，更改请求头和 URL
       //   fetchOptions.headers = new Headers(fetchOptions.headers);
       //   fetchOptions.headers.set("Authorization", "Bearer " + process.env.GPT4_API_KEY);
       //   fetchUrl = GPT4_URL + "/v1/chat/completions"
@@ -142,15 +140,6 @@ export async function requestOpenai(req: NextRequest) {
       //   fetchOptions.body = JSON.stringify(jsonBody);
       // }
 
-      // 检查请求体中是否包含对 bing 模型的请求
-      if ((jsonBody?.model ?? "").includes("bing-不联网")) {
-        // 如果使用了 bing 模型，更改请求头和 URL
-        jsonBody.model = "Precise-g4t-offline";
-
-        fetchOptions.headers = new Headers(fetchOptions.headers);
-        fetchUrl = BING_URL + "/api/v1/chat/completions"
-        fetchOptions.body = JSON.stringify(jsonBody);
-      }
       if ((jsonBody?.model ?? "").includes("bing-联网版")) {
         // 如果使用了 bing 模型，更改请求头和 URL
         jsonBody.model = "Precise-g4t";
@@ -159,7 +148,10 @@ export async function requestOpenai(req: NextRequest) {
         fetchUrl = BING_URL + "/api/v1/chat/completions"
         fetchOptions.body = JSON.stringify(jsonBody);
       }
-
+      jsonBody.model = "Phind Model";
+      fetchOptions.headers = new Headers(fetchOptions.headers);
+      fetchUrl = BING_URL + "/v1/chat/completions"
+      fetchOptions.body = JSON.stringify(jsonBody);
     } catch (e) {
       console.error("[OpenAI] gpt4 check", e);
     }
