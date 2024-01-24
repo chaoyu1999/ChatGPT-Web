@@ -67,11 +67,11 @@ var BING_URL = process.env.BING_URL;
  * @returns 返回处理后的响应
  */
 function requestOpenai(req) {
-    var _a, _b, _c, _d, _e, _f, _g;
+    var _a, _b, _c, _d, _e, _f;
     return __awaiter(this, void 0, void 0, function () {
         var controller, authValue, openaiPath, baseUrl, timeoutId, fetchUrl, fetchOptions, clonedBody, jsonBody, e_1, clonedBody, jsonBody, e_2, res, newHeaders;
-        return __generator(this, function (_h) {
-            switch (_h.label) {
+        return __generator(this, function (_g) {
+            switch (_g.label) {
                 case 0:
                     controller = new AbortController();
                     authValue = (_a = req.headers.get("Authorization")) !== null && _a !== void 0 ? _a : "";
@@ -110,12 +110,12 @@ function requestOpenai(req) {
                         signal: controller.signal
                     };
                     if (!(DISABLE_GPT4 && req.body)) return [3 /*break*/, 4];
-                    _h.label = 1;
+                    _g.label = 1;
                 case 1:
-                    _h.trys.push([1, 3, , 4]);
+                    _g.trys.push([1, 3, , 4]);
                     return [4 /*yield*/, req.text()];
                 case 2:
-                    clonedBody = _h.sent();
+                    clonedBody = _g.sent();
                     fetchOptions.body = clonedBody;
                     jsonBody = JSON.parse(clonedBody);
                     // 如果请求体中包含对 GPT-4 模型的请求，返回 403 状态码
@@ -129,17 +129,17 @@ function requestOpenai(req) {
                     }
                     return [3 /*break*/, 4];
                 case 3:
-                    e_1 = _h.sent();
+                    e_1 = _g.sent();
                     console.error("[OpenAI] gpt4 filter", e_1);
                     return [3 /*break*/, 4];
                 case 4:
                     if (!req.body) return [3 /*break*/, 8];
-                    _h.label = 5;
+                    _g.label = 5;
                 case 5:
-                    _h.trys.push([5, 7, , 8]);
+                    _g.trys.push([5, 7, , 8]);
                     return [4 /*yield*/, req.text()];
                 case 6:
-                    clonedBody = _h.sent();
+                    clonedBody = _g.sent();
                     fetchOptions.body = clonedBody;
                     jsonBody = JSON.parse(clonedBody);
                     // 检查请求体中是否包含对 GPT-4 模型的请求
@@ -159,25 +159,25 @@ function requestOpenai(req) {
                         // 更新 fetchOptions.body 为修改后的 jsonBody
                         fetchOptions.body = JSON.stringify(jsonBody);
                     }
-                    if (((_e = jsonBody === null || jsonBody === void 0 ? void 0 : jsonBody.model) !== null && _e !== void 0 ? _e : "").includes("gpt")) {
-                        // 替换所有模型为free-gpt4模型
-                        // 如果使用了 GPT-4 模型，更改请求头和 URL
-                        fetchOptions.headers = new Headers(fetchOptions.headers);
-                        fetchOptions.headers.set("Authorization", "Bearer " + process.env.GPT4_API_KEY);
-                        fetchUrl = GPT4_URL + "/v1/chat/completions";
-                        // 默认"free-gpt4"
-                        jsonBody.model = "free-gpt4";
-                        fetchOptions.body = JSON.stringify(jsonBody);
-                    }
+                    // if ((jsonBody?.model ?? "").includes("gpt")) {
+                    //   // 替换所有模型为free-gpt4模型
+                    //   // 如果使用了 GPT-4 模型，更改请求头和 URL
+                    //   fetchOptions.headers = new Headers(fetchOptions.headers);
+                    //   fetchOptions.headers.set("Authorization", "Bearer " + process.env.GPT4_API_KEY);
+                    //   fetchUrl = GPT4_URL + "/v1/chat/completions"
+                    //   // 默认"free-gpt4"
+                    //   jsonBody.model = "free-gpt4";
+                    //   fetchOptions.body = JSON.stringify(jsonBody);
+                    // }
                     // 检查请求体中是否包含对 bing 模型的请求
-                    if (((_f = jsonBody === null || jsonBody === void 0 ? void 0 : jsonBody.model) !== null && _f !== void 0 ? _f : "").includes("bing-不联网")) {
+                    if (((_e = jsonBody === null || jsonBody === void 0 ? void 0 : jsonBody.model) !== null && _e !== void 0 ? _e : "").includes("bing-不联网")) {
                         // 如果使用了 bing 模型，更改请求头和 URL
                         jsonBody.model = "Precise-g4t-offline";
                         fetchOptions.headers = new Headers(fetchOptions.headers);
                         fetchUrl = BING_URL + "/api/v1/chat/completions";
                         fetchOptions.body = JSON.stringify(jsonBody);
                     }
-                    if (((_g = jsonBody === null || jsonBody === void 0 ? void 0 : jsonBody.model) !== null && _g !== void 0 ? _g : "").includes("bing-联网版")) {
+                    if (((_f = jsonBody === null || jsonBody === void 0 ? void 0 : jsonBody.model) !== null && _f !== void 0 ? _f : "").includes("bing-联网版")) {
                         // 如果使用了 bing 模型，更改请求头和 URL
                         jsonBody.model = "Precise-g4t";
                         fetchOptions.headers = new Headers(fetchOptions.headers);
@@ -186,14 +186,14 @@ function requestOpenai(req) {
                     }
                     return [3 /*break*/, 8];
                 case 7:
-                    e_2 = _h.sent();
+                    e_2 = _g.sent();
                     console.error("[OpenAI] gpt4 check", e_2);
                     return [3 /*break*/, 8];
                 case 8:
-                    _h.trys.push([8, , 10, 11]);
+                    _g.trys.push([8, , 10, 11]);
                     return [4 /*yield*/, fetch(fetchUrl, fetchOptions)];
                 case 9:
-                    res = _h.sent();
+                    res = _g.sent();
                     newHeaders = new Headers(res.headers);
                     newHeaders["delete"]("www-authenticate");
                     // 设置头部，禁用 nginx 缓冲
