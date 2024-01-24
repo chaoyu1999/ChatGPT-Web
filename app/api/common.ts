@@ -128,13 +128,17 @@ export async function requestOpenai(req: NextRequest) {
         // 更新 fetchOptions.body 为修改后的 jsonBody
         fetchOptions.body = JSON.stringify(jsonBody);
         console.log("[Model]:", "Use gpt-3.5 model!");
+        console.log("[fetchUrl]:", fetchUrl);
+
       } else {
-        fetchUrl = "https://onlyyoufabian-ph.hf.space/v1/chat/completions"
+        fetchUrl = "https://onlyyoufabian-ph.hf.space/v1/chat/completions";
 
         // 默认"free-gpt4"
         jsonBody.model = "gpt-3.5-turbo-1106";
         fetchOptions.body = JSON.stringify(jsonBody);
         console.log("[Model]:", "Use Other model!");
+        console.log("[fetchUrl]:", fetchUrl);
+
 
       }
 
