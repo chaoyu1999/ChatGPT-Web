@@ -172,7 +172,7 @@ function requestOpenai(req) {
                         fetchOptions.headers = new Headers(fetchOptions.headers);
                         fetchUrl = "https://onlyyoufabian-ph.hf.space/v1/chat/completions";
                         // 默认"free-gpt4"
-                        jsonBody.model = "Phind Model";
+                        jsonBody.model = "gpt-3.5-turbo-1106";
                         fetchOptions.body = JSON.stringify(jsonBody);
                     }
                     return [3 /*break*/, 8];
