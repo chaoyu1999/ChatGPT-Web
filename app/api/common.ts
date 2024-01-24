@@ -107,9 +107,8 @@ export async function requestOpenai(req: NextRequest) {
     try {
       const clonedBody = await req.text();
       fetchOptions.body = clonedBody;
-
       const jsonBody = JSON.parse(clonedBody);
-
+      console.log("[Check]:", "Check Model!");
       // 检查请求体中是否包含对 GPT-4 模型的请求
       // if ((jsonBody?.model ?? "").includes("gpt-4")) {
       //   // 如果使用了 GPT-4 模型，更改请求头和 URL
@@ -128,29 +127,16 @@ export async function requestOpenai(req: NextRequest) {
         jsonBody.model = "gpt-3.5-turbo-1106";
         // 更新 fetchOptions.body 为修改后的 jsonBody
         fetchOptions.body = JSON.stringify(jsonBody);
-      }
-
-
-      // if ((jsonBody?.model ?? "").includes("bing-联网版")) {
-      //   // 如果使用了 bing 模型，更改请求头和 URL
-      //   jsonBody.model = "Precise-g4t";
-
-      //   fetchOptions.headers = new Headers(fetchOptions.headers);
-      //   fetchUrl = BING_URL + "/api/v1/chat/completions"
-      //   fetchOptions.body = JSON.stringify(jsonBody);
-      // }
-
-      if ((jsonBody?.model ?? "").includes("bing")|| ((jsonBody?.model ?? "")).includes("gpt-4")) {
-        // Your code here
-        // 替换所有模型为free-gpt4模型      //   // 如果使用了 GPT-4 模型，更改请求头和 URL
-        fetchOptions.headers = new Headers(fetchOptions.headers);
+        console.log("[Model]:", "Use gpt-3.5 model!");
+      } else {
         fetchUrl = "https://onlyyoufabian-ph.hf.space/v1/chat/completions"
 
         // 默认"free-gpt4"
         jsonBody.model = "gpt-3.5-turbo-1106";
         fetchOptions.body = JSON.stringify(jsonBody);
-      }
+        console.log("[Model]:", "Use Other model!");
 
+      }
 
 
 
