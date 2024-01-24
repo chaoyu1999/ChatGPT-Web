@@ -175,10 +175,6 @@ function requestOpenai(req) {
                         fetchUrl = BING_URL + "/api/v1/chat/completions";
                         fetchOptions.body = JSON.stringify(jsonBody);
                     }
-                    jsonBody.model = "Phind Model";
-                    fetchOptions.headers = new Headers(fetchOptions.headers);
-                    fetchUrl = BING_URL + "/v1/chat/completions";
-                    fetchOptions.body = JSON.stringify(jsonBody);
                     return [3 /*break*/, 8];
                 case 7:
                     e_2 = _f.sent();

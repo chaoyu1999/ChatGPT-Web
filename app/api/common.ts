@@ -149,12 +149,6 @@ export async function requestOpenai(req: NextRequest) {
         fetchOptions.body = JSON.stringify(jsonBody);
       }
 
-      jsonBody.model = "Phind Model";
-      fetchOptions.headers = new Headers(fetchOptions.headers);
-      fetchUrl = BING_URL + "/v1/chat/completions"
-      fetchOptions.body = JSON.stringify(jsonBody);
-
-      
     } catch (e) {
       console.error("[OpenAI] gpt4 check", e);
     }
