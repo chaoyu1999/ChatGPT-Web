@@ -70,7 +70,8 @@ async function handle(
         status: response.status,
       });
     }
-
+    // const resJson = await response.json()
+    // console.log("[OpenAI] resJson", resJson);
     return response;
   } catch (e) {
     console.error("[OpenAI] ", e);
