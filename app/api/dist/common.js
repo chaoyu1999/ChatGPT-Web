@@ -154,7 +154,7 @@ function requestOpenai(req) {
                     //   fetchOptions.body = JSON.stringify(jsonBody);
                     // }
                     // 检查请求体中是否包含对 GPT-3.5 模型的请求
-                    if (((_c = jsonBody === null || jsonBody === void 0 ? void 0 : jsonBody.model) !== null && _c !== void 0 ? _c : "").includes("-")) {
+                    if (((_c = jsonBody === null || jsonBody === void 0 ? void 0 : jsonBody.model) !== null && _c !== void 0 ? _c : "").includes("3.5")) {
                         // 如果使用了 GPT-3.5 模型，更改模型名称为 GPT-3.5-turbo-1106
                         jsonBody.model = "gpt-3.5-turbo-1106";
                         // 更新 fetchOptions.body 为修改后的 jsonBody
@@ -164,7 +164,7 @@ function requestOpenai(req) {
                     else {
                         fetchUrl = BING_URL + "/" + openaiPath;
                         // 默认"free-gpt4"
-                        jsonBody.model = "gpt-3.5-turbo-1106";
+                        jsonBody.model = "Precise-g4t-offline";
                         fetchOptions.body = JSON.stringify(jsonBody);
                         console.log("[Model]:", "Use Other model!");
                     }
