@@ -129,13 +129,23 @@ export async function requestOpenai(req: NextRequest) {
         fetchOptions.body = JSON.stringify(jsonBody);
         console.log("[Model]:", "Use gpt-3.5 model!");
       } else {
-        fetchUrl = `${BING_URL}/${openaiPath}`;
 
-        // 默认"free-gpt4"
-        jsonBody.model = "Precise-g4t-offline";
+        fetchUrl = `${BING_URL}/${openaiPath}`;
+        jsonBody.model = "Precise-offline";
         fetchOptions.body = JSON.stringify(jsonBody);
         console.log("[Model]:", "Use Other model!");
 
+        if ((jsonBody?.model ?? "").includes("不联网")) {
+          jsonBody.model = "Precise-g4t-offline";
+          fetchOptions.body = JSON.stringify(jsonBody);
+          console.log("[Model]:", "Use 不联网 model!");
+        }
+
+        if ((jsonBody?.model ?? "").includes("联网版")) {
+          jsonBody.model = "Creative-g4t";
+          fetchOptions.body = JSON.stringify(jsonBody);
+          console.log("[Model]:", "Use 联网版 model!");
+        }
       }
     } catch (e) {
       console.error("[Check Model Error:]", e);

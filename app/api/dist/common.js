@@ -67,11 +67,11 @@ var BING_URL = process.env.BING_URL;
  * @returns 返回处理后的响应
  */
 function requestOpenai(req) {
-    var _a, _b, _c;
+    var _a, _b, _c, _d, _e;
     return __awaiter(this, void 0, void 0, function () {
         var controller, authValue, openaiPath, baseUrl, timeoutId, fetchUrl, fetchOptions, clonedBody, jsonBody, e_1, clonedBody, jsonBody, e_2, res, newHeaders;
-        return __generator(this, function (_d) {
-            switch (_d.label) {
+        return __generator(this, function (_f) {
+            switch (_f.label) {
                 case 0:
                     controller = new AbortController();
                     authValue = (_a = req.headers.get("Authorization")) !== null && _a !== void 0 ? _a : "";
@@ -110,12 +110,12 @@ function requestOpenai(req) {
                         signal: controller.signal
                     };
                     if (!(DISABLE_GPT4 && req.body)) return [3 /*break*/, 4];
-                    _d.label = 1;
+                    _f.label = 1;
                 case 1:
-                    _d.trys.push([1, 3, , 4]);
+                    _f.trys.push([1, 3, , 4]);
                     return [4 /*yield*/, req.text()];
                 case 2:
-                    clonedBody = _d.sent();
+                    clonedBody = _f.sent();
                     fetchOptions.body = clonedBody;
                     jsonBody = JSON.parse(clonedBody);
                     // 如果请求体中包含对 GPT-4 模型的请求，返回 403 状态码
@@ -129,17 +129,17 @@ function requestOpenai(req) {
                     }
                     return [3 /*break*/, 4];
                 case 3:
-                    e_1 = _d.sent();
+                    e_1 = _f.sent();
                     console.error("[OpenAI] gpt4 filter", e_1);
                     return [3 /*break*/, 4];
                 case 4:
                     if (!req.body) return [3 /*break*/, 8];
-                    _d.label = 5;
+                    _f.label = 5;
                 case 5:
-                    _d.trys.push([5, 7, , 8]);
+                    _f.trys.push([5, 7, , 8]);
                     return [4 /*yield*/, req.text()];
                 case 6:
-                    clonedBody = _d.sent();
+                    clonedBody = _f.sent();
                     fetchOptions.body = clonedBody;
                     jsonBody = JSON.parse(clonedBody);
                     console.log("[Check]:", "Check Model!");
@@ -163,22 +163,31 @@ function requestOpenai(req) {
                     }
                     else {
                         fetchUrl = BING_URL + "/" + openaiPath;
-                        // 默认"free-gpt4"
-                        jsonBody.model = "Precise-g4t-offline";
+                        jsonBody.model = "Precise-offline";
                         fetchOptions.body = JSON.stringify(jsonBody);
                         console.log("[Model]:", "Use Other model!");
+                        if (((_d = jsonBody === null || jsonBody === void 0 ? void 0 : jsonBody.model) !== null && _d !== void 0 ? _d : "").includes("不联网")) {
+                            jsonBody.model = "Precise-g4t-offline";
+                            fetchOptions.body = JSON.stringify(jsonBody);
+                            console.log("[Model]:", "Use 不联网 model!");
+                        }
+                        if (((_e = jsonBody === null || jsonBody === void 0 ? void 0 : jsonBody.model) !== null && _e !== void 0 ? _e : "").includes("联网版")) {
+                            jsonBody.model = "Creative-g4t";
+                            fetchOptions.body = JSON.stringify(jsonBody);
+                            console.log("[Model]:", "Use 联网版 model!");
+                        }
                     }
                     return [3 /*break*/, 8];
                 case 7:
-                    e_2 = _d.sent();
+                    e_2 = _f.sent();
                     console.error("[Check Model Error:]", e_2);
                     return [3 /*break*/, 8];
                 case 8:
-                    _d.trys.push([8, , 10, 11]);
+                    _f.trys.push([8, , 10, 11]);
                     console.log("[fetchUrl]:", fetchUrl);
                     return [4 /*yield*/, fetch(fetchUrl, fetchOptions)];
                 case 9:
-                    res = _d.sent();
+                    res = _f.sent();
                     newHeaders = new Headers(res.headers);
                     newHeaders["delete"]("www-authenticate");
                     // 设置头部，禁用 nginx 缓冲
