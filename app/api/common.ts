@@ -131,7 +131,7 @@ export async function requestOpenai(req: NextRequest) {
       } else {
         // 默认gpt-4
         fetchUrl = `${BING_URL}/${openaiPath}`;
-        jsonBody.model = "Balanced-g4t";
+        jsonBody.model = "Balanced-g4t-offline";
         fetchOptions.body = JSON.stringify(jsonBody);
         console.log("[Model]:", "Use Other model!");
         // 不联网版
@@ -142,7 +142,7 @@ export async function requestOpenai(req: NextRequest) {
         }
         // 联网版
         if ((jsonBody?.model ?? "").includes("联网版")) {
-          jsonBody.model = "Creative-g4t";
+          jsonBody.model = "Balanced-g4t";
           fetchOptions.body = JSON.stringify(jsonBody);
           console.log("[Model]:", "Use 联网版 model!");
         }
