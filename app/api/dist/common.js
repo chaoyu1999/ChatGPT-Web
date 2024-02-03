@@ -156,21 +156,24 @@ function requestOpenai(req) {
                     // 检查请求体中是否包含对 GPT-3.5 模型的请求
                     if (((_c = jsonBody === null || jsonBody === void 0 ? void 0 : jsonBody.model) !== null && _c !== void 0 ? _c : "").includes("3.5")) {
                         // 如果使用了 GPT-3.5 模型，更改模型名称为 GPT-3.5-turbo-1106
-                        jsonBody.model = "gpt-3.5-turbo-1106";
+                        jsonBody.model = "gpt-3.5-turbo-0125";
                         // 更新 fetchOptions.body 为修改后的 jsonBody
                         fetchOptions.body = JSON.stringify(jsonBody);
                         console.log("[Model]:", "Use gpt-3.5 model!");
                     }
                     else {
+                        // 默认gpt-4
                         fetchUrl = BING_URL + "/" + openaiPath;
-                        jsonBody.model = "Precise-offline";
+                        jsonBody.model = "Balanced-g4t";
                         fetchOptions.body = JSON.stringify(jsonBody);
                         console.log("[Model]:", "Use Other model!");
+                        // 不联网版
                         if (((_d = jsonBody === null || jsonBody === void 0 ? void 0 : jsonBody.model) !== null && _d !== void 0 ? _d : "").includes("不联网")) {
                             jsonBody.model = "Precise-g4t-offline";
                             fetchOptions.body = JSON.stringify(jsonBody);
                             console.log("[Model]:", "Use 不联网 model!");
                         }
+                        // 联网版
                         if (((_e = jsonBody === null || jsonBody === void 0 ? void 0 : jsonBody.model) !== null && _e !== void 0 ? _e : "").includes("联网版")) {
                             jsonBody.model = "Creative-g4t";
                             fetchOptions.body = JSON.stringify(jsonBody);
