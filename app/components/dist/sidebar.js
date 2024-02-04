@@ -50,6 +50,7 @@ exports.__esModule = true;
 exports.SideBar = void 0;
 var react_1 = require("react");
 var home_module_scss_1 = require("./home.module.scss");
+var iframe_module_scss_1 = require("./iframe.module.scss");
 var button_1 = require("./button");
 var settings_svg_1 = require("../icons/settings.svg");
 var github_svg_1 = require("../icons/github.svg");
@@ -180,9 +181,24 @@ function useDragSideBar() {
 }
 function SideBar(props) {
     var _this = this;
+    /**
+     * 添加画图按钮
+     */
+    var _a = react_1.useState(false), showPopup = _a[0], setShowPopup = _a[1];
+    var openPopup = function () {
+        setShowPopup(true);
+    };
+    var closePopup = function () {
+        setShowPopup(false);
+    };
+    var handleButtonClick = function () {
+        // 在这里添加按钮点击事件的逻辑
+        console.log('按钮被点击了');
+    };
+    ////////////////////////////////////
     var chatStore = store_1.useChatStore();
     // drag side bar
-    var _a = useDragSideBar(), onDragStart = _a.onDragStart, shouldNarrow = _a.shouldNarrow;
+    var _b = useDragSideBar(), onDragStart = _b.onDragStart, shouldNarrow = _b.shouldNarrow;
     var navigate = react_router_dom_1.useNavigate();
     var config = store_1.useAppConfig();
     return (React.createElement("div", { className: home_module_scss_1["default"].sidebar + " " + props.className + " " + (shouldNarrow && home_module_scss_1["default"]["narrow-sidebar"]) },
@@ -198,7 +214,13 @@ function SideBar(props) {
                 React.createElement("span", { style: __assign({}, rainbowTextStyleContent) },
                     "bing-\u8054\u7F51\u7248\uFF1A\u7ED3\u5408\u7F51\u9875\u641C\u7D22\u7ED3\u679C\u56DE\u7B54\uFF0C\u53EF\u641C\u7D22\u6700\u65B0\u95EE\u9898\u3002",
                     React.createElement("br", null),
-                    "bing-\u4E0D\u8054\u7F51\uFF1A\u56DE\u7B54\u66F4\u7CBE\u786E\uFF0C\u4F46\u53EA\u80FD\u56DE\u7B542021\u5E74\u4E4B\u524D\u7684\u5185\u5BB9\u3002")),
+                    "bing-\u4E0D\u8054\u7F51\uFF1A\u56DE\u7B54\u66F4\u7CBE\u786E\uFF0C\u4F46\u53EA\u80FD\u56DE\u7B542021\u5E74\u4E4B\u524D\u7684\u5185\u5BB9\u3002"),
+                React.createElement("button", { onClick: openPopup }, "\u56FE\u7247\u521B\u4F5C"),
+                showPopup && (React.createElement(React.Fragment, null,
+                    React.createElement("div", { className: iframe_module_scss_1["default"]["overlay"], onClick: closePopup }),
+                    React.createElement("div", { className: iframe_module_scss_1["default"]["popup"] },
+                        React.createElement("iframe", { src: "https://img-test.onlyyoufabian754.workers.dev/", style: { width: '100%', height: '100%', border: 'none' } }),
+                        React.createElement("button", { onClick: closePopup }, "\u5173\u95ED"))))),
             React.createElement("div", { className: home_module_scss_1["default"]["sidebar-logo"] + " no-dark" },
                 React.createElement(chatgpt_svg_1["default"], null))),
         React.createElement("div", { className: home_module_scss_1["default"]["sidebar-header-bar"] },

@@ -1,6 +1,7 @@
-import { useEffect, useRef, useCallback } from "react";
+import { useEffect, useRef, useCallback, useState } from "react";
 
 import styles from "./home.module.scss";
+import iStyle from "./iframe.module.scss";
 
 import { IconButton } from "./button";
 import SettingsIcon from "../icons/settings.svg";
@@ -152,6 +153,25 @@ function useDragSideBar() {
 }
 
 export function SideBar(props: { className?: string }) {
+  /**
+   * 添加画图按钮
+   */
+  const [showPopup, setShowPopup] = useState(false);
+
+  const openPopup = () => {
+    setShowPopup(true);
+  };
+
+  const closePopup = () => {
+    setShowPopup(false);
+  };
+
+  const handleButtonClick = () => {
+    // 在这里添加按钮点击事件的逻辑
+    console.log('按钮被点击了');
+  };
+  ////////////////////////////////////
+
   const chatStore = useChatStore();
 
   // drag side bar
@@ -178,8 +198,19 @@ export function SideBar(props: { className?: string }) {
             100% {background-position: 100%;}
           }
         `}</style>
-          <span style={{ ...rainbowTextStyleContent }}>【接入了bing 的 gpt-4 模型。可在聊天输入框上方点击&quot;机器人&quot;按钮更换模型。】<img src="https://raw.gitmirror.com/onlyfabin/PB_1/main/markdown/model-icon.png" alt="Bing GPT-4 Icon" style={{transform: 'scale(0.8)' }}  /></span>
+          <span style={{ ...rainbowTextStyleContent }}>【接入了bing 的 gpt-4 模型。可在聊天输入框上方点击&quot;机器人&quot;按钮更换模型。】<img src="https://raw.gitmirror.com/onlyfabin/PB_1/main/markdown/model-icon.png" alt="Bing GPT-4 Icon" style={{ transform: 'scale(0.8)' }} /></span>
           <span style={{ ...rainbowTextStyleContent }}>bing-联网版：结合网页搜索结果回答，可搜索最新问题。<br />bing-不联网：回答更精确，但只能回答2021年之前的内容。</span>
+          <button onClick={openPopup} >图片创作</button>
+          {showPopup && (
+            <>
+              <div className={iStyle["overlay"]} onClick={closePopup}></div>
+              <div className={iStyle["popup"]}>
+                <iframe src="https://img-test.onlyyoufabian754.workers.dev/" style={{ width: '100%', height: '100%', border: 'none' }}></iframe>
+                <button onClick={closePopup}>关闭</button>
+              </div>
+            </>
+          )}
+
         </div>
 
         <div className={styles["sidebar-logo"] + " no-dark"}>
