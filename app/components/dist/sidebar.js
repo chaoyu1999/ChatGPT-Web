@@ -54,7 +54,6 @@ var iframe_module_scss_1 = require("./iframe.module.scss");
 var button_1 = require("./button");
 var settings_svg_1 = require("../icons/settings.svg");
 var github_svg_1 = require("../icons/github.svg");
-var chatgpt_svg_1 = require("../icons/chatgpt.svg");
 var add_svg_1 = require("../icons/add.svg");
 var close_svg_1 = require("../icons/close.svg");
 var mask_svg_1 = require("../icons/mask.svg");
@@ -67,12 +66,6 @@ var react_router_dom_1 = require("react-router-dom");
 var utils_1 = require("../utils");
 var dynamic_1 = require("next/dynamic");
 var ui_lib_1 = require("./ui-lib");
-var rainbowTextStyle = {
-    background: 'linear-gradient(to right, red, orange, blue, indigo, violet)',
-    WebkitBackgroundClip: 'text',
-    color: 'transparent',
-    display: 'flex'
-};
 var rainbowTextStyleContent = {
     background: 'linear-gradient(to right, red, orange, green, blue, indigo, violet)',
     backgroundSize: '200% auto',
@@ -82,6 +75,18 @@ var rainbowTextStyleContent = {
     fontSize: "17px",
     fontFamily: 'Arial, sans-serif',
     animation: 'rainbow 1s ease infinite'
+};
+var ImgGenerate = {
+    background: 'linear-gradient(to right, red, orange, green, blue, indigo, violet)',
+    backgroundSize: '200% auto',
+    WebkitBackgroundClip: 'text',
+    color: 'transparent',
+    display: 'flex',
+    fontSize: "20px",
+    fontFamily: 'Arial, sans-serif',
+    animation: 'rainbow 1s ease infinite',
+    alignItems: 'center',
+    fontWeight: 'bold'
 };
 var horizontalLineStyle = {
     borderTop: '2px solid black',
@@ -204,25 +209,24 @@ function SideBar(props) {
     return (React.createElement("div", { className: home_module_scss_1["default"].sidebar + " " + props.className + " " + (shouldNarrow && home_module_scss_1["default"]["narrow-sidebar"]) },
         React.createElement("div", { className: home_module_scss_1["default"]["sidebar-header"], "data-tauri-drag-region": true },
             React.createElement("div", { className: home_module_scss_1["default"]["sidebar-title"], "data-tauri-drag-region": true },
-                React.createElement("span", { style: __assign({}, rainbowTextStyle) }, "CyGPT")),
+                React.createElement("span", { className: iframe_module_scss_1["default"]["rainbow-text-style"] }, "CyGPT")),
             React.createElement("div", { style: horizontalLineStyle }),
             React.createElement("div", { className: home_module_scss_1["default"]["sidebar-sub-title"] },
                 React.createElement("style", { jsx: true }, "\n          @keyframes rainbow {\n            0% {background-position: 0%;}\n            100% {background-position: 100%;}\n          }\n        "),
-                React.createElement("span", { style: __assign({}, rainbowTextStyleContent) },
-                    "\u3010\u63A5\u5165\u4E86bing \u7684 gpt-4 \u6A21\u578B\u3002\u53EF\u5728\u804A\u5929\u8F93\u5165\u6846\u4E0A\u65B9\u70B9\u51FB\"\u673A\u5668\u4EBA\"\u6309\u94AE\u66F4\u6362\u6A21\u578B\u3002\u3011",
-                    React.createElement("img", { src: "https://raw.gitmirror.com/onlyfabin/PB_1/main/markdown/model-icon.png", alt: "Bing GPT-4 Icon", style: { transform: 'scale(0.8)' } })),
-                React.createElement("span", { style: __assign({}, rainbowTextStyleContent) },
+                React.createElement("span", { style: __assign(__assign({}, rainbowTextStyleContent), { border: '1px solid orange', margin: '2px 0px' }) },
+                    "\u63A5\u5165\u4E86Bing gpt-4 \u6A21\u578B\u3002\u53EF\u5728\u804A\u5929\u8F93\u5165\u6846\u7684\u4E0A\u65B9\uFF0C\u70B9\u51FB\"\u673A\u5668\u4EBA\"\u56FE\u6807\u66F4\u6362\u6A21\u578B\u3002",
+                    React.createElement("img", { src: "https://pic.imgdb.cn/item/65bf3bf7871b83018aee2d6c.jpg", alt: "Bing GPT-4 Icon", style: { transform: 'scale(1)' } })),
+                React.createElement("span", { style: __assign(__assign({}, rainbowTextStyleContent), { border: '1px solid black' }) },
                     "bing-\u8054\u7F51\u7248\uFF1A\u7ED3\u5408\u7F51\u9875\u641C\u7D22\u7ED3\u679C\u56DE\u7B54\uFF0C\u53EF\u641C\u7D22\u6700\u65B0\u95EE\u9898\u3002",
                     React.createElement("br", null),
                     "bing-\u4E0D\u8054\u7F51\uFF1A\u56DE\u7B54\u66F4\u7CBE\u786E\uFF0C\u4F46\u53EA\u80FD\u56DE\u7B542021\u5E74\u4E4B\u524D\u7684\u5185\u5BB9\u3002"),
-                React.createElement("button", { onClick: openPopup }, "\u56FE\u7247\u521B\u4F5C"),
+                React.createElement("span", { style: __assign(__assign({}, ImgGenerate), { fontWeight: 'bold', alignItems: 'center', justifyContent: 'center' }) }, "\u2193\u2193\u2193\u63A5\u5165\u7ED8\u56FE\u529F\u80FD\u2193\u2193\u2193"),
+                React.createElement("button", { onClick: openPopup, className: iframe_module_scss_1["default"]["but-sidebar"] }, "\u56FE\u7247\u521B\u4F5C"),
                 showPopup && (React.createElement(React.Fragment, null,
                     React.createElement("div", { className: iframe_module_scss_1["default"]["overlay"], onClick: closePopup }),
                     React.createElement("div", { className: iframe_module_scss_1["default"]["popup"] },
-                        React.createElement("iframe", { src: "https://img-test.onlyyoufabian754.workers.dev/", style: { width: '100%', height: '100%', border: 'none' } }),
-                        React.createElement("button", { onClick: closePopup }, "\u5173\u95ED"))))),
-            React.createElement("div", { className: home_module_scss_1["default"]["sidebar-logo"] + " no-dark" },
-                React.createElement(chatgpt_svg_1["default"], null))),
+                        React.createElement("iframe", { src: "https://img.cygpt.top", style: { width: '100%', height: '100%', border: 'none' } }),
+                        React.createElement("button", { onClick: closePopup, className: iframe_module_scss_1["default"]["but-close"] }, "X")))))),
         React.createElement("div", { className: home_module_scss_1["default"]["sidebar-header-bar"] },
             React.createElement(button_1.IconButton, { icon: React.createElement(mask_svg_1["default"], null), text: shouldNarrow ? undefined : locales_1["default"].Mask.Name, className: home_module_scss_1["default"]["sidebar-bar-button"], onClick: function () {
                     if (config.dontShowMaskSplashScreen !== true) {

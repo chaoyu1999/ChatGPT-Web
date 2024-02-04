@@ -1,4 +1,4 @@
-@mixin container {
+.container {
   background-color: var(--white);
   border: var(--border-in-light);
   border-radius: 20px;
@@ -8,17 +8,11 @@
   min-width: 600px;
   min-height: 370px;
   max-width: 1200px;
-
   display: flex;
   overflow: hidden;
   box-sizing: border-box;
-
   width: var(--window-width);
   height: var(--window-height);
-}
-
-.container {
-  @include container();
 }
 
 @media only screen and (min-width: 600px) {
@@ -26,17 +20,26 @@
     --window-width: 100vw;
     --window-height: var(--full-height);
     --window-content-width: calc(100% - var(--sidebar-width));
-
-    @include container();
-
+    background-color: var(--white);
+    border: var(--border-in-light);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    color: var(--black);
+    background-color: var(--white);
+    min-width: 600px;
+    min-height: 370px;
+    max-width: 1200px;
+    display: flex;
+    overflow: hidden;
+    box-sizing: border-box;
+    width: var(--window-width);
+    height: var(--window-height);
     max-width: 100vw;
     max-height: var(--full-height);
-
     border-radius: 0;
     border: 0;
   }
 }
-
 .sidebar {
   top: 0;
   width: var(--sidebar-width);
@@ -45,53 +48,42 @@
   background-color: var(--second);
   display: flex;
   flex-direction: column;
-  box-shadow: inset -2px 0px 2px 0px rgb(0, 0, 0, 0.05);
+  box-shadow: inset -2px 0px 2px 0px rgba(0, 0, 0, 0.05);
   position: relative;
   transition: width ease 0.05s;
-
-  .sidebar-header-bar {
-    display: flex;
-    margin-bottom: 20px;
-
-    .sidebar-bar-button {
-      flex-grow: 1;
-
-      &:not(:last-child) {
-        margin-right: 10px;
-      }
-    }
-  }
-
-  &:hover,
-  &:active {
-    .sidebar-drag {
-      background-color: rgba($color: #000000, $alpha: 0.01);
-
-      svg {
-        opacity: 0.2;
-      }
-    }
-  }
+}
+.sidebar .sidebar-header-bar {
+  display: flex;
+  margin-bottom: 20px;
+}
+.sidebar .sidebar-header-bar .sidebar-bar-button {
+  flex-grow: 1;
+}
+.sidebar .sidebar-header-bar .sidebar-bar-button:not(:last-child) {
+  margin-right: 10px;
+}
+.sidebar:hover .sidebar-drag, .sidebar:active .sidebar-drag {
+  background-color: rgba(0, 0, 0, 0.01);
+}
+.sidebar:hover .sidebar-drag svg, .sidebar:active .sidebar-drag svg {
+  opacity: 0.2;
 }
 
 .sidebar-drag {
-  $width: 14px;
-
   position: absolute;
   top: 0;
   right: 0;
   height: 100%;
-  width: $width;
-  background-color: rgba($color: #000000, $alpha: 0);
+  width: 14px;
+  background-color: rgba(0, 0, 0, 0);
   cursor: ew-resize;
   transition: all ease 0.3s;
   display: flex;
   align-items: center;
-
-  svg {
-    opacity: 0;
-    margin-left: -2px;
-  }
+}
+.sidebar-drag svg {
+  opacity: 0;
+  margin-left: -2px;
 }
 
 .window-content {
@@ -132,7 +124,6 @@
     display: block;
   }
 }
-
 .sidebar-header {
   position: relative;
   padding-top: 20px;
@@ -217,7 +208,7 @@
 .chat-item-info {
   display: flex;
   justify-content: space-between;
-  color: rgb(166, 166, 166);
+  color: #a6a6a6;
   font-size: 12px;
   margin-top: 8px;
   animation: slide-in ease 0.3s;
@@ -230,86 +221,70 @@
   white-space: nowrap;
 }
 
-.narrow-sidebar {
-  .sidebar-title,
-  .sidebar-sub-title {
-    display: none;
-  }
-  .sidebar-logo {
-    position: relative;
-    display: flex;
-    justify-content: center;
-  }
-
-  .sidebar-header-bar {
-    flex-direction: column;
-
-    .sidebar-bar-button {
-      &:not(:last-child) {
-        margin-right: 0;
-        margin-bottom: 10px;
-      }
-    }
-  }
-
-  .chat-item {
-    padding: 0;
-    min-height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: all ease 0.3s;
-    overflow: hidden;
-
-    &:hover {
-      .chat-item-narrow {
-        transform: scale(0.7) translateX(-50%);
-      }
-    }
-  }
-
-  .chat-item-narrow {
-    line-height: 0;
-    font-weight: lighter;
-    color: var(--black);
-    transform: translateX(0);
-    transition: all ease 0.3s;
-    padding: 4px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-
-    .chat-item-avatar {
-      display: flex;
-      justify-content: center;
-      opacity: 0.2;
-      position: absolute;
-      transform: scale(4);
-    }
-
-    .chat-item-narrow-count {
-      font-size: 24px;
-      font-weight: bolder;
-      text-align: center;
-      color: var(--primary);
-      opacity: 0.6;
-    }
-  }
-
-  .sidebar-tail {
-    flex-direction: column-reverse;
-    align-items: center;
-
-    .sidebar-actions {
-      flex-direction: column-reverse;
-      align-items: center;
-
-      .sidebar-action {
-        margin-right: 0;
-        margin-top: 15px;
-      }
-    }
-  }
+.narrow-sidebar .sidebar-title,
+.narrow-sidebar .sidebar-sub-title {
+  display: none;
+}
+.narrow-sidebar .sidebar-logo {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+.narrow-sidebar .sidebar-header-bar {
+  flex-direction: column;
+}
+.narrow-sidebar .sidebar-header-bar .sidebar-bar-button:not(:last-child) {
+  margin-right: 0;
+  margin-bottom: 10px;
+}
+.narrow-sidebar .chat-item {
+  padding: 0;
+  min-height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all ease 0.3s;
+  overflow: hidden;
+}
+.narrow-sidebar .chat-item:hover .chat-item-narrow {
+  transform: scale(0.7) translateX(-50%);
+}
+.narrow-sidebar .chat-item-narrow {
+  line-height: 0;
+  font-weight: lighter;
+  color: var(--black);
+  transform: translateX(0);
+  transition: all ease 0.3s;
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.narrow-sidebar .chat-item-narrow .chat-item-avatar {
+  display: flex;
+  justify-content: center;
+  opacity: 0.2;
+  position: absolute;
+  transform: scale(4);
+}
+.narrow-sidebar .chat-item-narrow .chat-item-narrow-count {
+  font-size: 24px;
+  font-weight: bolder;
+  text-align: center;
+  color: var(--primary);
+  opacity: 0.6;
+}
+.narrow-sidebar .sidebar-tail {
+  flex-direction: column-reverse;
+  align-items: center;
+}
+.narrow-sidebar .sidebar-tail .sidebar-actions {
+  flex-direction: column-reverse;
+  align-items: center;
+}
+.narrow-sidebar .sidebar-tail .sidebar-actions .sidebar-action {
+  margin-right: 0;
+  margin-top: 15px;
 }
 
 .sidebar-tail {
@@ -338,5 +313,3 @@
 .rtl-screen {
   direction: rtl;
 }
-
-

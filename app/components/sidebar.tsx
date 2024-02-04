@@ -31,12 +31,7 @@ import { useMobileScreen } from "../utils";
 import dynamic from "next/dynamic";
 import { showConfirm, showToast } from "./ui-lib";
 
-const rainbowTextStyle = {
-  background: 'linear-gradient(to right, red, orange, blue, indigo, violet)',
-  WebkitBackgroundClip: 'text',
-  color: 'transparent',
-  display: 'flex',
-};
+
 const rainbowTextStyleContent = {
   background: 'linear-gradient(to right, red, orange, green, blue, indigo, violet)',
   backgroundSize: '200% auto', // 添加这一行
@@ -47,6 +42,19 @@ const rainbowTextStyleContent = {
   fontSize: "17px",
   fontFamily: 'Arial, sans-serif',
   animation: 'rainbow 1s ease infinite',
+};
+const ImgGenerate = {
+  background: 'linear-gradient(to right, red, orange, green, blue, indigo, violet)',
+  backgroundSize: '200% auto', // 添加这一行
+
+  WebkitBackgroundClip: 'text',
+  color: 'transparent',
+  display: 'flex',
+  fontSize: "20px",
+  fontFamily: 'Arial, sans-serif',
+  animation: 'rainbow 1s ease infinite',
+  alignItems: 'center', // 居中
+  fontWeight: 'bold', // 加粗
 };
 
 const horizontalLineStyle = {
@@ -186,7 +194,7 @@ export function SideBar(props: { className?: string }) {
     >
       <div className={styles["sidebar-header"]} data-tauri-drag-region>
         <div className={styles["sidebar-title"]} data-tauri-drag-region>
-          <span style={{ ...rainbowTextStyle }}>CyGPT
+          <span className={iStyle["rainbow-text-style"]}>CyGPT
           </span>
         </div>
         <div style={horizontalLineStyle}></div>
@@ -198,24 +206,23 @@ export function SideBar(props: { className?: string }) {
             100% {background-position: 100%;}
           }
         `}</style>
-          <span style={{ ...rainbowTextStyleContent }}>【接入了bing 的 gpt-4 模型。可在聊天输入框上方点击&quot;机器人&quot;按钮更换模型。】<img src="https://raw.gitmirror.com/onlyfabin/PB_1/main/markdown/model-icon.png" alt="Bing GPT-4 Icon" style={{ transform: 'scale(0.8)' }} /></span>
-          <span style={{ ...rainbowTextStyleContent }}>bing-联网版：结合网页搜索结果回答，可搜索最新问题。<br />bing-不联网：回答更精确，但只能回答2021年之前的内容。</span>
-          <button onClick={openPopup} >图片创作</button>
+          <span style={{ ...rainbowTextStyleContent ,border: '1px solid orange', margin:'2px 0px'}}>接入了Bing gpt-4 模型。可在聊天输入框的上方，点击&quot;机器人&quot;图标更换模型。<img src="https://pic.imgdb.cn/item/65bf3bf7871b83018aee2d6c.jpg" alt="Bing GPT-4 Icon" style={{ transform: 'scale(1)' }} /></span>
+          <span style={{ ...rainbowTextStyleContent ,border: '1px solid black',}}>bing-联网版：结合网页搜索结果回答，可搜索最新问题。<br />bing-不联网：回答更精确，但只能回答2021年之前的内容。</span>
+          <span style={{ ...ImgGenerate , fontWeight: 'bold', alignItems: 'center', justifyContent: 'center'}}>&darr;&darr;&darr;接入绘图功能&darr;&darr;&darr;</span>
+
+          <button onClick={openPopup} className={iStyle["but-sidebar"]}>图片创作</button>
           {showPopup && (
             <>
               <div className={iStyle["overlay"]} onClick={closePopup}></div>
               <div className={iStyle["popup"]}>
-                <iframe src="https://img-test.onlyyoufabian754.workers.dev/" style={{ width: '100%', height: '100%', border: 'none' }}></iframe>
-                <button onClick={closePopup}>关闭</button>
+                <iframe src="https://img.cygpt.top" style={{ width: '100%', height: '100%', border: 'none' }}></iframe>
+                <button onClick={closePopup} className={iStyle["but-close"]}>X</button>
               </div>
             </>
           )}
 
         </div>
 
-        <div className={styles["sidebar-logo"] + " no-dark"}>
-          <ChatGptIcon />
-        </div>
       </div>
 
       <div className={styles["sidebar-header-bar"]}>

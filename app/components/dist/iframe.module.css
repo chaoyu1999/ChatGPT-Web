@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .overlay {
   position: fixed;
   top: 0;
@@ -31,4 +32,70 @@
   position: absolute;
   top: 10px;
   right: 10px;
+}
+
+.but-sidebar {
+  width: 100%;
+  /* 按钮宽度 */
+  color: transparent;
+  /* 透明文字 */
+  padding: 10px 10px;
+  /* 按钮内边距 */
+  border: none;
+  /* 去掉边框 */
+  border-radius: 10px;
+  /* 圆角 */
+  cursor: pointer;
+  /* 鼠标指针样式 */
+  font-size: 16px;
+  /* 字体大小 */
+  font-weight: bold;
+  /* 字体加粗 */
+  color: #2e34b1d5;
+  /* 黑色文字 */
+  z-index: 9999;
+  /* 设置更高的 z-index 值 */
+  background-color: white;
+  /* 按钮背景色 */
+  background-image: url(https://pic.imgdb.cn/item/65bf32e9871b83018ad0004f.jpg);
+  /* 按钮背景图片 */
+  background-size: cover;
+  /* 调整图片大小 */
+  background-position: center;
+  /* 调整图片位置 */
+}
+
+.but-sidebar:hover {
+  background-color: #f0f0f0;
+  /* 鼠标悬停时的背景颜色 */
+  box-shadow: 0 0 20px #888888;
+  /* 修改灰色阴影 */
+  transform: scale(1.1);
+  /* 添加缩放效果 */
+  color: #121cdcd5;
+  /* 黑色文字 */
+}
+
+.but-close {
+  background-color: gray;
+  /* 设置按钮背景颜色为灰色 */
+  color: white;
+  /* 设置按钮文字颜色为白色 */
+  border: none;
+  /* 去掉按钮边框 */
+  border-radius: 50%;
+  /* 设置按钮边框为圆形 */
+  width: 40px;
+  /* 设置按钮宽度为 40 像素 */
+  height: 40px;
+  /* 设置按钮高度为 40 像素 */
+  font-size: 20px;
+  /* 设置按钮文字大小为 20 像素 */
+}
+
+.rainbow-text-style {
+  background: linear-gradient(to right, red, orange, blue, indigo, violet);
+  -webkit-background-clip: text;
+  color: transparent;
+  display: flex;
 }
