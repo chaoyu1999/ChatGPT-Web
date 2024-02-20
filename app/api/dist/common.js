@@ -178,6 +178,7 @@ function requestOpenai(req) {
                         }
                         // 联网版
                         if (((_f = jsonBody === null || jsonBody === void 0 ? void 0 : jsonBody.model) !== null && _f !== void 0 ? _f : "").includes("联网版")) {
+                            fetchUrl = BING_URL + "/" + openaiPath;
                             jsonBody.model = "Balanced-g4t";
                             fetchOptions.body = JSON.stringify(jsonBody);
                             console.log("[Model]:", "Use 联网版 model!");

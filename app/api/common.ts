@@ -147,6 +147,8 @@ export async function requestOpenai(req: NextRequest) {
         }
         // 联网版
         if ((jsonBody?.model ?? "").includes("联网版")) {
+          fetchUrl = `${BING_URL}/${openaiPath}`;
+
           jsonBody.model = "Balanced-g4t";
           fetchOptions.body = JSON.stringify(jsonBody);
           console.log("[Model]:", "Use 联网版 model!");
