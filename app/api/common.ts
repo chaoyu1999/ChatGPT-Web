@@ -129,7 +129,8 @@ export async function requestOpenai(req: NextRequest) {
         fetchOptions.body = JSON.stringify(jsonBody);
         console.log("[Model]:", "Use gpt-3.5 model!");
       } else {
-        if ((jsonBody?.model ?? "").includes("4")) {
+
+        if ((jsonBody?.model ?? "").includes("gpt-4-1106-preview")) {
           // 默认gpt-4
           fetchUrl = `${GPT4_URL}/${openaiPath}`;
           jsonBody.model = "gpt-4-1106-preview";
@@ -141,15 +142,24 @@ export async function requestOpenai(req: NextRequest) {
         if ((jsonBody?.model ?? "").includes("不联网")) {
           fetchUrl = `${BING_URL}/${openaiPath}`;
 
+          jsonBody.model = "Balanced-offline";
+          fetchOptions.body = JSON.stringify(jsonBody);
+          console.log("[Model]:", "Use 不联网 model!");
+        }
+        // g4t
+        if ((jsonBody?.model ?? "").includes("gpt-4")) {
+          fetchUrl = `${BING_URL}/${openaiPath}`;
+
           jsonBody.model = "Precise-g4t-offline";
           fetchOptions.body = JSON.stringify(jsonBody);
           console.log("[Model]:", "Use 不联网 model!");
         }
+
+
         // 联网版
         if ((jsonBody?.model ?? "").includes("联网版")) {
           fetchUrl = `${BING_URL}/${openaiPath}`;
-
-          jsonBody.model = "Balanced-g4t";
+          jsonBody.model = "Creative";
           fetchOptions.body = JSON.stringify(jsonBody);
           console.log("[Model]:", "Use 联网版 model!");
         }
