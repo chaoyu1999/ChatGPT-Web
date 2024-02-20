@@ -124,16 +124,19 @@ export async function requestOpenai(req: NextRequest) {
       // 检查请求体中是否包含对 GPT-3.5 模型的请求
       if ((jsonBody?.model ?? "").includes("3.5")) {
         // 如果使用了 GPT-3.5 模型，更改模型名称为 GPT-3.5-turbo-1106
-        jsonBody.model = "moonshot-v1-32k";
+        jsonBody.model = "gpt-3.5-turbo-1106";
         // 更新 fetchOptions.body 为修改后的 jsonBody
         fetchOptions.body = JSON.stringify(jsonBody);
         console.log("[Model]:", "Use gpt-3.5 model!");
       } else {
-        // 默认gpt-4
-        fetchUrl = `${BING_URL}/${openaiPath}`;
-        jsonBody.model = "Balanced-g4t-offline";
-        fetchOptions.body = JSON.stringify(jsonBody);
-        console.log("[Model]:", "Use Other model!");
+        if ((jsonBody?.model ?? "").includes("4")) {
+          // 默认gpt-4
+          fetchUrl = `${BING_URL}/${openaiPath}`;
+          jsonBody.model = "gpt-4-1106-preview-2";
+          fetchOptions.body = JSON.stringify(jsonBody);
+          console.log("[Model]:", "Use gpt-4-1106-preview-2 model!");
+        }
+
         // 不联网版
         if ((jsonBody?.model ?? "").includes("不联网")) {
           jsonBody.model = "Precise-g4t-offline";
