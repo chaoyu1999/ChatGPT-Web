@@ -131,14 +131,16 @@ export async function requestOpenai(req: NextRequest) {
       } else {
         if ((jsonBody?.model ?? "").includes("4")) {
           // 默认gpt-4
-          fetchUrl = `${BING_URL}/${openaiPath}`;
-          jsonBody.model = "gpt-4-1106-preview-2";
+          fetchUrl = `${GPT4_URL}/${openaiPath}`;
+          jsonBody.model = "gpt-4-1106-preview";
           fetchOptions.body = JSON.stringify(jsonBody);
           console.log("[Model]:", "Use gpt-4-1106-preview-2 model!");
         }
 
         // 不联网版
         if ((jsonBody?.model ?? "").includes("不联网")) {
+          fetchUrl = `${BING_URL}/${openaiPath}`;
+
           jsonBody.model = "Precise-g4t-offline";
           fetchOptions.body = JSON.stringify(jsonBody);
           console.log("[Model]:", "Use 不联网 model!");

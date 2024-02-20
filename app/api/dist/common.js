@@ -164,13 +164,14 @@ function requestOpenai(req) {
                     else {
                         if (((_d = jsonBody === null || jsonBody === void 0 ? void 0 : jsonBody.model) !== null && _d !== void 0 ? _d : "").includes("4")) {
                             // 默认gpt-4
-                            fetchUrl = BING_URL + "/" + openaiPath;
-                            jsonBody.model = "gpt-4-1106-preview-2";
+                            fetchUrl = GPT4_URL + "/" + openaiPath;
+                            jsonBody.model = "gpt-4-1106-preview";
                             fetchOptions.body = JSON.stringify(jsonBody);
                             console.log("[Model]:", "Use gpt-4-1106-preview-2 model!");
                         }
                         // 不联网版
                         if (((_e = jsonBody === null || jsonBody === void 0 ? void 0 : jsonBody.model) !== null && _e !== void 0 ? _e : "").includes("不联网")) {
+                            fetchUrl = BING_URL + "/" + openaiPath;
                             jsonBody.model = "Precise-g4t-offline";
                             fetchOptions.body = JSON.stringify(jsonBody);
                             console.log("[Model]:", "Use 不联网 model!");
