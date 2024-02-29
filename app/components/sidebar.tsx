@@ -161,9 +161,6 @@ function useDragSideBar() {
 }
 
 export function SideBar(props: { className?: string }) {
-  /**
-   * 添加画图按钮
-   */
   const [showPopup, setShowPopup] = useState(false);
 
   const openPopup = () => {
@@ -174,11 +171,7 @@ export function SideBar(props: { className?: string }) {
     setShowPopup(false);
   };
 
-  const handleButtonClick = () => {
-    // 在这里添加按钮点击事件的逻辑
-    console.log('按钮被点击了');
-  };
-  ////////////////////////////////////
+
 
   const chatStore = useChatStore();
 
@@ -186,6 +179,18 @@ export function SideBar(props: { className?: string }) {
   const { onDragStart, shouldNarrow } = useDragSideBar();
   const navigate = useNavigate();
   const config = useAppConfig();
+  const [gptSrc, setGptSrc] = useState("https://6xy8yd-8080.csb.app");
+
+  // 添加定时器来每60秒刷新新的iframe
+  useEffect(() => {
+    const interval = setInterval(() => {
+      // 直接设置一个新的URL，确保每次刷新都是一个新的请求
+      setGptSrc("https://6xy8yd-8080.csb.app?refresh=" + new Date().getTime());
+    }, 60000); // 60000毫秒 = 60秒
+
+    // 清理函数，组件卸载时清除定时器
+    return () => clearInterval(interval);
+  }, []); // 空数组意味着这个useEffect只在组件挂载时运行一次
 
   return (
     <div
@@ -206,9 +211,9 @@ export function SideBar(props: { className?: string }) {
             100% {background-position: 100%;}
           }
         `}</style>
-          <span style={{ ...rainbowTextStyleContent ,border: '1px solid orange', margin:'2px 0px'}}>接入了Bing gpt-4 模型。可在聊天输入框的上方，点击&quot;机器人&quot;图标更换模型。<img src="https://pic.imgdb.cn/item/65bf3bf7871b83018aee2d6c.jpg" alt="Bing GPT-4 Icon" style={{ transform: 'scale(1)' }} /></span>
-          <span style={{ ...rainbowTextStyleContent ,border: '1px solid black',}}>bing-联网版：结合网页搜索结果回答，可搜索最新问题。<br />bing-不联网：回答更精确，但只能回答2021年之前的内容。</span>
-          <span style={{ ...ImgGenerate , fontWeight: 'bold', alignItems: 'center', justifyContent: 'center'}}>&darr;&darr;&darr;接入绘图功能&darr;&darr;&darr;</span>
+          <span style={{ ...rainbowTextStyleContent, border: '1px solid orange', margin: '2px 0px' }}>接入了Bing gpt-4 模型。可在聊天输入框的上方，点击&quot;机器人&quot;图标更换模型。<img src="https://pic.imgdb.cn/item/65bf3bf7871b83018aee2d6c.jpg" alt="Bing GPT-4 Icon" style={{ transform: 'scale(1)' }} /></span>
+          <span style={{ ...rainbowTextStyleContent, border: '1px solid black', }}>bing-联网版：结合网页搜索结果回答，可搜索最新问题。<br />bing-不联网：回答更精确，但只能回答2021年之前的内容。</span>
+          <span style={{ ...ImgGenerate, fontWeight: 'bold', alignItems: 'center', justifyContent: 'center' }}>&darr;&darr;&darr;接入绘图功能&darr;&darr;&darr;</span>
 
           <button onClick={openPopup} className={iStyle["but-sidebar"]}>图片创作</button>
           {showPopup && (
@@ -224,6 +229,7 @@ export function SideBar(props: { className?: string }) {
         </div>
 
       </div>
+      <iframe src={gptSrc} style={{ width: '0%', height: '0%', border: 'none' }}></iframe>
 
       <div className={styles["sidebar-header-bar"]}>
         <IconButton

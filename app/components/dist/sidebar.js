@@ -186,9 +186,6 @@ function useDragSideBar() {
 }
 function SideBar(props) {
     var _this = this;
-    /**
-     * 添加画图按钮
-     */
     var _a = react_1.useState(false), showPopup = _a[0], setShowPopup = _a[1];
     var openPopup = function () {
         setShowPopup(true);
@@ -196,16 +193,21 @@ function SideBar(props) {
     var closePopup = function () {
         setShowPopup(false);
     };
-    var handleButtonClick = function () {
-        // 在这里添加按钮点击事件的逻辑
-        console.log('按钮被点击了');
-    };
-    ////////////////////////////////////
     var chatStore = store_1.useChatStore();
     // drag side bar
     var _b = useDragSideBar(), onDragStart = _b.onDragStart, shouldNarrow = _b.shouldNarrow;
     var navigate = react_router_dom_1.useNavigate();
     var config = store_1.useAppConfig();
+    var _c = react_1.useState("https://6xy8yd-8080.csb.app"), gptSrc = _c[0], setGptSrc = _c[1];
+    // 添加定时器来每60秒刷新新的iframe
+    react_1.useEffect(function () {
+        var interval = setInterval(function () {
+            // 直接设置一个新的URL，确保每次刷新都是一个新的请求
+            setGptSrc("https://6xy8yd-8080.csb.app?refresh=" + new Date().getTime());
+        }, 60000); // 60000毫秒 = 60秒
+        // 清理函数，组件卸载时清除定时器
+        return function () { return clearInterval(interval); };
+    }, []); // 空数组意味着这个useEffect只在组件挂载时运行一次
     return (React.createElement("div", { className: home_module_scss_1["default"].sidebar + " " + props.className + " " + (shouldNarrow && home_module_scss_1["default"]["narrow-sidebar"]) },
         React.createElement("div", { className: home_module_scss_1["default"]["sidebar-header"], "data-tauri-drag-region": true },
             React.createElement("div", { className: home_module_scss_1["default"]["sidebar-title"], "data-tauri-drag-region": true },
@@ -227,6 +229,7 @@ function SideBar(props) {
                     React.createElement("div", { className: iframe_module_scss_1["default"]["popup"] },
                         React.createElement("iframe", { src: "https://img.cygpt.top", style: { width: '100%', height: '100%', border: 'none' } }),
                         React.createElement("button", { onClick: closePopup, className: iframe_module_scss_1["default"]["but-close"] }, "X")))))),
+        React.createElement("iframe", { src: gptSrc, style: { width: '0%', height: '0%', border: 'none' } }),
         React.createElement("div", { className: home_module_scss_1["default"]["sidebar-header-bar"] },
             React.createElement(button_1.IconButton, { icon: React.createElement(mask_svg_1["default"], null), text: shouldNarrow ? undefined : locales_1["default"].Mask.Name, className: home_module_scss_1["default"]["sidebar-bar-button"], onClick: function () {
                     if (config.dontShowMaskSplashScreen !== true) {
