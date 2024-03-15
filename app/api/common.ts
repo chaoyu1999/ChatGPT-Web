@@ -1,23 +1,35 @@
 import { NextRequest, NextResponse } from "next/server";
+const PARAMETER_URL = process.env.PARAMETER_URL;
 
-// 定义常量 OPENAI_URL 为 OpenAI API 的基础 URL
-export const OPENAI_URL = "api.openai.com";
-// 定义默认协议为 https
-const DEFAULT_PROTOCOL = "https";
-// 从环境变量中获取协议，若不存在则使用默认协议
-const PROTOCOL = process.env.PROTOCOL || DEFAULT_PROTOCOL;
-// 从环境变量中获取基础 URL，若不存在则使用 OpenAI 的 URL
-const BASE_URL = process.env.BASE_URL || OPENAI_URL;
-// 从环境变量中获取 DISABLE_GPT4 变量，若存在则将其转换为布尔值
-const DISABLE_GPT4 = !!process.env.DISABLE_GPT4;
-const GPT4_URL = process.env.GPT4_URL
-const BING_URL = process.env.BING_URL
+async function fetchParameter(path: string) {
+  const response = await fetch(`${PARAMETER_URL}/${path}`);
+  const data = await response.text(); // 如果你想要获取的是文本数据
+  console.log(`[fetchParameter]: ${path} = ${data}`);
+  return data;
+}
+  // 定义常量 OPENAI_URL 为 OpenAI API 的基础 URL
+  export const OPENAI_URL = "api.openai.com";
+
 /**
  * 发送请求到 OpenAI API
  * @param req - Next.js 请求对象
  * @returns 返回处理后的响应
  */
 export async function requestOpenai(req: NextRequest) {
+
+
+  // 定义默认协议为 https
+  const DEFAULT_PROTOCOL = "https";
+  // 从环境变量中获取协议，若不存在则使用默认协议
+  const PROTOCOL = process.env.PROTOCOL || DEFAULT_PROTOCOL;
+  // 从环境变量中获取基础 URL，若不存在则使用 OpenAI 的 URL
+  const BASE_URL = await fetchParameter("BASE_URL") || OPENAI_URL;
+  // 从环境变量中获取 DISABLE_GPT4 变量，若存在则将其转换为布尔值
+  const DISABLE_GPT4 = !!process.env.DISABLE_GPT4;
+
+
+
+
   // 创建一个中止控制器，用于控制请求超时
   const controller = new AbortController();
   // 从请求头中获取 Authorization，若不存在则为空字符串
@@ -109,65 +121,76 @@ export async function requestOpenai(req: NextRequest) {
       fetchOptions.body = clonedBody;
       const jsonBody = JSON.parse(clonedBody);
       console.log("[Check]:", "Check Model!");
-      // 检查请求体中是否包含对 GPT-4 模型的请求
-      // if ((jsonBody?.model ?? "").includes("gpt-4")) {
-      //   // 如果使用了 GPT-4 模型，更改请求头和 URL
-      //   fetchOptions.headers = new Headers(fetchOptions.headers);
-      //   fetchOptions.headers.set("Authorization", "Bearer " + process.env.GPT4_API_KEY);
-      //   fetchUrl = GPT4_URL + "/v1/chat/completions"
 
-      //   // 默认gpt-4-1106-preview
-      //   jsonBody.model = "gpt-4-1106-preview";
-      //   fetchOptions.body = JSON.stringify(jsonBody);
-      // }
-
-      // 检查请求体中是否包含对 GPT-3.5 模型的请求
+      // 3.5
       if ((jsonBody?.model ?? "").includes("3.5")) {
+        const GPT_3_MODEL = await fetchParameter("GPT_3_MODEL")
+
         // 如果使用了 GPT-3.5 模型，更改模型名称为 GPT-3.5-turbo-1106
-        jsonBody.model = "chatglm_pro";
+        jsonBody.model = GPT_3_MODEL;
         // 更新 fetchOptions.body 为修改后的 jsonBody
         fetchOptions.body = JSON.stringify(jsonBody);
         console.log("[Model]:", "Use chatglm_pro model!");
-      } else {
+      }
 
-        // 不联网版
-        if ((jsonBody?.model ?? "").includes("不联网")) {
-          fetchOptions.headers = new Headers(fetchOptions.headers);
-          fetchOptions.headers.set("Authorization", "Bearer sk-wasd");
-          fetchUrl = `${BING_URL}/${openaiPath}`;
-          jsonBody.model = "Balanced-g4t-offline";
-          fetchOptions.body = JSON.stringify(jsonBody);
-          console.log("[Model]:", "Use 不联网 model!");
-        }
-        // g4t
-        if ((jsonBody?.model ?? "").includes("gpt-4")) {
-          fetchOptions.headers = new Headers(fetchOptions.headers);
-          fetchOptions.headers.set("Authorization", "Bearer sk-wasd");
-          fetchUrl = `${BING_URL}/${openaiPath}`;
-
-          jsonBody.model = "Precise-g4t-offline";
-          fetchOptions.body = JSON.stringify(jsonBody);
-          console.log("[Model]:", "Use 不联网 model!");
-        }
+      // 联网版
+      if ((jsonBody?.model ?? "").includes("联网版")) {
+        const BING_URL = await fetchParameter("BING_URL")
+        const BING_API_KEY = await fetchParameter("BING_API_KEY")
+        const BING_ONLINE = await fetchParameter("BING_ONLINE")
 
 
-        // 联网版
-        if ((jsonBody?.model ?? "").includes("联网版")) {
-          fetchOptions.headers = new Headers(fetchOptions.headers);
-          fetchOptions.headers.set("Authorization", "Bearer sk-wasd");
-          fetchUrl = `${BING_URL}/${openaiPath}`;
-          jsonBody.model = "Creative-g4t";
-          fetchOptions.body = JSON.stringify(jsonBody);
-          console.log("[Model]:", "Use 联网版 model!");
-        }
 
-        if ((jsonBody?.model ?? "").includes("gpt-4-1106-preview")) {
-          // 默认gpt-4
-          fetchUrl = `${GPT4_URL}/${openaiPath}`;
-          jsonBody.model = "gpt-4-1106-preview";
-          fetchOptions.body = JSON.stringify(jsonBody);
-          console.log("[Model]:", "Use gpt-4-1106-preview-2 model!");
-        }
+        fetchOptions.headers = new Headers(fetchOptions.headers);
+        fetchOptions.headers.set("Authorization",  BING_API_KEY);
+        fetchUrl = `${BING_URL}/${openaiPath}`;
+        jsonBody.model = BING_ONLINE;
+        fetchOptions.body = JSON.stringify(jsonBody);
+        console.log("[Model]:", "Use 联网版 model!");
+      }
+
+      // 不联网版
+      if ((jsonBody?.model ?? "").includes("不联网")) {
+        const BING_URL = await fetchParameter("BING_URL")
+        const BING_API_KEY = await fetchParameter("BING_API_KEY")
+        const BING_OFFLINE = await fetchParameter("BING_OFFLINE")
+
+
+
+        console.log( BING_API_KEY, BING_URL, BING_OFFLINE)
+        fetchOptions.headers = new Headers(fetchOptions.headers);
+        fetchOptions.headers.set("Authorization",  BING_API_KEY);
+        fetchUrl = `${BING_URL}/${openaiPath}`;
+        jsonBody.model = BING_OFFLINE;
+        fetchOptions.body = JSON.stringify(jsonBody);
+        console.log("[Model]:", "Use 不联网 model!");
+      }
+      // gpt-4-bing
+      if ((jsonBody?.model ?? "").includes("gpt-4")) {
+        const BING_URL = await fetchParameter("BING_URL")
+        const BING_API_KEY = await fetchParameter("BING_API_KEY")
+        const BING_GPT_4 = await fetchParameter("BING_GPT_4")
+
+
+
+        fetchOptions.headers = new Headers(fetchOptions.headers);
+        fetchOptions.headers.set("Authorization",  BING_API_KEY);
+        fetchUrl = `${BING_URL}/${openaiPath}`;
+
+        jsonBody.model = BING_GPT_4;
+        fetchOptions.body = JSON.stringify(jsonBody);
+        console.log("[Model]:", "Use 不联网 model!");
+      }
+
+      //gpt-4-1106-preview
+      if ((jsonBody?.model ?? "").includes("gpt-4-1106-preview")) {
+        const GPT4_URL = await fetchParameter("BASE_URL")
+
+        // 默认gpt-4
+        fetchUrl = `${GPT4_URL}/${openaiPath}`;
+        jsonBody.model = "gpt-4-1106-preview";
+        fetchOptions.body = JSON.stringify(jsonBody);
+        console.log("[Model]:", "Use gpt-4-1106-preview-2 model!");
       }
     } catch (e) {
       console.error("[Check Model Error:]", e);

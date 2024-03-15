@@ -49,18 +49,26 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 exports.__esModule = true;
 exports.requestOpenai = exports.OPENAI_URL = void 0;
 var server_1 = require("next/server");
+var PARAMETER_URL = process.env.PARAMETER_URL;
+function fetchParameter(path) {
+    return __awaiter(this, void 0, void 0, function () {
+        var response, data;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, fetch(PARAMETER_URL + "/" + path)];
+                case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.text()];
+                case 2:
+                    data = _a.sent();
+                    console.log("[fetchParameter]: " + path + " = " + data);
+                    return [2 /*return*/, data];
+            }
+        });
+    });
+}
 // 定义常量 OPENAI_URL 为 OpenAI API 的基础 URL
 exports.OPENAI_URL = "api.openai.com";
-// 定义默认协议为 https
-var DEFAULT_PROTOCOL = "https";
-// 从环境变量中获取协议，若不存在则使用默认协议
-var PROTOCOL = process.env.PROTOCOL || DEFAULT_PROTOCOL;
-// 从环境变量中获取基础 URL，若不存在则使用 OpenAI 的 URL
-var BASE_URL = process.env.BASE_URL || exports.OPENAI_URL;
-// 从环境变量中获取 DISABLE_GPT4 变量，若存在则将其转换为布尔值
-var DISABLE_GPT4 = !!process.env.DISABLE_GPT4;
-var GPT4_URL = process.env.GPT4_URL;
-var BING_URL = process.env.BING_URL;
 /**
  * 发送请求到 OpenAI API
  * @param req - Next.js 请求对象
@@ -69,10 +77,16 @@ var BING_URL = process.env.BING_URL;
 function requestOpenai(req) {
     var _a, _b, _c, _d, _e, _f, _g;
     return __awaiter(this, void 0, void 0, function () {
-        var controller, authValue, openaiPath, baseUrl, timeoutId, fetchUrl, fetchOptions, clonedBody, jsonBody, e_1, clonedBody, jsonBody, e_2, res, newHeaders;
+        var DEFAULT_PROTOCOL, PROTOCOL, BASE_URL, DISABLE_GPT4, controller, authValue, openaiPath, baseUrl, timeoutId, fetchUrl, fetchOptions, clonedBody, jsonBody, e_1, clonedBody, jsonBody, GPT_3_MODEL, BING_URL, BING_API_KEY, BING_ONLINE, BING_URL, BING_API_KEY, BING_OFFLINE, BING_URL, BING_API_KEY, BING_GPT_4, GPT4_URL, e_2, res, newHeaders;
         return __generator(this, function (_h) {
             switch (_h.label) {
                 case 0:
+                    DEFAULT_PROTOCOL = "https";
+                    PROTOCOL = process.env.PROTOCOL || DEFAULT_PROTOCOL;
+                    return [4 /*yield*/, fetchParameter("BASE_URL")];
+                case 1:
+                    BASE_URL = (_h.sent()) || exports.OPENAI_URL;
+                    DISABLE_GPT4 = !!process.env.DISABLE_GPT4;
                     controller = new AbortController();
                     authValue = (_a = req.headers.get("Authorization")) !== null && _a !== void 0 ? _a : "";
                     openaiPath = ("" + req.nextUrl.pathname + req.nextUrl.search).replaceAll("/api/openai/", "");
@@ -109,12 +123,12 @@ function requestOpenai(req) {
                         // 设置中止信号
                         signal: controller.signal
                     };
-                    if (!(DISABLE_GPT4 && req.body)) return [3 /*break*/, 4];
-                    _h.label = 1;
-                case 1:
-                    _h.trys.push([1, 3, , 4]);
-                    return [4 /*yield*/, req.text()];
+                    if (!(DISABLE_GPT4 && req.body)) return [3 /*break*/, 5];
+                    _h.label = 2;
                 case 2:
+                    _h.trys.push([2, 4, , 5]);
+                    return [4 /*yield*/, req.text()];
+                case 3:
                     clonedBody = _h.sent();
                     fetchOptions.body = clonedBody;
                     jsonBody = JSON.parse(clonedBody);
@@ -127,86 +141,112 @@ function requestOpenai(req) {
                                 status: 403
                             })];
                     }
-                    return [3 /*break*/, 4];
-                case 3:
+                    return [3 /*break*/, 5];
+                case 4:
                     e_1 = _h.sent();
                     console.error("[OpenAI] gpt4 filter", e_1);
-                    return [3 /*break*/, 4];
-                case 4:
-                    if (!req.body) return [3 /*break*/, 8];
-                    _h.label = 5;
+                    return [3 /*break*/, 5];
                 case 5:
-                    _h.trys.push([5, 7, , 8]);
-                    return [4 /*yield*/, req.text()];
+                    if (!req.body) return [3 /*break*/, 25];
+                    _h.label = 6;
                 case 6:
+                    _h.trys.push([6, 24, , 25]);
+                    return [4 /*yield*/, req.text()];
+                case 7:
                     clonedBody = _h.sent();
                     fetchOptions.body = clonedBody;
                     jsonBody = JSON.parse(clonedBody);
                     console.log("[Check]:", "Check Model!");
-                    // 检查请求体中是否包含对 GPT-4 模型的请求
-                    // if ((jsonBody?.model ?? "").includes("gpt-4")) {
-                    //   // 如果使用了 GPT-4 模型，更改请求头和 URL
-                    //   fetchOptions.headers = new Headers(fetchOptions.headers);
-                    //   fetchOptions.headers.set("Authorization", "Bearer " + process.env.GPT4_API_KEY);
-                    //   fetchUrl = GPT4_URL + "/v1/chat/completions"
-                    //   // 默认gpt-4-1106-preview
-                    //   jsonBody.model = "gpt-4-1106-preview";
-                    //   fetchOptions.body = JSON.stringify(jsonBody);
-                    // }
-                    // 检查请求体中是否包含对 GPT-3.5 模型的请求
-                    if (((_c = jsonBody === null || jsonBody === void 0 ? void 0 : jsonBody.model) !== null && _c !== void 0 ? _c : "").includes("3.5")) {
+                    if (!((_c = jsonBody === null || jsonBody === void 0 ? void 0 : jsonBody.model) !== null && _c !== void 0 ? _c : "").includes("3.5")) return [3 /*break*/, 9];
+                    return [4 /*yield*/, fetchParameter("GPT_3_MODEL")
                         // 如果使用了 GPT-3.5 模型，更改模型名称为 GPT-3.5-turbo-1106
-                        jsonBody.model = "chatglm_pro";
-                        // 更新 fetchOptions.body 为修改后的 jsonBody
-                        fetchOptions.body = JSON.stringify(jsonBody);
-                        console.log("[Model]:", "Use chatglm_pro model!");
-                    }
-                    else {
-                        // 不联网版
-                        if (((_d = jsonBody === null || jsonBody === void 0 ? void 0 : jsonBody.model) !== null && _d !== void 0 ? _d : "").includes("不联网")) {
-                            fetchOptions.headers = new Headers(fetchOptions.headers);
-                            fetchOptions.headers.set("Authorization", "Bearer sk-wasd");
-                            fetchUrl = BING_URL + "/" + openaiPath;
-                            jsonBody.model = "Balanced-g4t-offline";
-                            fetchOptions.body = JSON.stringify(jsonBody);
-                            console.log("[Model]:", "Use 不联网 model!");
-                        }
-                        // g4t
-                        if (((_e = jsonBody === null || jsonBody === void 0 ? void 0 : jsonBody.model) !== null && _e !== void 0 ? _e : "").includes("gpt-4")) {
-                            fetchOptions.headers = new Headers(fetchOptions.headers);
-                            fetchOptions.headers.set("Authorization", "Bearer sk-wasd");
-                            fetchUrl = BING_URL + "/" + openaiPath;
-                            jsonBody.model = "Precise-g4t-offline";
-                            fetchOptions.body = JSON.stringify(jsonBody);
-                            console.log("[Model]:", "Use 不联网 model!");
-                        }
-                        // 联网版
-                        if (((_f = jsonBody === null || jsonBody === void 0 ? void 0 : jsonBody.model) !== null && _f !== void 0 ? _f : "").includes("联网版")) {
-                            fetchOptions.headers = new Headers(fetchOptions.headers);
-                            fetchOptions.headers.set("Authorization", "Bearer sk-wasd");
-                            fetchUrl = BING_URL + "/" + openaiPath;
-                            jsonBody.model = "Creative-g4t";
-                            fetchOptions.body = JSON.stringify(jsonBody);
-                            console.log("[Model]:", "Use 联网版 model!");
-                        }
-                        if (((_g = jsonBody === null || jsonBody === void 0 ? void 0 : jsonBody.model) !== null && _g !== void 0 ? _g : "").includes("gpt-4-1106-preview")) {
-                            // 默认gpt-4
-                            fetchUrl = GPT4_URL + "/" + openaiPath;
-                            jsonBody.model = "gpt-4-1106-preview";
-                            fetchOptions.body = JSON.stringify(jsonBody);
-                            console.log("[Model]:", "Use gpt-4-1106-preview-2 model!");
-                        }
-                    }
-                    return [3 /*break*/, 8];
-                case 7:
+                    ];
+                case 8:
+                    GPT_3_MODEL = _h.sent();
+                    // 如果使用了 GPT-3.5 模型，更改模型名称为 GPT-3.5-turbo-1106
+                    jsonBody.model = GPT_3_MODEL;
+                    // 更新 fetchOptions.body 为修改后的 jsonBody
+                    fetchOptions.body = JSON.stringify(jsonBody);
+                    console.log("[Model]:", "Use chatglm_pro model!");
+                    _h.label = 9;
+                case 9:
+                    if (!((_d = jsonBody === null || jsonBody === void 0 ? void 0 : jsonBody.model) !== null && _d !== void 0 ? _d : "").includes("联网版")) return [3 /*break*/, 13];
+                    return [4 /*yield*/, fetchParameter("BING_URL")];
+                case 10:
+                    BING_URL = _h.sent();
+                    return [4 /*yield*/, fetchParameter("BING_API_KEY")];
+                case 11:
+                    BING_API_KEY = _h.sent();
+                    return [4 /*yield*/, fetchParameter("BING_ONLINE")];
+                case 12:
+                    BING_ONLINE = _h.sent();
+                    fetchOptions.headers = new Headers(fetchOptions.headers);
+                    fetchOptions.headers.set("Authorization", BING_API_KEY);
+                    fetchUrl = BING_URL + "/" + openaiPath;
+                    jsonBody.model = BING_ONLINE;
+                    fetchOptions.body = JSON.stringify(jsonBody);
+                    console.log("[Model]:", "Use 联网版 model!");
+                    _h.label = 13;
+                case 13:
+                    if (!((_e = jsonBody === null || jsonBody === void 0 ? void 0 : jsonBody.model) !== null && _e !== void 0 ? _e : "").includes("不联网")) return [3 /*break*/, 17];
+                    return [4 /*yield*/, fetchParameter("BING_URL")];
+                case 14:
+                    BING_URL = _h.sent();
+                    return [4 /*yield*/, fetchParameter("BING_API_KEY")];
+                case 15:
+                    BING_API_KEY = _h.sent();
+                    return [4 /*yield*/, fetchParameter("BING_OFFLINE")];
+                case 16:
+                    BING_OFFLINE = _h.sent();
+                    console.log(BING_API_KEY, BING_URL, BING_OFFLINE);
+                    fetchOptions.headers = new Headers(fetchOptions.headers);
+                    fetchOptions.headers.set("Authorization", BING_API_KEY);
+                    fetchUrl = BING_URL + "/" + openaiPath;
+                    jsonBody.model = BING_OFFLINE;
+                    fetchOptions.body = JSON.stringify(jsonBody);
+                    console.log("[Model]:", "Use 不联网 model!");
+                    _h.label = 17;
+                case 17:
+                    if (!((_f = jsonBody === null || jsonBody === void 0 ? void 0 : jsonBody.model) !== null && _f !== void 0 ? _f : "").includes("gpt-4")) return [3 /*break*/, 21];
+                    return [4 /*yield*/, fetchParameter("BING_URL")];
+                case 18:
+                    BING_URL = _h.sent();
+                    return [4 /*yield*/, fetchParameter("BING_API_KEY")];
+                case 19:
+                    BING_API_KEY = _h.sent();
+                    return [4 /*yield*/, fetchParameter("BING_GPT_4")];
+                case 20:
+                    BING_GPT_4 = _h.sent();
+                    fetchOptions.headers = new Headers(fetchOptions.headers);
+                    fetchOptions.headers.set("Authorization", BING_API_KEY);
+                    fetchUrl = BING_URL + "/" + openaiPath;
+                    jsonBody.model = BING_GPT_4;
+                    fetchOptions.body = JSON.stringify(jsonBody);
+                    console.log("[Model]:", "Use 不联网 model!");
+                    _h.label = 21;
+                case 21:
+                    if (!((_g = jsonBody === null || jsonBody === void 0 ? void 0 : jsonBody.model) !== null && _g !== void 0 ? _g : "").includes("gpt-4-1106-preview")) return [3 /*break*/, 23];
+                    return [4 /*yield*/, fetchParameter("BASE_URL")
+                        // 默认gpt-4
+                    ];
+                case 22:
+                    GPT4_URL = _h.sent();
+                    // 默认gpt-4
+                    fetchUrl = GPT4_URL + "/" + openaiPath;
+                    jsonBody.model = "gpt-4-1106-preview";
+                    fetchOptions.body = JSON.stringify(jsonBody);
+                    console.log("[Model]:", "Use gpt-4-1106-preview-2 model!");
+                    _h.label = 23;
+                case 23: return [3 /*break*/, 25];
+                case 24:
                     e_2 = _h.sent();
                     console.error("[Check Model Error:]", e_2);
-                    return [3 /*break*/, 8];
-                case 8:
-                    _h.trys.push([8, , 10, 11]);
+                    return [3 /*break*/, 25];
+                case 25:
+                    _h.trys.push([25, , 27, 28]);
                     console.log("[fetchUrl]:", fetchUrl);
                     return [4 /*yield*/, fetch(fetchUrl, fetchOptions)];
-                case 9:
+                case 26:
                     res = _h.sent();
                     newHeaders = new Headers(res.headers);
                     newHeaders["delete"]("www-authenticate");
@@ -218,11 +258,11 @@ function requestOpenai(req) {
                             statusText: res.statusText,
                             headers: newHeaders
                         })];
-                case 10:
+                case 27:
                     // 清除超时定时器
                     clearTimeout(timeoutId);
                     return [7 /*endfinally*/];
-                case 11: return [2 /*return*/];
+                case 28: return [2 /*return*/];
             }
         });
     });
