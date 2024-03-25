@@ -125,7 +125,10 @@ export async function requestOpenai(req: NextRequest) {
       // 3.5
       if ((jsonBody?.model ?? "").includes("3.5")) {
         const GPT_3_MODEL = await fetchParameter("GPT_3_MODEL")
+        const OPENAI_API_KEY = await fetchParameter("OPENAI_API_KEY")
 
+        fetchOptions.headers = new Headers(fetchOptions.headers);
+        fetchOptions.headers.set("Authorization",  OPENAI_API_KEY);
         // 如果使用了 GPT-3.5 模型，更改模型名称为 GPT-3.5-turbo-1106
         jsonBody.model = GPT_3_MODEL;
         // 更新 fetchOptions.body 为修改后的 jsonBody
@@ -157,7 +160,6 @@ export async function requestOpenai(req: NextRequest) {
 
 
 
-        console.log( BING_API_KEY, BING_URL, BING_OFFLINE)
         fetchOptions.headers = new Headers(fetchOptions.headers);
         fetchOptions.headers.set("Authorization",  BING_API_KEY);
         fetchUrl = `${BING_URL}/${openaiPath}`;

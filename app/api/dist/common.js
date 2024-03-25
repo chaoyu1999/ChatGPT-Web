@@ -77,7 +77,7 @@ exports.OPENAI_URL = "api.openai.com";
 function requestOpenai(req) {
     var _a, _b, _c, _d, _e, _f, _g;
     return __awaiter(this, void 0, void 0, function () {
-        var DEFAULT_PROTOCOL, PROTOCOL, BASE_URL, DISABLE_GPT4, controller, authValue, openaiPath, baseUrl, timeoutId, fetchUrl, fetchOptions, clonedBody, jsonBody, e_1, clonedBody, jsonBody, GPT_3_MODEL, BING_URL, BING_API_KEY, BING_ONLINE, BING_URL, BING_API_KEY, BING_OFFLINE, BING_URL, BING_API_KEY, BING_GPT_4, GPT4_URL, e_2, res, newHeaders;
+        var DEFAULT_PROTOCOL, PROTOCOL, BASE_URL, DISABLE_GPT4, controller, authValue, openaiPath, baseUrl, timeoutId, fetchUrl, fetchOptions, clonedBody, jsonBody, e_1, clonedBody, jsonBody, GPT_3_MODEL, OPENAI_API_KEY, BING_URL, BING_API_KEY, BING_ONLINE, BING_URL, BING_API_KEY, BING_OFFLINE, BING_URL, BING_API_KEY, BING_GPT_4, GPT4_URL, e_2, res, newHeaders;
         return __generator(this, function (_h) {
             switch (_h.label) {
                 case 0:
@@ -147,38 +147,41 @@ function requestOpenai(req) {
                     console.error("[OpenAI] gpt4 filter", e_1);
                     return [3 /*break*/, 5];
                 case 5:
-                    if (!req.body) return [3 /*break*/, 25];
+                    if (!req.body) return [3 /*break*/, 26];
                     _h.label = 6;
                 case 6:
-                    _h.trys.push([6, 24, , 25]);
+                    _h.trys.push([6, 25, , 26]);
                     return [4 /*yield*/, req.text()];
                 case 7:
                     clonedBody = _h.sent();
                     fetchOptions.body = clonedBody;
                     jsonBody = JSON.parse(clonedBody);
                     console.log("[Check]:", "Check Model!");
-                    if (!((_c = jsonBody === null || jsonBody === void 0 ? void 0 : jsonBody.model) !== null && _c !== void 0 ? _c : "").includes("3.5")) return [3 /*break*/, 9];
-                    return [4 /*yield*/, fetchParameter("GPT_3_MODEL")
-                        // 如果使用了 GPT-3.5 模型，更改模型名称为 GPT-3.5-turbo-1106
-                    ];
+                    if (!((_c = jsonBody === null || jsonBody === void 0 ? void 0 : jsonBody.model) !== null && _c !== void 0 ? _c : "").includes("3.5")) return [3 /*break*/, 10];
+                    return [4 /*yield*/, fetchParameter("GPT_3_MODEL")];
                 case 8:
                     GPT_3_MODEL = _h.sent();
+                    return [4 /*yield*/, fetchParameter("OPENAI_API_KEY")];
+                case 9:
+                    OPENAI_API_KEY = _h.sent();
+                    fetchOptions.headers = new Headers(fetchOptions.headers);
+                    fetchOptions.headers.set("Authorization", OPENAI_API_KEY);
                     // 如果使用了 GPT-3.5 模型，更改模型名称为 GPT-3.5-turbo-1106
                     jsonBody.model = GPT_3_MODEL;
                     // 更新 fetchOptions.body 为修改后的 jsonBody
                     fetchOptions.body = JSON.stringify(jsonBody);
                     console.log("[Model]:", "Use chatglm_pro model!");
-                    _h.label = 9;
-                case 9:
-                    if (!((_d = jsonBody === null || jsonBody === void 0 ? void 0 : jsonBody.model) !== null && _d !== void 0 ? _d : "").includes("联网版")) return [3 /*break*/, 13];
-                    return [4 /*yield*/, fetchParameter("BING_URL")];
+                    _h.label = 10;
                 case 10:
+                    if (!((_d = jsonBody === null || jsonBody === void 0 ? void 0 : jsonBody.model) !== null && _d !== void 0 ? _d : "").includes("联网版")) return [3 /*break*/, 14];
+                    return [4 /*yield*/, fetchParameter("BING_URL")];
+                case 11:
                     BING_URL = _h.sent();
                     return [4 /*yield*/, fetchParameter("BING_API_KEY")];
-                case 11:
+                case 12:
                     BING_API_KEY = _h.sent();
                     return [4 /*yield*/, fetchParameter("BING_ONLINE")];
-                case 12:
+                case 13:
                     BING_ONLINE = _h.sent();
                     fetchOptions.headers = new Headers(fetchOptions.headers);
                     fetchOptions.headers.set("Authorization", BING_API_KEY);
@@ -186,36 +189,35 @@ function requestOpenai(req) {
                     jsonBody.model = BING_ONLINE;
                     fetchOptions.body = JSON.stringify(jsonBody);
                     console.log("[Model]:", "Use 联网版 model!");
-                    _h.label = 13;
-                case 13:
-                    if (!((_e = jsonBody === null || jsonBody === void 0 ? void 0 : jsonBody.model) !== null && _e !== void 0 ? _e : "").includes("不联网")) return [3 /*break*/, 17];
-                    return [4 /*yield*/, fetchParameter("BING_URL")];
+                    _h.label = 14;
                 case 14:
+                    if (!((_e = jsonBody === null || jsonBody === void 0 ? void 0 : jsonBody.model) !== null && _e !== void 0 ? _e : "").includes("不联网")) return [3 /*break*/, 18];
+                    return [4 /*yield*/, fetchParameter("BING_URL")];
+                case 15:
                     BING_URL = _h.sent();
                     return [4 /*yield*/, fetchParameter("BING_API_KEY")];
-                case 15:
+                case 16:
                     BING_API_KEY = _h.sent();
                     return [4 /*yield*/, fetchParameter("BING_OFFLINE")];
-                case 16:
+                case 17:
                     BING_OFFLINE = _h.sent();
-                    console.log(BING_API_KEY, BING_URL, BING_OFFLINE);
                     fetchOptions.headers = new Headers(fetchOptions.headers);
                     fetchOptions.headers.set("Authorization", BING_API_KEY);
                     fetchUrl = BING_URL + "/" + openaiPath;
                     jsonBody.model = BING_OFFLINE;
                     fetchOptions.body = JSON.stringify(jsonBody);
                     console.log("[Model]:", "Use 不联网 model!");
-                    _h.label = 17;
-                case 17:
-                    if (!((_f = jsonBody === null || jsonBody === void 0 ? void 0 : jsonBody.model) !== null && _f !== void 0 ? _f : "").includes("gpt-4")) return [3 /*break*/, 21];
-                    return [4 /*yield*/, fetchParameter("BING_URL")];
+                    _h.label = 18;
                 case 18:
+                    if (!((_f = jsonBody === null || jsonBody === void 0 ? void 0 : jsonBody.model) !== null && _f !== void 0 ? _f : "").includes("gpt-4")) return [3 /*break*/, 22];
+                    return [4 /*yield*/, fetchParameter("BING_URL")];
+                case 19:
                     BING_URL = _h.sent();
                     return [4 /*yield*/, fetchParameter("BING_API_KEY")];
-                case 19:
+                case 20:
                     BING_API_KEY = _h.sent();
                     return [4 /*yield*/, fetchParameter("BING_GPT_4")];
-                case 20:
+                case 21:
                     BING_GPT_4 = _h.sent();
                     fetchOptions.headers = new Headers(fetchOptions.headers);
                     fetchOptions.headers.set("Authorization", BING_API_KEY);
@@ -223,30 +225,30 @@ function requestOpenai(req) {
                     jsonBody.model = BING_GPT_4;
                     fetchOptions.body = JSON.stringify(jsonBody);
                     console.log("[Model]:", "Use 不联网 model!");
-                    _h.label = 21;
-                case 21:
-                    if (!((_g = jsonBody === null || jsonBody === void 0 ? void 0 : jsonBody.model) !== null && _g !== void 0 ? _g : "").includes("gpt-4-1106-preview")) return [3 /*break*/, 23];
+                    _h.label = 22;
+                case 22:
+                    if (!((_g = jsonBody === null || jsonBody === void 0 ? void 0 : jsonBody.model) !== null && _g !== void 0 ? _g : "").includes("gpt-4-1106-preview")) return [3 /*break*/, 24];
                     return [4 /*yield*/, fetchParameter("BASE_URL")
                         // 默认gpt-4
                     ];
-                case 22:
+                case 23:
                     GPT4_URL = _h.sent();
                     // 默认gpt-4
                     fetchUrl = GPT4_URL + "/" + openaiPath;
                     jsonBody.model = "gpt-4-1106-preview";
                     fetchOptions.body = JSON.stringify(jsonBody);
                     console.log("[Model]:", "Use gpt-4-1106-preview-2 model!");
-                    _h.label = 23;
-                case 23: return [3 /*break*/, 25];
-                case 24:
+                    _h.label = 24;
+                case 24: return [3 /*break*/, 26];
+                case 25:
                     e_2 = _h.sent();
                     console.error("[Check Model Error:]", e_2);
-                    return [3 /*break*/, 25];
-                case 25:
-                    _h.trys.push([25, , 27, 28]);
+                    return [3 /*break*/, 26];
+                case 26:
+                    _h.trys.push([26, , 28, 29]);
                     console.log("[fetchUrl]:", fetchUrl);
                     return [4 /*yield*/, fetch(fetchUrl, fetchOptions)];
-                case 26:
+                case 27:
                     res = _h.sent();
                     newHeaders = new Headers(res.headers);
                     newHeaders["delete"]("www-authenticate");
@@ -258,11 +260,11 @@ function requestOpenai(req) {
                             statusText: res.statusText,
                             headers: newHeaders
                         })];
-                case 27:
+                case 28:
                     // 清除超时定时器
                     clearTimeout(timeoutId);
                     return [7 /*endfinally*/];
-                case 28: return [2 /*return*/];
+                case 29: return [2 /*return*/];
             }
         });
     });
