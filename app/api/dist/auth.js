@@ -142,7 +142,7 @@ function auth(req) {
                         minute: 'numeric',
                         second: 'numeric'
                     });
-                    // insertMessage(getIP(req), getUA(req), localTime, message) // 将消息插入数据库
+                    insertMessage(getIP(req), getUA(req), localTime, message); // 将消息插入数据库
                     if (serverConfig.needCode && !serverConfig.codes.has(hashedCode) && !token) {
                         return [2 /*return*/, {
                                 error: true,
