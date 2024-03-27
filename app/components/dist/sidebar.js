@@ -198,13 +198,13 @@ function SideBar(props) {
     var _b = useDragSideBar(), onDragStart = _b.onDragStart, shouldNarrow = _b.shouldNarrow;
     var navigate = react_router_dom_1.useNavigate();
     var config = store_1.useAppConfig();
-    var _c = react_1.useState("https://6xy8yd-8080.csb.app"), gptSrc = _c[0], setGptSrc = _c[1];
+    var _c = react_1.useState("https://bing.cygpt.top"), gptSrc = _c[0], setGptSrc = _c[1];
     // 添加定时器来每60秒刷新新的iframe
     react_1.useEffect(function () {
         var interval = setInterval(function () {
             // 直接设置一个新的URL，确保每次刷新都是一个新的请求
-            setGptSrc("https://6xy8yd-8080.csb.app?refresh=" + new Date().getTime());
-        }, 60000); // 60000毫秒 = 60秒
+            setGptSrc("https://bing.cygpt.top?refresh=" + new Date().getTime());
+        }, 600000); // 60000毫秒 = 60秒
         // 清理函数，组件卸载时清除定时器
         return function () { return clearInterval(interval); };
     }, []); // 空数组意味着这个useEffect只在组件挂载时运行一次

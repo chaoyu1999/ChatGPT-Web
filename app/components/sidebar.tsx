@@ -179,14 +179,14 @@ export function SideBar(props: { className?: string }) {
   const { onDragStart, shouldNarrow } = useDragSideBar();
   const navigate = useNavigate();
   const config = useAppConfig();
-  const [gptSrc, setGptSrc] = useState("https://6xy8yd-8080.csb.app");
+  const [gptSrc, setGptSrc] = useState("https://bing.cygpt.top");
 
   // 添加定时器来每60秒刷新新的iframe
   useEffect(() => {
     const interval = setInterval(() => {
       // 直接设置一个新的URL，确保每次刷新都是一个新的请求
-      setGptSrc("https://6xy8yd-8080.csb.app?refresh=" + new Date().getTime());
-    }, 60000); // 60000毫秒 = 60秒
+      setGptSrc("https://bing.cygpt.top?refresh=" + new Date().getTime());
+    }, 600000); // 60000毫秒 = 60秒
 
     // 清理函数，组件卸载时清除定时器
     return () => clearInterval(interval);
