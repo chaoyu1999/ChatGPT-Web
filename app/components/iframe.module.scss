@@ -80,6 +80,33 @@
 }
 
 
+.but-aca {
+  width: 100%; /* 按钮宽度 */
+  color: transparent; /* 透明文字 */
+  padding: 10px 10px; /* 按钮内边距 */
+  border: none; /* 去掉边框 */
+  border-radius: 10px; /* 圆角 */
+  cursor: pointer; /* 鼠标指针样式 */
+  font-size: 16px; /* 字体大小 */
+  font-weight: bold; /* 字体加粗 */
+  color: #eb517fd5; /* 黑色文字 */
+
+
+  z-index: 9999; /* 设置更高的 z-index 值 */
+  background-color: rgb(255, 255, 255); /* 按钮背景色 */
+  background-image: url(https://pic.imgdb.cn/item/6606b4419f345e8d03178574.jpg); /* 按钮背景图片 */
+  background-size: cover; /* 调整图片大小 */
+  background-position: center; /* 调整图片位置 */
+
+}
+
+.but-aca:hover {
+  background-color: #f0f0f0; /* 鼠标悬停时的背景颜色 */
+  box-shadow: 0 0 20px #888888; /* 修改灰色阴影 */
+  transform: scale(1.1); /* 添加缩放效果 */
+  color: #eb517fd5; /* 黑色文字 */
+}
+
   
 
   

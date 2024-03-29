@@ -225,9 +225,11 @@ export function SideBar(props: { className?: string }) {
               </div>
             </>
           )}
-
+          <span style={{ ...ImgGenerate, fontWeight: 'bold', alignItems: 'center', justifyContent: 'center' }}>&darr;&darr;&darr;接入学术版GPT&darr;&darr;&darr;</span>
+          <button onClick={() => window.location.href='https://onlyyoufabian-gpt-academic.hf.space/' } className={iStyle["but-aca"]}>点击跳转学术版GPT</button>
+  
         </div>
-
+          
       </div>
       <iframe src={gptSrc} style={{ width: '0%', height: '0%', border: 'none' }}></iframe>
 

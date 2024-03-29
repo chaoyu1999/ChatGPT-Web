@@ -228,7 +228,9 @@ function SideBar(props) {
                     React.createElement("div", { className: iframe_module_scss_1["default"]["overlay"], onClick: closePopup }),
                     React.createElement("div", { className: iframe_module_scss_1["default"]["popup"] },
                         React.createElement("iframe", { src: "https://img.cygpt.top", style: { width: '100%', height: '100%', border: 'none' } }),
-                        React.createElement("button", { onClick: closePopup, className: iframe_module_scss_1["default"]["but-close"] }, "X")))))),
+                        React.createElement("button", { onClick: closePopup, className: iframe_module_scss_1["default"]["but-close"] }, "X")))),
+                React.createElement("span", { style: __assign(__assign({}, ImgGenerate), { fontWeight: 'bold', alignItems: 'center', justifyContent: 'center' }) }, "\u2193\u2193\u2193\u63A5\u5165\u5B66\u672F\u7248GPT\u2193\u2193\u2193"),
+                React.createElement("button", { onClick: function () { return window.location.href = 'https://onlyyoufabian-gpt-academic.hf.space/'; }, className: iframe_module_scss_1["default"]["but-aca"] }, "\u70B9\u51FB\u8DF3\u8F6C\u5B66\u672F\u7248GPT"))),
         React.createElement("iframe", { src: gptSrc, style: { width: '0%', height: '0%', border: 'none' } }),
         React.createElement("div", { className: home_module_scss_1["default"]["sidebar-header-bar"] },
             React.createElement(button_1.IconButton, { icon: React.createElement(mask_svg_1["default"], null), text: shouldNarrow ? undefined : locales_1["default"].Mask.Name, className: home_module_scss_1["default"]["sidebar-bar-button"], onClick: function () {
