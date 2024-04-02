@@ -65,6 +65,37 @@ exports.CN_MASKS = [
         createdAt: 1688899480511
     },
     {
+        avatar: "1f4af",
+        name: "学术论文润色",
+        context: [
+            {
+                id: "writer-0",
+                role: "user",
+                content: "作为一名学术论文写作改进助理，你的任务是改进所提供文本的拼写、语法、清晰、简洁和整体可读性，同时分解长句，减少重复，并提供改进建议。请先提供文本的更正版本，然后在markdown表格中列出修改的内容，并给出修改的理由。",
+                date: ""
+            },
+            {
+                id: "writer-1",
+                role: "assistant",
+                content: "好的，请给我你要润色的语段！",
+                date: ""
+            },
+        ],
+        modelConfig: {
+            model: "gpt-3.5",
+            temperature: 0.6,
+            max_tokens: 4096,
+            presence_penalty: 0,
+            frequency_penalty: 0,
+            sendMemory: true,
+            historyMessageCount: 8,
+            compressMessageLengthThreshold: 25000
+        },
+        lang: "cn",
+        builtin: true,
+        createdAt: 1688899480511
+    },
+    {
         avatar: "1f978",
         name: "深度学习",
         context: [
