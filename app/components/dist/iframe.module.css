@@ -51,7 +51,7 @@
   /* 字体大小 */
   font-weight: bold;
   /* 字体加粗 */
-  color: #2e34b1d5;
+  color: #fa8e00;
   /* 黑色文字 */
   z-index: 9999;
   /* 设置更高的 z-index 值 */
@@ -63,6 +63,8 @@
   /* 调整图片大小 */
   background-position: center;
   /* 调整图片位置 */
+  text-shadow: 2px 2px 2px #000000;
+  /* 添加白色文字边框 */
 }
 
 .but-sidebar:hover {
@@ -72,7 +74,7 @@
   /* 修改灰色阴影 */
   transform: scale(1.1);
   /* 添加缩放效果 */
-  color: #121cdcd5;
+  color: #ff6600d5;
   /* 黑色文字 */
 }
 
@@ -117,8 +119,7 @@
   /* 字体大小 */
   font-weight: bold;
   /* 字体加粗 */
-  color: #eb517fd5;
-  /* 黑色文字 */
+  color: #f1da08;
   z-index: 9999;
   /* 设置更高的 z-index 值 */
   background-color: white;
@@ -129,6 +130,8 @@
   /* 调整图片大小 */
   background-position: center;
   /* 调整图片位置 */
+  text-shadow: 2px 2px 2px #000000;
+  /* 添加白色文字边框 */
 }
 
 .but-aca:hover {
@@ -138,6 +141,6 @@
   /* 修改灰色阴影 */
   transform: scale(1.1);
   /* 添加缩放效果 */
-  color: #eb517fd5;
+  color: #f1da08;
   /* 黑色文字 */
 }
