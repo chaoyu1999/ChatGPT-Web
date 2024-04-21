@@ -72,9 +72,9 @@ var rainbowTextStyleContent = {
     WebkitBackgroundClip: 'text',
     color: 'transparent',
     display: 'flex',
-    fontSize: "17px",
+    fontSize: "20px",
     fontFamily: 'Arial, sans-serif',
-    animation: 'rainbow 1s ease infinite'
+    animation: 'rainbow 3s ease infinite'
 };
 var ImgGenerate = {
     background: 'linear-gradient(to right, red, orange, green, blue, indigo, violet)',
@@ -84,7 +84,7 @@ var ImgGenerate = {
     display: 'flex',
     fontSize: "20px",
     fontFamily: 'Arial, sans-serif',
-    animation: 'rainbow 1s ease infinite',
+    animation: 'rainbow 3s ease infinite',
     alignItems: 'center',
     fontWeight: 'bold'
 };
@@ -215,13 +215,10 @@ function SideBar(props) {
             React.createElement("div", { style: horizontalLineStyle }),
             React.createElement("div", { className: home_module_scss_1["default"]["sidebar-sub-title"] },
                 React.createElement("style", { jsx: true }, "\n          @keyframes rainbow {\n            0% {background-position: 0%;}\n            100% {background-position: 100%;}\n          }\n        "),
-                React.createElement("span", { style: __assign(__assign({}, rainbowTextStyleContent), { border: '1px solid orange', margin: '2px 0px' }) },
-                    "\u63A5\u5165\u4E86Bing gpt-4 \u6A21\u578B\u3002\u53EF\u5728\u804A\u5929\u8F93\u5165\u6846\u7684\u4E0A\u65B9\uFF0C\u70B9\u51FB\"\u673A\u5668\u4EBA\"\u56FE\u6807\u66F4\u6362\u6A21\u578B\u3002",
+                React.createElement("span", { style: __assign(__assign({}, rainbowTextStyleContent), { border: '3px solid green', margin: '2px 2px' }) },
+                    "\u5207\u6362gpt-4\u3001gpt-3.5 \u7B49\u6A21\u578B\uFF0C\u8BF7\u5728\u8F93\u5165\u6846\u7684\u4E0A\u65B9\u70B9\u51FB\"\u673A\u5668\u4EBA\"\u56FE\u6807\u3002",
                     React.createElement("img", { src: "https://pic.imgdb.cn/item/65bf3bf7871b83018aee2d6c.jpg", alt: "Bing GPT-4 Icon", style: { transform: 'scale(1)' } })),
-                React.createElement("span", { style: __assign(__assign({}, rainbowTextStyleContent), { border: '1px solid black' }) },
-                    "bing-\u8054\u7F51\u7248\uFF1A\u7ED3\u5408\u7F51\u9875\u641C\u7D22\u7ED3\u679C\u56DE\u7B54\uFF0C\u53EF\u641C\u7D22\u6700\u65B0\u95EE\u9898\u3002",
-                    React.createElement("br", null),
-                    "bing-\u4E0D\u8054\u7F51\uFF1A\u56DE\u7B54\u66F4\u7CBE\u786E\uFF0C\u4F46\u53EA\u80FD\u56DE\u7B542021\u5E74\u4E4B\u524D\u7684\u5185\u5BB9\u3002"),
+                React.createElement("button", { onClick: function () { return window.open('https://stats.uptimerobot.com/8Iz2VziwoS', '_blank'); }, style: { backgroundImage: 'url("https://pic.imgdb.cn/item/6624ebb50ea9cb140366fd23.png")', color: '#66CC00' }, className: iframe_module_scss_1["default"]["but-aca"] }, "\u7F51\u7AD9\u8FD0\u884C\u72B6\u6001\u67E5\u8BE2"),
                 React.createElement("span", { style: __assign(__assign({}, ImgGenerate), { fontWeight: 'bold', alignItems: 'center', justifyContent: 'center' }) }, "\u2193\u2193\u2193\u63A5\u5165\u7ED8\u56FE\u529F\u80FD\u2193\u2193\u2193"),
                 React.createElement("button", { onClick: openPopup, className: iframe_module_scss_1["default"]["but-sidebar"] }, "\u56FE\u7247\u521B\u4F5C"),
                 showPopup && (React.createElement(React.Fragment, null,

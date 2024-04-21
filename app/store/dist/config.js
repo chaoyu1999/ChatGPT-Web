@@ -53,7 +53,7 @@ exports.DEFAULT_CONFIG = {
         sendMemory: true,
         historyMessageCount: 8,
         compressMessageLengthThreshold: 25000,
-        enableInjectSystemPrompts: false,
+        enableInjectSystemPrompts: true,
         template: constant_1.DEFAULT_INPUT_TEMPLATE
     }
 };

@@ -34,14 +34,14 @@ import { showConfirm, showToast } from "./ui-lib";
 
 const rainbowTextStyleContent = {
   background: 'linear-gradient(to right, red, orange, green, blue, indigo, violet)',
-  backgroundSize: '200% auto', // 添加这一行
+  backgroundSize: '200% auto', 
 
   WebkitBackgroundClip: 'text',
   color: 'transparent',
   display: 'flex',
-  fontSize: "17px",
+  fontSize: "20px",
   fontFamily: 'Arial, sans-serif',
-  animation: 'rainbow 1s ease infinite',
+  animation: 'rainbow 3s ease infinite',
 };
 const ImgGenerate = {
   background: 'linear-gradient(to right, red, orange, green, blue, indigo, violet)',
@@ -52,7 +52,7 @@ const ImgGenerate = {
   display: 'flex',
   fontSize: "20px",
   fontFamily: 'Arial, sans-serif',
-  animation: 'rainbow 1s ease infinite',
+  animation: 'rainbow 3s ease infinite',
   alignItems: 'center', // 居中
   fontWeight: 'bold', // 加粗
 };
@@ -211,10 +211,11 @@ export function SideBar(props: { className?: string }) {
             100% {background-position: 100%;}
           }
         `}</style>
-          <span style={{ ...rainbowTextStyleContent, border: '1px solid orange', margin: '2px 0px' }}>接入了Bing gpt-4 模型。可在聊天输入框的上方，点击&quot;机器人&quot;图标更换模型。<img src="https://pic.imgdb.cn/item/65bf3bf7871b83018aee2d6c.jpg" alt="Bing GPT-4 Icon" style={{ transform: 'scale(1)' }} /></span>
-          <span style={{ ...rainbowTextStyleContent, border: '1px solid black', }}>bing-联网版：结合网页搜索结果回答，可搜索最新问题。<br />bing-不联网：回答更精确，但只能回答2021年之前的内容。</span>
+          <span style={{ ...rainbowTextStyleContent, border: '3px solid green', margin: '2px 2px' }}>切换gpt-4、gpt-3.5 等模型，请在输入框的上方点击&quot;机器人&quot;图标。<img src="https://pic.imgdb.cn/item/65bf3bf7871b83018aee2d6c.jpg" alt="Bing GPT-4 Icon" style={{ transform: 'scale(1)' }} /></span>
+          {/* <span style={{ ...rainbowTextStyleContent, border: '1px solid black', }}>bing-联网版：结合网页搜索结果回答，可搜索最新问题。<br />bing-不联网：回答更精确，但只能回答2021年之前的内容。</span> */}
+          <button onClick={() => window.open('https://stats.uptimerobot.com/8Iz2VziwoS', '_blank')} style={{backgroundImage: 'url("https://pic.imgdb.cn/item/6624ebb50ea9cb140366fd23.png")',color: '#66CC00',}} className={iStyle["but-aca"] }>网站运行状态查询</button>
+          
           <span style={{ ...ImgGenerate, fontWeight: 'bold', alignItems: 'center', justifyContent: 'center' }}>&darr;&darr;&darr;接入绘图功能&darr;&darr;&darr;</span>
-
           <button onClick={openPopup} className={iStyle["but-sidebar"]}>图片创作</button>
           {showPopup && (
             <>

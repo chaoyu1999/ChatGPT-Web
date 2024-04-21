@@ -86,7 +86,7 @@ exports.OpenaiPath = {
 };
 // 默认输入和系统消息模板
 exports.DEFAULT_INPUT_TEMPLATE = "{{input}}"; // input / time / model / lang
-exports.DEFAULT_SYSTEM_TEMPLATE = "\nPlease answer me with Chinese.\nCurrent time: {{time}}\nLatex inline: $x^2$ Latex block: $$e=mc^2$$\nCode inline: `print(\"Hello, world!\")` \nCode block: \n```python \nprint(\"Hello, world!\")\n```\n";
+exports.DEFAULT_SYSTEM_TEMPLATE = "\nPlease answer me with Chinese.\nCurrent time: {{time}}\nLatex formula block format: $x^2$ Latex block: $$e=mc^2$$\nCode block format:\n```python \nprint(\"Hello, world!\")\n```\n";
 // 摘要模型名称
 exports.SUMMARIZE_MODEL = "gpt-3.5";
 // 默认模型配置

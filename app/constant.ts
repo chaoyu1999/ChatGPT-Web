@@ -100,9 +100,8 @@ export const DEFAULT_INPUT_TEMPLATE = `{{input}}`; // input / time / model / lan
 export const DEFAULT_SYSTEM_TEMPLATE = `
 Please answer me with Chinese.
 Current time: {{time}}
-Latex inline: $x^2$ Latex block: $$e=mc^2$$
-Code inline: \`print("Hello, world!")\` 
-Code block: 
+Latex formula block format: $x^2$ Latex block: $$e=mc^2$$
+Code block format:
 \`\`\`python 
 print("Hello, world!")
 \`\`\`
