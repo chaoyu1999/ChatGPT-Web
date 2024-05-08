@@ -121,6 +121,7 @@ export async function requestOpenai(req: NextRequest) {
       fetchOptions.body = clonedBody;
       const jsonBody = JSON.parse(clonedBody);
       console.log("[Check]:", "Check Model!");
+      jsonBody.top_p = 0.2;
 
       // 3.5
       if ((jsonBody?.model ?? "").includes("3.5")) {

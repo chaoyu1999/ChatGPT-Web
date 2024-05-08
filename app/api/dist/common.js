@@ -157,6 +157,7 @@ function requestOpenai(req) {
                     fetchOptions.body = clonedBody;
                     jsonBody = JSON.parse(clonedBody);
                     console.log("[Check]:", "Check Model!");
+                    jsonBody.top_p = 0.2;
                     if (!((_c = jsonBody === null || jsonBody === void 0 ? void 0 : jsonBody.model) !== null && _c !== void 0 ? _c : "").includes("3.5")) return [3 /*break*/, 10];
                     return [4 /*yield*/, fetchParameter("GPT_3_MODEL")];
                 case 8:
