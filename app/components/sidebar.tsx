@@ -211,24 +211,7 @@ export function SideBar(props: { className?: string }) {
             100% {background-position: 100%;}
           }
         `}</style>
-          <span style={{ ...rainbowTextStyleContent, border: '3px solid green', margin: '2px 2px' }}>切换gpt-4、gpt-3.5 等模型，请在输入框的上方点击&quot;机器人&quot;图标。<img src="https://pic.imgdb.cn/item/65bf3bf7871b83018aee2d6c.jpg" alt="Bing GPT-4 Icon" style={{ transform: 'scale(1)' }} /></span>
-          {/* <span style={{ ...rainbowTextStyleContent, border: '1px solid black', }}>bing-联网版：结合网页搜索结果回答，可搜索最新问题。<br />bing-不联网：回答更精确，但只能回答2021年之前的内容。</span> */}
-          <button onClick={() => window.open('https://stats.uptimerobot.com/8Iz2VziwoS', '_blank')} style={{backgroundImage: 'url("https://pic.imgdb.cn/item/6624ebb50ea9cb140366fd23.png")',color: '#66CC00',}} className={iStyle["but-aca"] }>网站运行状态查询</button>
-          
-          <span style={{ ...ImgGenerate, fontWeight: 'bold', alignItems: 'center', justifyContent: 'center' }}>&darr;&darr;&darr;接入绘图功能&darr;&darr;&darr;</span>
-          <button onClick={openPopup} className={iStyle["but-sidebar"]}>图片创作</button>
-          {showPopup && (
-            <>
-              <div className={iStyle["overlay"]} onClick={closePopup}></div>
-              <div className={iStyle["popup"]}>
-                <iframe src="https://img.cygpt.top" style={{ width: '100%', height: '100%', border: 'none' }}></iframe>
-                <button onClick={closePopup} className={iStyle["but-close"]}>X</button>
-              </div>
-            </>
-          )}
-          <span style={{ ...ImgGenerate, fontWeight: 'bold', alignItems: 'center', justifyContent: 'center' }}>&darr;&darr;&darr;接入学术版GPT&darr;&darr;&darr;</span>
-          <button onClick={() => window.open('https://onlyyoufabian-gpt-academic.hf.space/', '_blank')} className={iStyle["but-aca"]}>点击跳转学术版GPT</button>
-  
+          <span style={{ ...rainbowTextStyleContent, border: '3px solid green', margin: '2px 2px' }}>所有模型更换为GPT-4模型。</span>
         </div>
           
       </div>

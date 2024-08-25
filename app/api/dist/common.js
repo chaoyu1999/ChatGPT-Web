@@ -157,7 +157,6 @@ function requestOpenai(req) {
                     fetchOptions.body = clonedBody;
                     jsonBody = JSON.parse(clonedBody);
                     console.log("[Check]:", "Check Model!");
-                    jsonBody.top_p = 0.2;
                     model = (_c = jsonBody === null || jsonBody === void 0 ? void 0 : jsonBody.model) !== null && _c !== void 0 ? _c : "";
                     return [4 /*yield*/, fetchParameter("BING_URL")];
                 case 8:
