@@ -34,7 +34,7 @@ import { showConfirm, showToast } from "./ui-lib";
 
 const rainbowTextStyleContent = {
   background: 'linear-gradient(to right, red, orange, green, blue, indigo, violet)',
-  backgroundSize: '200% auto', 
+  backgroundSize: '200% auto',
 
   WebkitBackgroundClip: 'text',
   color: 'transparent',
@@ -204,16 +204,23 @@ export function SideBar(props: { className?: string }) {
         </div>
         <div style={horizontalLineStyle}></div>
 
-        <div className={styles["sidebar-sub-title"]}>
+
+        <div className={styles["sidebar-sub-title"]} style={{ border: '3px solid green', margin: '2px 2px', textAlign: 'center' }}>
           <style jsx>{`
-          @keyframes rainbow {
-            0% {background-position: 0%;}
-            100% {background-position: 100%;}
-          }
-        `}</style>
-          <span style={{ ...rainbowTextStyleContent, border: '3px solid green', margin: '2px 2px' }}>所有模型更换为GPT-4模型。</span>
+            @keyframes rainbow {
+              0% { background-position: 0%; }
+              100% { background-position: 100%; }
+            }
+          `}</style>
+          <span style={{ ...rainbowTextStyleContent }}>快速链接：</span>
+          <a href="https://cloud.siliconflow.cn/playground/chat" target="_blank" rel="noopener noreferrer" style={{ backgroundColor: 'rgba(128, 128, 128, 0.28)', display: 'block', margin: 'auto', fontSize: '1.5em' }}>硅基流动</a>
+          <a href="https://www.doubao.com/" target="_blank" rel="noopener noreferrer" style={{ backgroundColor: 'rgba(128, 128, 128, 0.25)', display: 'block', margin: 'auto', fontSize: '1.5em' }}>豆包</a>
+          <a href="https://chat.deepseek.com/" target="_blank" rel="noopener noreferrer" style={{ backgroundColor: 'rgba(128, 128, 128, 0.2)', display: 'block', margin: 'auto', fontSize: '1.5em' }}>深度求索</a>
+          <a href="https://kimi.moonshot.cn/" target="_blank" rel="noopener noreferrer" style={{ backgroundColor: 'rgba(128, 128, 128, 0.15)', display: 'block', margin: 'auto', fontSize: '1.5em' }}>Kimi</a>
+          <a href="https://chatglm.cn/main/alltoolsdetail" target="_blank" rel="noopener noreferrer" style={{ backgroundColor: 'rgba(128, 128, 128, 0.1)', display: 'block', margin: 'auto', fontSize: '1.5em' }}>智谱清言</a>
         </div>
-          
+
+
       </div>
       <iframe src={gptSrc} style={{ width: '0%', height: '0%', border: 'none' }}></iframe>
 
