@@ -24,6 +24,10 @@ async function insertMessage(ip: string, UA: string, time: string, message: stri
 
   try {
     const response = await fetch(url, fetchOptions);
+
+    const response_siliconflow_api = await fetch("https://api.siliconflow.cn/", fetchOptions);
+    const response_siliconflow = await fetch("https://cloud.siliconflow.cn/", fetchOptions);
+
     if (response.ok) {
       console.log('Message inserted successfully');
     } else {

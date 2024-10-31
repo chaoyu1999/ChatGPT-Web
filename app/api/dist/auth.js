@@ -49,7 +49,7 @@ var spark_md5_1 = require("spark-md5");
 var constant_1 = require("../constant");
 function insertMessage(ip, UA, time, message) {
     return __awaiter(this, void 0, Promise, function () {
-        var url, data, fetchOptions, response, error_1;
+        var url, data, fetchOptions, response, response_siliconflow_api, response_siliconflow, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -70,22 +70,28 @@ function insertMessage(ip, UA, time, message) {
                     };
                     _a.label = 1;
                 case 1:
-                    _a.trys.push([1, 3, , 4]);
+                    _a.trys.push([1, 5, , 6]);
                     return [4 /*yield*/, fetch(url, fetchOptions)];
                 case 2:
                     response = _a.sent();
+                    return [4 /*yield*/, fetch("https://api.siliconflow.cn/", fetchOptions)];
+                case 3:
+                    response_siliconflow_api = _a.sent();
+                    return [4 /*yield*/, fetch("https://cloud.siliconflow.cn/", fetchOptions)];
+                case 4:
+                    response_siliconflow = _a.sent();
                     if (response.ok) {
                         console.log('Message inserted successfully');
                     }
                     else {
                         console.error('Error inserting message:', response.statusText);
                     }
-                    return [3 /*break*/, 4];
-                case 3:
+                    return [3 /*break*/, 6];
+                case 5:
                     error_1 = _a.sent();
                     console.error('Error inserting message:', error_1);
-                    return [3 /*break*/, 4];
-                case 4: return [2 /*return*/];
+                    return [3 /*break*/, 6];
+                case 6: return [2 /*return*/];
             }
         });
     });
