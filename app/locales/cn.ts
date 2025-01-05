@@ -295,7 +295,7 @@ const cn = {
       SubTitle: "与随机性类似，但不要和随机性一起更改",
     },
     MaxTokens: {
-      Title: "单次回复限制 (max_tokens)",
+      Title: "单次回复限制 (max_tokens:4096~8192)",
       SubTitle: "单次交互所用的最大 Token 数",
     },
     PresencePenalty: {
