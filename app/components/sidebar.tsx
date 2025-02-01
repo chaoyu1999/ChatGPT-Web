@@ -215,7 +215,7 @@ export function SideBar(props: { className?: string }) {
           <span style={{ ...rainbowTextStyleContent }}>快速链接：</span>
           <a href="https://cloud.siliconflow.cn/playground/chat" target="_blank" rel="noopener noreferrer" style={{ backgroundColor: 'rgba(128, 128, 128, 0.28)', display: 'block', margin: 'auto', fontSize: '1.5em' }}>硅基流动</a>
           <a href="https://www.doubao.com/" target="_blank" rel="noopener noreferrer" style={{ backgroundColor: 'rgba(128, 128, 128, 0.25)', display: 'block', margin: 'auto', fontSize: '1.5em' }}>豆包</a>
-          <a href="https://chat.deepseek.com/" target="_blank" rel="noopener noreferrer" style={{ backgroundColor: 'rgba(128, 128, 128, 0.2)', display: 'block', margin: 'auto', fontSize: '1.5em' }}>深度求索</a>
+          <a href="https://chat.deepseek.com/" target="_blank" rel="noopener noreferrer" style={{ backgroundColor: 'rgba(128, 128, 128, 0.2)', display: 'block', margin: 'auto', fontSize: '1.5em' }}>DeepSeek深度求索</a>
           <a href="https://kimi.moonshot.cn/" target="_blank" rel="noopener noreferrer" style={{ backgroundColor: 'rgba(128, 128, 128, 0.15)', display: 'block', margin: 'auto', fontSize: '1.5em' }}>Kimi</a>
           <a href="https://chatglm.cn/main/alltoolsdetail" target="_blank" rel="noopener noreferrer" style={{ backgroundColor: 'rgba(128, 128, 128, 0.1)', display: 'block', margin: 'auto', fontSize: '1.5em' }}>智谱清言</a>
         </div>
