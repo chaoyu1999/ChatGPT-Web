@@ -204,6 +204,21 @@ export function SideBar(props: { className?: string }) {
         </div>
         <div style={horizontalLineStyle}></div>
 
+        <div className={styles["sidebar-notice"]} 
+             style={{ 
+               textAlign: 'center',
+               margin: '8px 0',
+               fontSize: '0.9em',
+               color: '#4CAF50', // 使用与绿色边框协调的颜色
+               fontWeight: 'bold',
+               opacity: 0.8
+             }}>
+              🚀 已接入地表最强 DeepSeek V3 & R1 模型
+              <br />  {/* 换行显示 */}
+              <span style={{ fontSize: '0.85em' }}>
+                [ 模型对应关系：GPT-3 → V3 | GPT-4 → R1 ]
+              </span>
+        </div>
 
         <div className={styles["sidebar-sub-title"]} style={{ border: '3px solid green', margin: '2px 2px', textAlign: 'center' }}>
           <style jsx>{`
@@ -215,7 +230,7 @@ export function SideBar(props: { className?: string }) {
           <span style={{ ...rainbowTextStyleContent }}>快速链接：</span>
           <a href="https://cloud.siliconflow.cn/playground/chat" target="_blank" rel="noopener noreferrer" style={{ backgroundColor: 'rgba(128, 128, 128, 0.28)', display: 'block', margin: 'auto', fontSize: '1.5em' }}>硅基流动</a>
           <a href="https://www.doubao.com/" target="_blank" rel="noopener noreferrer" style={{ backgroundColor: 'rgba(128, 128, 128, 0.25)', display: 'block', margin: 'auto', fontSize: '1.5em' }}>豆包</a>
-          <a href="https://chat.deepseek.com/" target="_blank" rel="noopener noreferrer" style={{ backgroundColor: 'rgba(128, 128, 128, 0.2)', display: 'block', margin: 'auto', fontSize: '1.5em' }}>DeepSeek深度求索</a>
+          <a href="https://chat.deepseek.com/" target="_blank" rel="noopener noreferrer" style={{ backgroundColor: 'rgba(128, 128, 128, 0.2)', display: 'block', margin: 'auto', fontSize: '1.5em' }}>DeepSeek</a>
           <a href="https://kimi.moonshot.cn/" target="_blank" rel="noopener noreferrer" style={{ backgroundColor: 'rgba(128, 128, 128, 0.15)', display: 'block', margin: 'auto', fontSize: '1.5em' }}>Kimi</a>
           <a href="https://chatglm.cn/main/alltoolsdetail" target="_blank" rel="noopener noreferrer" style={{ backgroundColor: 'rgba(128, 128, 128, 0.1)', display: 'block', margin: 'auto', fontSize: '1.5em' }}>智谱清言</a>
         </div>
