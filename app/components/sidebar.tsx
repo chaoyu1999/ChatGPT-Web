@@ -213,10 +213,10 @@ export function SideBar(props: { className?: string }) {
                fontWeight: 'bold',
                opacity: 0.8
              }}>
-              🚀 已接入地表最强 DeepSeek V3 & R1 模型
+              🚀 已接入地表最强 DeepSeek模型
               <br />  {/* 换行显示 */}
               <span style={{ fontSize: '0.85em' }}>
-                [ 模型对应关系：GPT-3 → V3 | GPT-4 → R1 ]
+                [ 模型对应关系：GPT-3 → DeepSeek-V3(不深度思考，反应快) | GPT-4 → DeepSeek-R1(深度思考，反应慢) ]
               </span>
         </div>
 
@@ -228,11 +228,16 @@ export function SideBar(props: { className?: string }) {
             }
           `}</style>
           <span style={{ ...rainbowTextStyleContent }}>快速链接：</span>
+          <a href="https://yuanbao.tencent.com/chat" target="_blank" rel="noopener noreferrer" style={{ backgroundColor: 'rgba(128, 128, 128, 0.5)', display: 'block', margin: 'auto', fontSize: '1.5em' }}>腾讯元宝</a>
+          <a href="https://ai.dangbei.com/chat" target="_blank" rel="noopener noreferrer" style={{ backgroundColor: 'rgba(128, 128, 128, 0.4)', display: 'block', margin: 'auto', fontSize: '1.5em' }}>当贝AI</a>
+          <a href="https://www.wenxiaobai.com/chat/200006" target="_blank" rel="noopener noreferrer" style={{ backgroundColor: 'rgba(128, 128, 128, 0.35)', display: 'block', margin: 'auto', fontSize: '1.5em' }}>问小白</a>
+          <a href="https://cloud.infini-ai.com/genstudio/model" target="_blank" rel="noopener noreferrer" style={{ backgroundColor: 'rgba(128, 128, 128, 0.32)', display: 'block', margin: 'auto', fontSize: '1.5em' }}>无问苍穹</a>
           <a href="https://cloud.siliconflow.cn/playground/chat" target="_blank" rel="noopener noreferrer" style={{ backgroundColor: 'rgba(128, 128, 128, 0.28)', display: 'block', margin: 'auto', fontSize: '1.5em' }}>硅基流动</a>
-          <a href="https://www.doubao.com/" target="_blank" rel="noopener noreferrer" style={{ backgroundColor: 'rgba(128, 128, 128, 0.25)', display: 'block', margin: 'auto', fontSize: '1.5em' }}>豆包</a>
+          <a href="https://www.doubao.com/" target="_blank" rel="noopener noreferrer" style={{ backgroundColor: 'rgba(128, 128, 128, 0.25)', display: 'block', margin: 'auto', fontSize: '1.5em' }}>字节豆包</a>
+          <a href="https://tongyi.aliyun.com/" target="_blank" rel="noopener noreferrer" style={{ backgroundColor: 'rgba(128, 128, 128, 0.23)', display: 'block', margin: 'auto', fontSize: '1.5em' }}>阿里通义</a>
           <a href="https://chat.deepseek.com/" target="_blank" rel="noopener noreferrer" style={{ backgroundColor: 'rgba(128, 128, 128, 0.2)', display: 'block', margin: 'auto', fontSize: '1.5em' }}>DeepSeek</a>
           <a href="https://kimi.moonshot.cn/" target="_blank" rel="noopener noreferrer" style={{ backgroundColor: 'rgba(128, 128, 128, 0.15)', display: 'block', margin: 'auto', fontSize: '1.5em' }}>Kimi</a>
-          <a href="https://chatglm.cn/main/alltoolsdetail" target="_blank" rel="noopener noreferrer" style={{ backgroundColor: 'rgba(128, 128, 128, 0.1)', display: 'block', margin: 'auto', fontSize: '1.5em' }}>智谱清言</a>
+          <a href="https://chatglm.cn/main/alltoolsdetail" target="_blank" rel="noopener noreferrer" style={{ backgroundColor: 'rgba(128, 128, 128, 0.1)', display: 'block', margin: 'auto', fontSize: '1.5em' }}>清华智谱</a>
         </div>
 
 
